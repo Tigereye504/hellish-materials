@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "luss-gamblers-ore:luss_block"
+        }
+    ],
+    "result": {
+        "item": "luss-gamblers-ore:luss_ingot",
+        "count": 9
+    },
+    "group": "lussingot"
+}

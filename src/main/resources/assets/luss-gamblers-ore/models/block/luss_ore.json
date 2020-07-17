@@ -1,0 +1,6 @@
+{
+    "parent": "block/cube_all",
+    "textures": {
+        "all": "luss-gamblers-ore:block/luss_ore"
+    }
+}
