@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
   "id": "luss-gamblers-ore",
-  "version": "${version}",
+  "version": "0.5.0",
 
   "name": "Luss, Gambler's Ore",
-  "description": "Adds a variable drop multiplying ore to glowstone growths",
+  "description": "Adds a drop altering ore to the nether.",
   "authors": [
-    "Me!"
+    "David Troyer"
   ],
   "contact": {
     "homepage": "https://fabricmc.net/",
