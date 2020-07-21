@@ -12,7 +12,7 @@ public class BaseAxe extends AxeItem {
     }
 
     public BaseAxe(ToolMaterial material) {
-        super(material, -1, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, 3f, -3f, new Item.Settings().group(ItemGroup.TOOLS));
     }
     
 }

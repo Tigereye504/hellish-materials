@@ -12,7 +12,7 @@ public class BaseSword extends SwordItem {
     }
 
     public BaseSword(ToolMaterial material) {
-        super(material, -1, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, 0, -2.4f, new Item.Settings().group(ItemGroup.TOOLS));
     }
     
 }

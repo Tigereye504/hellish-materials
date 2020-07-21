@@ -12,7 +12,7 @@ public class BaseHoe extends HoeItem {
     }
 
     public BaseHoe(ToolMaterial material) {
-        super(material, -1, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, -3, -3f, new Item.Settings().group(ItemGroup.TOOLS));
     }
     
 }

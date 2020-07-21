@@ -12,7 +12,7 @@ public class BasePickaxe extends PickaxeItem {
     }
 
     public BasePickaxe(ToolMaterial material) {
-        super(material, -1, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, -2, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
     }
     
 }
