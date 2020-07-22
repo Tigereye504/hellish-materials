@@ -1,10 +1,20 @@
 package net.tigereye.luss.blocks;
 
+import java.util.function.Consumer;
+
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.stat.Stats;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.tigereye.luss.LussGamblersOre;
@@ -21,6 +31,16 @@ public class VuldOre extends Block {
             .breakByHand(false)
             .breakByTool(FabricToolTags.PICKAXES, 2)
             .sounds(BlockSoundGroup.SLIME));
+    }
+
+    @Override
+    public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
+       player.incrementStat(Stats.MINED.getOrCreateStat(this));
+       player.addExhaustion(0.005F);
+       dropStacks(state, world, pos, blockEntity, player, stack);
+       player.getStackInHand(player.getActiveHand()).damage(250, (LivingEntity)player, (Consumer)((p) -> {
+           ((LivingEntity) p).sendToolBreakStatus(player.getActiveHand());
+        }));
     }
 
     public static void SpawnVuldInBiome(Biome biome) {
@@ -41,4 +61,6 @@ public class VuldOre extends Block {
             ))));
         }
     }
+
+     
 }
