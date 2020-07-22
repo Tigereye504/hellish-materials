@@ -4,9 +4,9 @@
       "item": "minecraft:diamond_axe"
     },
     "addition": {
-      "item": "minecraft:vuld"
+      "item": "luss-gamblers-ore:vuld"
     },
     "result": {
-      "item": "minecraft:vuld_axe"
+      "item": "luss-gamblers-ore:vuld_axe"
     }
   }

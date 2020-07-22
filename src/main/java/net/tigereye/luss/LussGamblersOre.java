@@ -15,9 +15,8 @@ import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.registry.Registry;
 
 import net.tigereye.luss.items.*;
-import net.tigereye.luss.mechanics.LussLuck;
-import net.tigereye.luss.armor.BaseArmor;
-import net.tigereye.luss.armor.VuldArmorMaterial;
+import net.tigereye.luss.mechanics.*;
+import net.tigereye.luss.armor.*;
 import net.tigereye.luss.blocks.*;
 import net.tigereye.luss.events.BlockDropStacksCallback;
 import net.tigereye.luss.events.LivingEntityDropLootCallback;
@@ -32,6 +31,8 @@ public class LussGamblersOre implements ModInitializer{
     public static final Block LUSS_BLOCK = new LussBlock();
 
     public static final ArmorMaterial VULD_ARMOR = new VuldArmorMaterial();
+    public static final Item VULD = new Vuld(new Item.Settings().group(ItemGroup.MISC));
+    public static final Block VULD_ORE = new VuldOre();
 
     @Override
     public void onInitialize() {
@@ -54,8 +55,18 @@ public class LussGamblersOre implements ModInitializer{
         Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_chestplate"), new BaseArmor(VULD_ARMOR, EquipmentSlot.CHEST));
         Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_leggings"), new BaseArmor(VULD_ARMOR, EquipmentSlot.LEGS));
         Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_boots"), new BaseArmor(VULD_ARMOR, EquipmentSlot.FEET));
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld"), VULD);
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_axe"), new VuldAxe());
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_hoe"), new VuldHoe());
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_pickaxe"), new VuldPickaxe());
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_shovel"), new VuldShovel());
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_sword"), new VuldSword());
+        Registry.register(Registry.BLOCK, new Identifier(MODID, "vuld_ore"), VULD_ORE);
+        Registry.register(Registry.ITEM, new Identifier(MODID, "vuld_ore"),
+            new BlockItem(VULD_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
 
         Registry.BIOME.forEach(LussOre::SpawnLussInBiome);
+        Registry.BIOME.forEach(VuldOre::SpawnVuldInBiome);
         
         //Install Listeners
         RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> LussOre.SpawnLussInBiome(biome));
@@ -69,6 +80,14 @@ public class LussGamblersOre implements ModInitializer{
                 stack.getItem() instanceof LussSword) //replace this with something like hasTag(TAG.LUSSTOOL) once I learn how those work
                 {
                     stacksToDrop = LussLuck.ToolListItemStackRandomizer(stacksToDrop, stack, ((PlayerEntity)entity).getLuck());
+                }
+                else if(stack.getItem() instanceof VuldAxe ||
+                stack.getItem() instanceof VuldHoe ||
+                stack.getItem() instanceof VuldPickaxe ||
+                stack.getItem() instanceof VuldShovel ||
+                stack.getItem() instanceof VuldSword)
+                {
+                    stacksToDrop.clear();
                 }
             }
             return TypedActionResult.pass(stacksToDrop);
@@ -85,6 +104,14 @@ public class LussGamblersOre implements ModInitializer{
                 stack.getItem() instanceof LussSword) //replace this with something like hasTag(TAG.LUSSTOOL) once I learn how those work
                 {
                     loot = LussLuck.ToolListItemStackRandomizer(loot, stack, player.getLuck());
+                }
+                else if(stack.getItem() instanceof VuldAxe ||
+                stack.getItem() instanceof VuldHoe ||
+                stack.getItem() instanceof VuldPickaxe ||
+                stack.getItem() instanceof VuldShovel ||
+                stack.getItem() instanceof VuldSword)
+                {
+                    loot.clear();
                 }
             }
             return TypedActionResult.pass(loot);

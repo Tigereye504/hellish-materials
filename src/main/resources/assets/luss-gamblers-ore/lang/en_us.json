@@ -9,8 +9,15 @@
     "block.luss-gamblers-ore.luss_ore": "Luss Ore",
     "block.luss-gamblers-ore.luss_block": "Luss Block",
 
-    "block.luss-gamblers-ore.vuld_helm": "Vuld Helm",
-    "block.luss-gamblers-ore.vuld_chestplate": "Vuld Chestplate",
-    "block.luss-gamblers-ore.vuld_leggings": "Vuld Leggings",
-    "block.luss-gamblers-ore.vuld_boots": "Vuld Boots"
+    "item.luss-gamblers-ore.vuld_helm": "Vuld Helm",
+    "item.luss-gamblers-ore.vuld_chestplate": "Vuld Chestplate",
+    "item.luss-gamblers-ore.vuld_leggings": "Vuld Leggings",
+    "item.luss-gamblers-ore.vuld_boots": "Vuld Boots",
+    "item.luss-gamblers-ore.vuld": "Vuld",
+    "item.luss-gamblers-ore.vuld_axe": "Vuld Axe",
+    "item.luss-gamblers-ore.vuld_hoe": "Vuld Hoe",
+    "item.luss-gamblers-ore.vuld_pickaxe": "Vuld Pickaxe",
+    "item.luss-gamblers-ore.vuld_shovel": "Vuld Shovel",
+    "item.luss-gamblers-ore.vuld_sword": "Vuld Sword",
+    "block.luss-gamblers-ore.vuld_ore": "Contaminated Basalt"
 }

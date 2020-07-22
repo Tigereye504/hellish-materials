@@ -4,9 +4,9 @@
       "item": "minecraft:diamond_leggings"
     },
     "addition": {
-      "item": "minecraft:vuld"
+      "item": "luss-gamblers-ore:vuld"
     },
     "result": {
-      "item": "minecraft:vuld_leggings"
+      "item": "luss-gamblers-ore:vuld_leggings"
     }
   }

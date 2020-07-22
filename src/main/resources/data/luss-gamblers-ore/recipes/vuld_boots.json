@@ -4,9 +4,9 @@
       "item": "minecraft:diamond_boots"
     },
     "addition": {
-      "item": "minecraft:vuld"
+      "item": "luss-gamblers-ore:vuld"
     },
     "result": {
-      "item": "minecraft:vuld_boots"
+      "item": "luss-gamblers-ore:vuld_boots"
     }
   }

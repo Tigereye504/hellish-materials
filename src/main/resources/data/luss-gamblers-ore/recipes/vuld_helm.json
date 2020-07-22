@@ -4,9 +4,9 @@
       "item": "minecraft:diamond_helmet"
     },
     "addition": {
-      "item": "minecraft:vuld"
+      "item": "luss-gamblers-ore:vuld"
     },
     "result": {
-      "item": "minecraft:vuld_helm"
+      "item": "luss-gamblers-ore:vuld_helm"
     }
   }

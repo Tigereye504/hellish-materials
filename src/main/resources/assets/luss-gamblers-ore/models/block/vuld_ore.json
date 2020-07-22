@@ -1,6 +1,7 @@
 {
-    "parent": "block/cube_all",
+    "parent": "minecraft:block/cube_column",
     "textures": {
-        "all": "luss-gamblers-ore:block/vuld_ore"
+        "end": "luss-gamblers-ore:block/vuld_ore_top",
+        "side": "luss-gamblers-ore:block/vuld_ore_side"
     }
 }
