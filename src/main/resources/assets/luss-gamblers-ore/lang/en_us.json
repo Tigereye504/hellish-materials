@@ -7,5 +7,10 @@
     "item.luss-gamblers-ore.luss_shovel": "Luss Shovel",
     "item.luss-gamblers-ore.luss_sword": "Luss Sword",
     "block.luss-gamblers-ore.luss_ore": "Luss Ore",
-    "block.luss-gamblers-ore.luss_block": "Luss Block"
+    "block.luss-gamblers-ore.luss_block": "Luss Block",
+
+    "block.luss-gamblers-ore.vuld_helm": "Vuld Helm",
+    "block.luss-gamblers-ore.vuld_chestplate": "Vuld Chestplate",
+    "block.luss-gamblers-ore.vuld_leggings": "Vuld Leggings",
+    "block.luss-gamblers-ore.vuld_boots": "Vuld Boots"
 }
