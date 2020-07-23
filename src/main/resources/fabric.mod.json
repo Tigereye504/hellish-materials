@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
   "id": "luss-gamblers-ore",
-  "version": "0.5.0",
+  "version": "0.6.0",
 
   "name": "Luss, Gambler's Ore",
   "description": "Adds a drop altering ore to the nether.",
