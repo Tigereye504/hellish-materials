@@ -1,7 +1,0 @@
-{
-    "parent": "minecraft:block/cube_column",
-    "textures": {
-        "end": "luss-gamblers-ore:block/vuld_ore_top",
-        "side": "luss-gamblers-ore:block/vuld_ore_side"
-    }
-}

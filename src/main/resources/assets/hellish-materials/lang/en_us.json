@@ -1,0 +1,23 @@
+{
+    "item.hellishmaterials.luss_dust": "Luss Dust",
+    "item.hellishmaterials.luss_ingot": "Luss Ingot",
+    "item.hellishmaterials.luss_axe": "Luss Axe",
+    "item.hellishmaterials.luss_hoe": "Luss Hoe",
+    "item.hellishmaterials.luss_pickaxe": "Luss Pickaxe",
+    "item.hellishmaterials.luss_shovel": "Luss Shovel",
+    "item.hellishmaterials.luss_sword": "Luss Sword",
+    "block.hellishmaterials.luss_ore": "Luss Ore",
+    "block.hellishmaterials.luss_block": "Luss Block",
+
+    "item.hellishmaterials.vuld_helm": "Vuld Helm",
+    "item.hellishmaterials.vuld_chestplate": "Vuld Chestplate",
+    "item.hellishmaterials.vuld_leggings": "Vuld Leggings",
+    "item.hellishmaterials.vuld_boots": "Vuld Boots",
+    "item.hellishmaterials.vuld": "Vuld",
+    "item.hellishmaterials.vuld_axe": "Vuld Axe",
+    "item.hellishmaterials.vuld_hoe": "Vuld Hoe",
+    "item.hellishmaterials.vuld_pickaxe": "Vuld Pickaxe",
+    "item.hellishmaterials.vuld_shovel": "Vuld Shovel",
+    "item.hellishmaterials.vuld_sword": "Vuld Sword",
+    "block.hellishmaterials.vuld_ore": "Contaminated Basalt"
+}

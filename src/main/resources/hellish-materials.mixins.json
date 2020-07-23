@@ -1,0 +1,17 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "net.tigereye.hellishmaterials.mixins",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "BlockDropStacksMixin",
+    "LivingEntityDropLootMixin",
+    "LivingEntityBaseTickMixin"
+  ],
+  "client": [
+    
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "hellish-materials:block/vuld_ore_top",
+        "side": "hellish-materials:block/vuld_ore_side"
+    }
+}

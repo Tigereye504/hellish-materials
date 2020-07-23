@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "hellish-materials:luss_ingot"
+        }
+    },
+    "result": {
+        "item": "hellish-materials:luss_block",
+        "count": 1
+    },
+    "group": "lussblock"
+}

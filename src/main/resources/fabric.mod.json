@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "id": "luss-gamblers-ore",
+  "id": "hellish-materials",
   "version": "0.6.0",
 
-  "name": "Luss, Gambler's Ore",
-  "description": "Adds a drop altering ore to the nether.",
+  "name": "Hellish Materials",
+  "description": "Adds strange substances to the burning depths.",
   "authors": [
     "David Troyer"
   ],
@@ -14,16 +14,16 @@
   },
 
   "license": "CC0-1.0",
-  "icon": "assets/luss-gamblers-ore/icon.png",
+  "icon": "assets/hellish-materials/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.tigereye.luss.LussGamblersOre"
+      "net.tigereye.hellishmaterials.HellishMaterials"
     ]
   },
   "mixins": [
-    "luss-gamblers-ore.mixins.json"
+    "hellish-materials.mixins.json"
   ],
 
   "depends": {

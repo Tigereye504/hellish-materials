@@ -1,0 +1,10 @@
+{
+    "replace": false,
+    "values": [
+      "hellish-materials:luss_pickaxe",
+      "hellish-materials:luss_axe",
+      "hellish-materials:luss_shovel",
+      "hellish-materials:luss_hoe",
+      "hellish-materials:luss_sword"
+    ]
+  }

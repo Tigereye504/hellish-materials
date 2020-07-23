@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "hellish-materials:luss_block"
+        }
+    ],
+    "result": {
+        "item": "hellish-materials:luss_ingot",
+        "count": 9
+    },
+    "group": "lussingot"
+}
