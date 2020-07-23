@@ -51,7 +51,7 @@ public class VuldOre extends Block {
                 new OreFeatureConfig(
                     OreFeatureConfig.Target.NETHER_ORE_REPLACEABLES,
                     LussGamblersOre.VULD_ORE.getDefaultState(),
-                    1 //Ore vein size
+                    3 //Ore vein size
                )).createDecoratedFeature(
                 Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(
                     10, //Number of veins per chunk
