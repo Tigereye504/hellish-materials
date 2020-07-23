@@ -35,10 +35,10 @@ public class VuldOre extends Block {
 
     @Override
     public void afterBreak(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack stack) {
-       player.incrementStat(Stats.MINED.getOrCreateStat(this));
-       player.addExhaustion(0.005F);
-       dropStacks(state, world, pos, blockEntity, player, stack);
-       player.getStackInHand(player.getActiveHand()).damage(250, (LivingEntity)player, (Consumer)((p) -> {
+        player.incrementStat(Stats.MINED.getOrCreateStat(this));
+        player.addExhaustion(0.005F);
+        dropStacks(state, world, pos, blockEntity, player, stack);
+        player.getStackInHand(player.getActiveHand()).damage(250, (LivingEntity)player, (Consumer<LivingEntity>)((p) -> {
            ((LivingEntity) p).sendToolBreakStatus(player.getActiveHand());
         }));
     }
@@ -56,7 +56,7 @@ public class VuldOre extends Block {
                 Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(
                     10, //Number of veins per chunk
                     0, //Bottom Offset
-                    64, //Min y level
+                    0, //Min y level
                     128 //Max y level
             ))));
         }
