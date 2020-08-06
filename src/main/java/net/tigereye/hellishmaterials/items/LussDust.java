@@ -9,8 +9,8 @@ import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.world.World;
-import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
+import net.tigereye.hellishmaterials.registration.HM_Items;
 
 public class LussDust extends Item{
 
@@ -85,12 +85,12 @@ public class LussDust extends Item{
             targetItem = Items.COAL;
             compFactor = 3;
         }
-        else if(targetBlock.is(HellishMaterials.LUSS_BLOCK)){
-            targetItem = HellishMaterials.LUSS_INGOT;
+        else if(targetBlock.is(HM_Items.LUSS_BLOCK)){
+            targetItem = HM_Items.LUSS_INGOT;
             compFactor = 9;
         }
-        else if(targetBlock.is(HellishMaterials.LUSS_ORE)){
-            targetItem = HellishMaterials.LUSS_DUST;
+        else if(targetBlock.is(HM_Items.LUSS_ORE)){
+            targetItem = HM_Items.LUSS_DUST;
             compFactor = 4;
         }
         else if(targetBlock.is(Blocks.GLOWSTONE)){

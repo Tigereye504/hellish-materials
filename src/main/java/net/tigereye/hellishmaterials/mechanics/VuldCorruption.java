@@ -4,9 +4,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
-import net.tigereye.hellishmaterials.armor.VuldArmorMaterial;
+import net.tigereye.hellishmaterials.registration.HM_Items;
 
 public class VuldCorruption {
     public static int countVuldArmor(LivingEntity entity){
@@ -27,10 +26,8 @@ public class VuldCorruption {
     }
     
     private static boolean isItemVuld(Item item){
-        if(item instanceof ArmorItem){
-            if(((ArmorItem) item).getMaterial() instanceof VuldArmorMaterial){
-                return true;
-            }
+        if(item.isIn(HM_Items.TAG_VULD)){
+            return true;
         }
         return false;
     }

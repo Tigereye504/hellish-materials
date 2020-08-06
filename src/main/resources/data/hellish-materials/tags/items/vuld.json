@@ -1,0 +1,16 @@
+{
+    "replace": false,
+    "values": [
+      "hellish-materials:vuld_pickaxe",
+      "hellish-materials:vuld_axe",
+      "hellish-materials:vuld_shovel",
+      "hellish-materials:vuld_hoe",
+      "hellish-materials:vuld_sword",
+      "hellish-materials:vuld",
+      "hellish-materials:vuld_ore",
+      "hellish-materials:vuld_helm",
+      "hellish-materials:vuld_chestplate",
+      "hellish-materials:vuld_leggings",
+      "hellish-materials:vuld_boots"
+    ]
+  }

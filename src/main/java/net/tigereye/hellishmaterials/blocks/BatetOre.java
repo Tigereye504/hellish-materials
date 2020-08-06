@@ -1,6 +1,7 @@
 package net.tigereye.hellishmaterials.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
+import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
@@ -12,31 +13,31 @@ import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
 import net.minecraft.world.gen.feature.Feature;
 
-public class LussOre extends Block {
+public class BatetOre extends Block {
     
-    public LussOre(){
-        super(FabricBlockSettings.of(Material.GLASS)
-            .strength(0.5f,0.3f)
-            .breakByHand(true)
-            .lightLevel(14)
-            .sounds(BlockSoundGroup.GLASS));
+    public BatetOre(){
+        super(FabricBlockSettings.of(Material.STONE)
+            .strength(3f,50f)
+            .breakByHand(false)
+            .breakByTool(FabricToolTags.PICKAXES, 2)
+            .sounds(BlockSoundGroup.STONE));
     }
 
-    public static void SpawnLussInBiome(Biome biome) {
+    public static void SpawnBatetInBiome(Biome biome) {
         if(biome.getCategory() == Biome.Category.NETHER) {
             biome.addFeature(
                     GenerationStep.Feature.UNDERGROUND_ORES,
                     Feature.ORE.configure(
                 new OreFeatureConfig(
                     OreFeatureConfig.Target.NETHER_ORE_REPLACEABLES,
-                    HM_Items.LUSS_ORE.getDefaultState(),
-                    16 //Ore vein size
+                    HM_Items.BATET_ORE.getDefaultState(),
+                    8 //Ore vein size
                )).createDecoratedFeature(
                 Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(
-                    2, //Number of veins per chunk
+                    16, //Number of veins per chunk
                     0, //Bottom Offset
-                    64, //Min y level
-                    128 //Max y level
+                    20, //Min y level
+                    44 //Max y level
             ))));
         }
     }

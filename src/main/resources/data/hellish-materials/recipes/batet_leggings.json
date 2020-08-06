@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "# #",
+        "# #"
+    ],
+    "key": {
+        "#": {
+            "item": "hellish-materials:batet_gem"
+        }
+    },
+    "result": {
+        "item": "hellish-materials:batet_leggings",
+        "count": 1
+    },
+    "group": "batetarmor"
+}

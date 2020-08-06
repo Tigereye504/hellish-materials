@@ -5,6 +5,10 @@
       "hellish-materials:luss_axe",
       "hellish-materials:luss_shovel",
       "hellish-materials:luss_hoe",
-      "hellish-materials:luss_sword"
+      "hellish-materials:luss_sword",
+      "hellish-materials:luss_ingot",
+      "hellish-materials:luss_dust",
+      "hellish-materials:luss_ore",
+      "hellish-materials:luss_block"
     ]
   }

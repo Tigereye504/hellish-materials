@@ -17,7 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.tigereye.hellishmaterials.HellishMaterials;
+import net.tigereye.hellishmaterials.registration.HM_Items;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
@@ -50,7 +50,7 @@ public class VuldOre extends Block {
                     Feature.ORE.configure(
                 new OreFeatureConfig(
                     OreFeatureConfig.Target.NETHER_ORE_REPLACEABLES,
-                    HellishMaterials.VULD_ORE.getDefaultState(),
+                    HM_Items.VULD_ORE.getDefaultState(),
                     3 //Ore vein size
                )).createDecoratedFeature(
                 Decorator.COUNT_RANGE.configure(new RangeDecoratorConfig(

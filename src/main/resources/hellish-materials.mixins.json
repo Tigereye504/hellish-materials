@@ -5,6 +5,9 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockDropStacksMixin",
+    "PlayerEntityApplyDamageMixin",
+    "LivingEntityApplyDamageMixin",
+    "LivingEntityDropEquipmentMixin",
     "LivingEntityDropLootMixin",
     "LivingEntityBaseTickMixin"
   ],

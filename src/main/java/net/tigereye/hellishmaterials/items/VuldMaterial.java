@@ -13,12 +13,13 @@ public class VuldMaterial implements ToolMaterial{
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 46.0f; // absurdly fast, auto-breaks stone before enchantment
+        return 21.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone (so e5+)
+                        // 90 would auto-break ore
     }
 
     @Override
     public float getAttackDamage() {
-        return 19.0f; // !!! damage
+        return 14.0f; // staggering damage! Should allow crits to kill zombies
     }
 
     @Override

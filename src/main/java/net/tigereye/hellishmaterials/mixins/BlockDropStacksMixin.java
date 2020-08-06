@@ -39,5 +39,3 @@ public class BlockDropStacksMixin {
         info.cancel();
     }
 }
-//oh god I hope I don't need this...
-//method = "dropStacks(Lnet/minecraft/block/BlockState;Lnet/minecraft/server/world/ServerWorld;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/entity/BlockEntity;Lnet/minecraft/entity/Entity;Lnet/minecraft/item/ItemStack;)"
