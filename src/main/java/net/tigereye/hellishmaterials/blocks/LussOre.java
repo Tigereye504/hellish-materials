@@ -4,13 +4,13 @@ import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.world.biome.Biome;
+/*import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.Feature;*/
 
 public class LussOre extends Block {
     
@@ -22,6 +22,7 @@ public class LussOre extends Block {
             .sounds(BlockSoundGroup.GLASS));
     }
 
+    /*
     public static void SpawnLussInBiome(Biome biome) {
         if(biome.getCategory() == Biome.Category.NETHER) {
             biome.addFeature(
@@ -40,4 +41,5 @@ public class LussOre extends Block {
             ))));
         }
     }
+    */
 }

@@ -1,0 +1,6 @@
+{
+    "parent": "item/handheld",
+    "textures": {
+        "layer0": "hellish-materials:item/batet_pickaxe"
+    }
+}

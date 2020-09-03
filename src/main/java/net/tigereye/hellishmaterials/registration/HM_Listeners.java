@@ -1,28 +1,42 @@
 package net.tigereye.hellishmaterials.registration;
 
-import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
+//import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.TypedActionResult;
+/*
+import net.minecraft.util.registry.BuiltinRegistries;
 import net.minecraft.util.registry.Registry;
+import net.minecraft.world.gen.GenerationStep;
+import net.minecraft.world.gen.feature.ConfiguredFeature;
+
 import net.tigereye.hellishmaterials.blocks.BatetOre;
 import net.tigereye.hellishmaterials.blocks.LussOre;
 import net.tigereye.hellishmaterials.blocks.VuldOre;
+*/
 import net.tigereye.hellishmaterials.events.BlockDropStacksCallback;
 import net.tigereye.hellishmaterials.events.LivingEntityDropLootCallback;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
 
+
 //registers listeners for events
 //this includes ore generation, as it turns out
 public class HM_Listeners {
+
+    //public static final ConfiguredFeature<?,?> VULD_ORE_VEIN = ConfiguredFeature.
+    
     public static void registerListeners(){
-        Registry.BIOME.forEach(LussOre::SpawnLussInBiome);
-        Registry.BIOME.forEach(VuldOre::SpawnVuldInBiome);
-        Registry.BIOME.forEach(BatetOre::SpawnBatetInBiome);
+        //newConfiguredFeature();
+        //Registry.BIOME_SOURCE_KEY.forEach(LussOre::SpawnLussInBiome);
+        //Registry.BIOME.forEach(VuldOre::SpawnVuldInBiome);
+        //Registry.BIOME.forEach(BatetOre::SpawnBatetInBiome);
         
-        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> LussOre.SpawnLussInBiome(biome));
-        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> VuldOre.SpawnVuldInBiome(biome));
-        RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> BatetOre.SpawnBatetInBiome(biome));
+        //BuiltinRegistries.BIOME.CONFIGURED_FEATURE_WORLDGEN.
+        //GenerationStep.Feature.UNDERGROUND_ORES
+
+        //RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> LussOre.SpawnLussInBiome(biome));
+        //RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> VuldOre.SpawnVuldInBiome(biome));
+        //RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> BatetOre.SpawnBatetInBiome(biome));
 
         BlockDropStacksCallback.EVENT.register((state, world, pos, blockEntity, entity, stack, stacksToDrop) -> {
             if (entity instanceof PlayerEntity) {

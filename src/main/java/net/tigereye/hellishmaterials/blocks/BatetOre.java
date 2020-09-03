@@ -5,13 +5,13 @@ import net.fabricmc.fabric.api.tool.attribute.v1.FabricToolTags;
 import net.minecraft.block.Block;
 import net.minecraft.block.Material;
 import net.minecraft.sound.BlockSoundGroup;
-import net.minecraft.world.biome.Biome;
+/*import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.Feature;*/
 
 public class BatetOre extends Block {
     
@@ -22,7 +22,7 @@ public class BatetOre extends Block {
             .breakByTool(FabricToolTags.PICKAXES, 2)
             .sounds(BlockSoundGroup.STONE));
     }
-
+/*
     public static void SpawnBatetInBiome(Biome biome) {
         if(biome.getCategory() == Biome.Category.NETHER) {
             biome.addFeature(
@@ -41,4 +41,5 @@ public class BatetOre extends Block {
             ))));
         }
     }
+    */
 }

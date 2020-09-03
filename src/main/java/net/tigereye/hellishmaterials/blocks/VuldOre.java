@@ -15,13 +15,13 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
+/*import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.decorator.Decorator;
 import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.Feature;*/
 
 public class VuldOre extends Block {
     
@@ -43,7 +43,7 @@ public class VuldOre extends Block {
         }));
     }
 
-    public static void SpawnVuldInBiome(Biome biome) {
+    /*public static void SpawnVuldInBiome(Biome biome) {
         if(biome.getCategory() == Biome.Category.NETHER) {
             biome.addFeature(
                     GenerationStep.Feature.UNDERGROUND_ORES,
@@ -60,7 +60,7 @@ public class VuldOre extends Block {
                     128 //Max y level
             ))));
         }
-    }
+    }*/
 
      
 }

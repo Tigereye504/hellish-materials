@@ -25,6 +25,7 @@ import net.tigereye.hellishmaterials.items.BaseHoe;
 import net.tigereye.hellishmaterials.items.BasePickaxe;
 import net.tigereye.hellishmaterials.items.BaseShovel;
 import net.tigereye.hellishmaterials.items.BaseSword;
+import net.tigereye.hellishmaterials.items.BatetMaterial;
 import net.tigereye.hellishmaterials.items.LussDust;
 import net.tigereye.hellishmaterials.items.LussMaterial;
 import net.tigereye.hellishmaterials.items.Vuld;
@@ -43,6 +44,10 @@ public class HM_Items {
     public static final Block LUSS_BLOCK = new LussBlock();
 
     public static final ArmorMaterial VULD_ARMOR = new VuldArmorMaterial();
+    public static final Item VULD_HELM = new BaseArmor(VULD_ARMOR, EquipmentSlot.HEAD);
+    public static final Item VULD_CHESTPLATE = new BaseArmor(VULD_ARMOR, EquipmentSlot.CHEST);
+    public static final Item VULD_LEGGINGS = new BaseArmor(VULD_ARMOR, EquipmentSlot.LEGS);
+    public static final Item VULD_BOOTS = new BaseArmor(VULD_ARMOR, EquipmentSlot.FEET);
     public static final Item VULD = new Vuld(new Item.Settings().group(ItemGroup.MISC));
     public static final Item VULD_AXE = new BaseAxe(new VuldMaterial());
     public static final Item VULD_HOE = new BaseHoe(new VuldMaterial());
@@ -52,13 +57,23 @@ public class HM_Items {
     public static final Block VULD_ORE = new VuldOre();
 
     public static final ArmorMaterial BATET_ARMOR = new BatetArmorMaterial();
+    public static final Item BATET_HELM = new BaseArmor(BATET_ARMOR, EquipmentSlot.HEAD);
+    public static final Item BATET_CHESTPLATE = new BaseArmor(BATET_ARMOR, EquipmentSlot.CHEST);
+    public static final Item BATET_LEGGINGS = new BaseArmor(BATET_ARMOR, EquipmentSlot.LEGS);
+    public static final Item BATET_BOOTS = new BaseArmor(BATET_ARMOR, EquipmentSlot.FEET);
     public static final Item BATET_GEM = new Item(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item BATET_AXE = new BaseAxe(new BatetMaterial());
+    public static final Item BATET_HOE = new BaseHoe(new BatetMaterial());
+    public static final Item BATET_PICKAXE = new BasePickaxe(new BatetMaterial());
+    public static final Item BATET_SHOVEL = new BaseShovel(new BatetMaterial());
+    public static final Item BATET_SWORD = new BaseSword(new BatetMaterial());
     public static final Block BATET_ORE = new BatetOre();
     public static final Block BATET_BLOCK = new BatetBlock();
     
     public static final Tag<Item> TAG_LUSS = TagRegistry.item(new Identifier(HellishMaterials.MODID,"luss"));
     public static final Tag<Item> TAG_VULD = TagRegistry.item(new Identifier(HellishMaterials.MODID,"vuld"));
-	public static final Tag<Item> TAG_BATET = TagRegistry.item(new Identifier(HellishMaterials.MODID,"batet"));
+    public static final Tag<Item> TAG_BATET = TagRegistry.item(new Identifier(HellishMaterials.MODID,"batet"));
+    public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagRegistry.block(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
     
     public static void registerItems(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
@@ -75,10 +90,10 @@ public class HM_Items {
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_block"),
             new BlockItem(LUSS_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
 
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_helm"), new BaseArmor(VULD_ARMOR, EquipmentSlot.HEAD));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_chestplate"), new BaseArmor(VULD_ARMOR, EquipmentSlot.CHEST));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_leggings"), new BaseArmor(VULD_ARMOR, EquipmentSlot.LEGS));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_boots"), new BaseArmor(VULD_ARMOR, EquipmentSlot.FEET));
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_helm"), VULD_HELM);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_chestplate"), VULD_CHESTPLATE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_leggings"), VULD_LEGGINGS);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_boots"), VULD_BOOTS);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld"), VULD);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_axe"), VULD_AXE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_hoe"), VULD_HOE);
@@ -89,11 +104,16 @@ public class HM_Items {
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_ore"),
             new BlockItem(VULD_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
             
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_helm"), new BaseArmor(BATET_ARMOR, EquipmentSlot.HEAD));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_chestplate"), new BaseArmor(BATET_ARMOR, EquipmentSlot.CHEST));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_leggings"), new BaseArmor(BATET_ARMOR, EquipmentSlot.LEGS));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_boots"), new BaseArmor(BATET_ARMOR, EquipmentSlot.FEET));
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_helm"), BATET_HELM);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_chestplate"), BATET_CHESTPLATE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_leggings"), BATET_LEGGINGS);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_boots"), BATET_BOOTS);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_gem"), BATET_GEM);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_axe"), BATET_AXE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_hoe"), BATET_HOE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_pickaxe"), BATET_PICKAXE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_shovel"), BATET_SHOVEL);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_sword"), BATET_SWORD);
         Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "batet_ore"), BATET_ORE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_ore"),
             new BlockItem(BATET_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));

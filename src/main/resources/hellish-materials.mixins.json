@@ -5,11 +5,15 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BlockDropStacksMixin",
-    "PlayerEntityApplyDamageMixin",
+    "ItemPostMineMixin",
     "LivingEntityApplyDamageMixin",
+    "LivingEntityBaseTickMixin",
     "LivingEntityDropEquipmentMixin",
     "LivingEntityDropLootMixin",
-    "LivingEntityBaseTickMixin"
+    "PiglinEntityEquipmentMixin",
+    "PlayerEntityApplyDamageMixin",
+    "WitherSkeletonEntityEquipmentMixin",
+    "ZombifiedPiglinEntityEquipmentMixin"
   ],
   "client": [
     

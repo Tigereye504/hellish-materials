@@ -13,6 +13,9 @@ public class BatetDeferment {
     private static final float REPAYMENT_RATE = .1f;
     private static final float MINIMUM_REPAYMENT = 1f;
 
+    
+    
+
 	public static float deferDamage(LivingEntity entity, DamageSource source, float amount) {
         float deferPerItem = amount/4;
         if(source != HM_DamageSource.HM_BLOOD_DEBT){
@@ -73,7 +76,7 @@ public class BatetDeferment {
         debtDamage += takeBloodDebt(entity.getEquippedStack(EquipmentSlot.LEGS));
         debtDamage += takeBloodDebt(entity.getEquippedStack(EquipmentSlot.FEET));
         if(debtDamage > 0){
-            System.out.println("Repaying "+debtDamage+" Blood Debt\n");
+            System.out.println("Repaying "+debtDamage+" Blood Debt from\n");
             entity.damage(HM_DamageSource.HM_BLOOD_DEBT, debtDamage);
         }
     }
@@ -84,7 +87,23 @@ public class BatetDeferment {
         SetBloodDebt(entity.getEquippedStack(EquipmentSlot.LEGS),0);
         SetBloodDebt(entity.getEquippedStack(EquipmentSlot.FEET),0);
     }
+
+    public static void ForgiveDebts(LivingEntity entity, float amount) {
+        SetBloodDebt(entity.getEquippedStack(EquipmentSlot.HEAD),GetBloodDebt(entity.getEquippedStack(EquipmentSlot.HEAD))-amount/4);
+        SetBloodDebt(entity.getEquippedStack(EquipmentSlot.CHEST),GetBloodDebt(entity.getEquippedStack(EquipmentSlot.CHEST))-amount/4);
+        SetBloodDebt(entity.getEquippedStack(EquipmentSlot.LEGS),GetBloodDebt(entity.getEquippedStack(EquipmentSlot.LEGS))-amount/4);
+        SetBloodDebt(entity.getEquippedStack(EquipmentSlot.FEET),GetBloodDebt(entity.getEquippedStack(EquipmentSlot.FEET))-amount/4);
+    }
     
+    public static float GetBloodDebt(ItemStack item){
+        if(item.getTag() != null){
+            if(item.getTag().contains("HMBloodDebt")){
+                return item.getTag().getFloat("HMBloodDebt");
+            }
+        }
+        return 0;
+    }
+
     public static boolean SetBloodDebt(ItemStack item, float debt){
         if(item.getTag() != null){
             if(debt <= 0){
