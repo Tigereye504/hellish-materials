@@ -1,9 +1,0 @@
-{
-    "type": "minecraft:smelting",
-    "ingredient": {
-      "item": "hellish-materials:batet_axe"
-    },
-    "result": "hellish-materials:batet_gem",
-    "experience": 0.35,
-    "cookingtime": 200
-}

@@ -49,6 +49,7 @@ public class HM_Items {
     public static final Item VULD_LEGGINGS = new BaseArmor(VULD_ARMOR, EquipmentSlot.LEGS);
     public static final Item VULD_BOOTS = new BaseArmor(VULD_ARMOR, EquipmentSlot.FEET);
     public static final Item VULD = new Vuld(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item VULD_DROP = new Item(new Item.Settings().group(ItemGroup.MISC));
     public static final Item VULD_AXE = new BaseAxe(new VuldMaterial());
     public static final Item VULD_HOE = new BaseHoe(new VuldMaterial());
     public static final Item VULD_PICKAXE = new BasePickaxe(new VuldMaterial());
@@ -62,6 +63,7 @@ public class HM_Items {
     public static final Item BATET_LEGGINGS = new BaseArmor(BATET_ARMOR, EquipmentSlot.LEGS);
     public static final Item BATET_BOOTS = new BaseArmor(BATET_ARMOR, EquipmentSlot.FEET);
     public static final Item BATET_GEM = new Item(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item BATET_FRAGMENT = new Item(new Item.Settings().group(ItemGroup.MISC));
     public static final Item BATET_AXE = new BaseAxe(new BatetMaterial());
     public static final Item BATET_HOE = new BaseHoe(new BatetMaterial());
     public static final Item BATET_PICKAXE = new BasePickaxe(new BatetMaterial());
@@ -95,6 +97,7 @@ public class HM_Items {
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_leggings"), VULD_LEGGINGS);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_boots"), VULD_BOOTS);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld"), VULD);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_drop"), VULD_DROP);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_axe"), VULD_AXE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_hoe"), VULD_HOE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_pickaxe"), VULD_PICKAXE);
@@ -109,6 +112,7 @@ public class HM_Items {
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_leggings"), BATET_LEGGINGS);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_boots"), BATET_BOOTS);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_gem"), BATET_GEM);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_fragment"), BATET_FRAGMENT);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_axe"), BATET_AXE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_hoe"), BATET_HOE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_pickaxe"), BATET_PICKAXE);

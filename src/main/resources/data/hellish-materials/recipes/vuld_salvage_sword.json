@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+      {
+          "item": "hellish-materials:vuld_sword"
+      }
+  ],
+  "result": {
+      "item": "hellish-materials:vuld_drop",
+      "count": 1
+  }
+}

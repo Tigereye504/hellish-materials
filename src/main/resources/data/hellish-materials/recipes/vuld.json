@@ -1,0 +1,17 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "hellish-materials:vuld_drop"
+        }
+    },
+    "result": {
+        "item": "hellish-materials:vuld",
+        "count": 1
+    }
+}

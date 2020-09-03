@@ -1,0 +1,13 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "hellish-materials:batet_block"
+        }
+    ],
+    "result": {
+        "item": "hellish-materials:batet_gem",
+        "count": 9
+    },
+    "group": "batetgem"
+}

@@ -1,0 +1,18 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "###",
+        "###",
+        "###"
+    ],
+    "key": {
+        "#": {
+            "item": "hellish-materials:batet_fragment"
+        }
+    },
+    "result": {
+        "item": "hellish-materials:batet_gem",
+        "count": 1
+    },
+    "group": "batetgem"
+}
