@@ -12,6 +12,7 @@
     "LivingEntityDropLootMixin",
     "PiglinEntityEquipmentMixin",
     "PlayerEntityApplyDamageMixin",
+    "StatusEffectInstanceMixin",
     "WitherSkeletonEntityEquipmentMixin",
     "ZombifiedPiglinEntityEquipmentMixin"
   ],

@@ -6,7 +6,6 @@ import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import net.minecraft.entity.LivingEntity;
-import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.mechanics.VuldCorruption;
 
 @Mixin(LivingEntity.class)
@@ -24,10 +23,12 @@ public class LivingEntityBaseTickMixin {
         else if(vuldPoisoning > 0){
             VuldCorruption.inflictCumulativeWither(((LivingEntity) (Object) this), 2, 0, 20);
         }
+        /*
         HM_BloodDebtTimer++;
         if(HM_BloodDebtTimer>BatetDeferment.REPAYMENT_PERIOD){
             BatetDeferment.payBloodDebt((LivingEntity) (Object) this);
             HM_BloodDebtTimer = 0;
         }
+        */
     }
 }

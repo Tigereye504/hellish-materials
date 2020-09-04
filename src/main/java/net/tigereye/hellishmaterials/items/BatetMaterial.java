@@ -8,7 +8,7 @@ public class BatetMaterial implements ToolMaterial{
 
     @Override
     public int getDurability() {
-        return 250; //gold durability
+        return 250; //iron durability
     }
 
     @Override
@@ -18,7 +18,7 @@ public class BatetMaterial implements ToolMaterial{
 
     @Override
     public float getAttackDamage() {
-        return 2.0f; //diamond damage
+        return 5.0f; //iron damage
     }
 
     @Override
