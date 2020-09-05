@@ -20,7 +20,8 @@ public class BatetOre extends Block {
             .strength(3f,50f)
             .breakByHand(false)
             .breakByTool(FabricToolTags.PICKAXES, 2)
-            .sounds(BlockSoundGroup.STONE));
+            .sounds(BlockSoundGroup.STONE)
+            .nonOpaque());
     }
 /*
     public static void SpawnBatetInBiome(Biome biome) {
