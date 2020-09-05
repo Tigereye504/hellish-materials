@@ -15,7 +15,7 @@ public class LivingEntityDropEquipmentMixin {
     @Inject(
         at = @At("HEAD"),
         method = "dropEquipment")
-    private void HellishMaterialsBaseTickMixin(CallbackInfo info){
+    private void HellishMaterialsDropEquipmentMixin(CallbackInfo info){
         BatetDeferment.ForgiveDebts((LivingEntity)(Object)this);
     }
 }

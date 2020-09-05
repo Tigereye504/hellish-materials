@@ -43,6 +43,7 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
 
     public float removeDebt(float amount){
         debt -= amount;
+        if(debt < 0){debt = 0;}
         return debt;
     }
 

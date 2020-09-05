@@ -16,6 +16,7 @@ public class BatetDeferment {
     public static final int REPAYMENT_PERIOD = 40;
     public static final float REPAYMENT_RATE = .1f;
     public static final float MINIMUM_REPAYMENT = 4f;
+    public static final float BLOOD_THEFT_FACTOR = .2f;
 
 	public static float deferDamage(LivingEntity entity, DamageSource source, float amount) {
         float bloodDebtFactor = 0;
@@ -61,12 +62,14 @@ public class BatetDeferment {
 
     public static void ForgiveDebts(LivingEntity entity, float amount) {
         if(entity.hasStatusEffect(HM_StatusEffects.HM_BLOODDEBT)){
-            ((BloodDebtInstance)entity.getStatusEffect(HM_StatusEffects.HM_BLOODDEBT)).removeDebt(amount);
+            if(((BloodDebtInstance)entity.getStatusEffect(HM_StatusEffects.HM_BLOODDEBT)).removeDebt(amount) == 0){
+                entity.removeStatusEffect(HM_StatusEffects.HM_BLOODDEBT);
+            }
         }
     }
 
     public static StatusEffectInstance newBloodDebtStatusEffectInstance(float debt) {
-        StatusEffectInstance bloodDebt = new StatusEffectInstance(HM_StatusEffects.HM_BLOODDEBT, REPAYMENT_PERIOD*1000-1, 0);// false, true, true);
+        StatusEffectInstance bloodDebt = new StatusEffectInstance(HM_StatusEffects.HM_BLOODDEBT, REPAYMENT_PERIOD*1000-1, 0, false, true, true);
         ((BloodDebtInstance)bloodDebt).addDebt(debt);
         return bloodDebt;
     }

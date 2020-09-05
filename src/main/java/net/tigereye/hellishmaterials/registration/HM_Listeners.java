@@ -53,6 +53,9 @@ public class HM_Listeners {
         });
         
         LivingEntityDropLootCallback.EVENT.register((source, causedByPlayer, loot) -> {
+            if (source.name == "wither") {
+                loot.add(new ItemStack(HM_Items.VULD_DROP));
+            }
             if (source.getAttacker() instanceof PlayerEntity) {
                 PlayerEntity player = (PlayerEntity) source.getAttacker();
                 ItemStack stack = player.getStackInHand(player.getActiveHand());
