@@ -2,6 +2,7 @@ package net.tigereye.hellishmaterials.registration;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffectType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -30,8 +31,15 @@ public class HM_StatusEffects{
             }
         }
     };
-    
+
     public static void registerStatusEffects(){
         Registry.register(Registry.STATUS_EFFECT, new Identifier(HellishMaterials.MODID, "blood_debt"), HM_BLOODDEBT);
+    }
+
+    public static StatusEffectInstance newBloodDebtStatusEffectInstance(float debt) {
+        StatusEffectInstance bloodDebt = new StatusEffectInstance(HM_StatusEffects.HM_BLOODDEBT,
+                BatetDeferment.REPAYMENT_PERIOD * 1000 - 1, 0, false, true, true);
+        ((BloodDebtInstance)bloodDebt).addDebt(debt);
+        return bloodDebt;
     }
 }

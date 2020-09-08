@@ -8,19 +8,58 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
+import net.tigereye.hellishmaterials.registration.HM_DamageSource;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityApplyDamageMixin {
-    //(DamageSource source, float amount) Lnet/minecraft/entity/LivingEntity/
-    @ModifyVariable(at = @At(value = "INVOKE_ASSIGN",ordinal = 0,target = "applyArmorToDamage(Lnet/minecraft/entity/damage/DamageSource;F)F"), method = "applyDamage")
+    /*
+    @ModifyVariable(at = @At("HEAD"), method = "applyDamage")
     public float HellishMaterialsPlayerApplyDamageMixin(float amount, DamageSource source) {
         if(source.getAttacker() instanceof LivingEntity){
             if(((LivingEntity)(source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()).getItem().isIn(HM_Items.TAG_BATET)){
                 BatetDeferment.ForgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
             }
         }
-		return BatetDeferment.deferDamage(((LivingEntity)(Object)this), source, amount);
+        if(source != HM_DamageSource.HM_BLOOD_DEBT && source != HM_DamageSource.HM_MAGIC_BLOOD_DEBT){
+            amount = BatetDeferment.deferDamage(((LivingEntity)(Object)this), amount,source.bypassesArmor());
+        }
+        return amount;
     }
-    
+    */
+
+    //protected void applyDamage(DamageSource source, float amount) {
+    //    if (!this.isInvulnerableTo(source)) {
+    //          amount = this.applyArmorToDamage(source, amount);
+    //          amount = this.applyEnchantmentsToDamage(source, amount);
+    //          float f = amount;
+    //          amount = Math.max(amount - this.getAbsorptionAmount(), 0.0F);
+    //          this.setAbsorptionAmount(this.getAbsorptionAmount() - (f - amount));
+    //          float g = f - amount;
+    //          if (g > 0.0F && g < 3.4028235E37F) {
+    //              this.increaseStat(Stats.DAMAGE_ABSORBED, Math.round(g * 10.0F));
+    //          }
+    @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage")
+    public float HellishMaterialsPlayerApplyDamageMixin(float amount, DamageSource source) {
+        if(source.getAttacker() instanceof LivingEntity){
+            if(((LivingEntity)(source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()).getItem().isIn(HM_Items.TAG_BATET)){
+                BatetDeferment.ForgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
+            }
+        }
+        if(source != HM_DamageSource.HM_BLOOD_DEBT){
+            amount = BatetDeferment.deferDamage(((LivingEntity)(Object)this), amount);
+        }
+        return amount;
+    }
+    //          if (amount != 0.0F) {
+    //              this.addExhaustion(source.getExhaustion());
+    //              float h = this.getHealth();
+    //              this.setHealth(this.getHealth() - amount);
+    //              this.getDamageTracker().onDamage(source, h, amount);
+    //              if (amount < 3.4028235E37F) {
+    //                  this.increaseStat(Stats.DAMAGE_TAKEN, Math.round(amount * 10.0F));
+    //              }
+    //          }
+    //      }
+    //  }
 }

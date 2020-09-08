@@ -15,7 +15,7 @@ import net.tigereye.hellishmaterials.registration.HM_StatusEffects;
 
 @Mixin(StatusEffectInstance.class)
 public class StatusEffectInstanceMixin implements BloodDebtInstance{
-    private float debt = 0;
+    private float bloodDebt = 0;
 
     @Inject(
         at = @At("HEAD"),
@@ -23,53 +23,68 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         cancellable = true)
     private static void RedirectToBloodDebtFromTagMixin(CompoundTag tag, CallbackInfoReturnable<StatusEffectInstance> info){
         if(StatusEffect.byRawId(tag.getByte("Id")) == HM_StatusEffects.HM_BLOODDEBT){
-            info.setReturnValue(BatetDeferment.bloodDebtFromTag(tag));
+            info.setReturnValue(bloodDebtFromTag(tag));
         }
     }
 
     @ModifyVariable(
         at = @At("HEAD"),
         method = "toTag")
-    public CompoundTag toTag(CompoundTag tag) {
-        tag.putFloat("HM_BloodDebt", debt);
+    public CompoundTag BloodMagicToTagMixin(CompoundTag tag) {
+        if(((StatusEffectInstance)(Object)this).getEffectType() == HM_StatusEffects.HM_BLOODDEBT){
+            tag.putFloat("HM_BloodDebt", bloodDebt);
+        }
         return tag;
     }
      
+    
 
     public float addDebt(float amount){
-        debt += amount;
-        return debt;
+        bloodDebt += amount;
+        return bloodDebt;
     }
 
     public float removeDebt(float amount){
-        debt -= amount;
-        if(debt < 0){debt = 0;}
-        return debt;
+        if(bloodDebt < amount){
+            amount -= bloodDebt;
+            bloodDebt = 0;
+        }
+        else{
+            bloodDebt -= amount;
+        }
+        return bloodDebt;
     }
 
     public float drawRepayment(){
         float payment = 0;
-        if(debt <= BatetDeferment.MINIMUM_REPAYMENT){
-            payment = debt;
-            debt = 0;
+        if(bloodDebt <= BatetDeferment.MINIMUM_REPAYMENT){
+            payment = bloodDebt;
+            bloodDebt = 0;
         }
         else{
-            payment = debt * BatetDeferment.REPAYMENT_RATE;
+            payment = bloodDebt * BatetDeferment.REPAYMENT_RATE;
             if(payment < BatetDeferment.MINIMUM_REPAYMENT){
                 payment = BatetDeferment.MINIMUM_REPAYMENT;
             }
-            debt -= payment;
+            bloodDebt -= payment;
         }
         return payment;
     }
 
     public float getDebt(){
-        return debt;
+        return bloodDebt;
     }
 
-    @Override
     public void setDebt(float debt) {
-        this.debt = debt;
-
+        this.bloodDebt = debt;
     }
+
+    private static StatusEffectInstance bloodDebtFromTag(CompoundTag tag) {
+        float debt = 0;
+        if (tag.contains("HM_BloodDebt")) {
+           debt = tag.getFloat("HM_BloodDebt");
+        }  
+        return HM_StatusEffects.newBloodDebtStatusEffectInstance(debt);
+    }
+
 }

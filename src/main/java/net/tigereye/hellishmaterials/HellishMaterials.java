@@ -1,6 +1,7 @@
 package net.tigereye.hellishmaterials;
 
 import net.fabricmc.api.ModInitializer;
+import net.tigereye.hellishmaterials.registration.HM_Config;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 import net.tigereye.hellishmaterials.registration.HM_Listeners;
 import net.tigereye.hellishmaterials.registration.HM_StatusEffects;
@@ -11,6 +12,7 @@ public class HellishMaterials implements ModInitializer{
 
     @Override
     public void onInitialize() {
+        HM_Config.poke();
         HM_Items.registerItems();
         HM_Listeners.registerListeners();
         HM_StatusEffects.registerStatusEffects();
