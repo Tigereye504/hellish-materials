@@ -1,0 +1,7 @@
+{
+    "parent": "minecraft:block/cube_column",
+    "textures": {
+        "end": "hellish-materials:block/corrupted_bone_top",
+        "side": "hellish-materials:block/corrupted_bone_side"
+    }
+}

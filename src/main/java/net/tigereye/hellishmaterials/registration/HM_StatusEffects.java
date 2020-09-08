@@ -32,7 +32,7 @@ public class HM_StatusEffects{
         }
     };
 
-    public static void registerStatusEffects(){
+    public static void register(){
         Registry.register(Registry.STATUS_EFFECT, new Identifier(HellishMaterials.MODID, "blood_debt"), HM_BLOODDEBT);
     }
 

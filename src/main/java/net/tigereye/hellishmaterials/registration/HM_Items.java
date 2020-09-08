@@ -56,6 +56,7 @@ public class HM_Items {
     public static final Item VULD_SHOVEL = new BaseShovel(new VuldMaterial());
     public static final Item VULD_SWORD = new BaseSword(new VuldMaterial());
     public static final Block VULD_ORE = new VuldOre();
+    public static final Block CORRUPTED_BONE = new VuldOre();
 
     public static final ArmorMaterial BATET_ARMOR = new BatetArmorMaterial();
     public static final Item BATET_HELM = new BaseArmor(BATET_ARMOR, EquipmentSlot.HEAD);
@@ -77,7 +78,7 @@ public class HM_Items {
     public static final Tag<Item> TAG_BATET = TagRegistry.item(new Identifier(HellishMaterials.MODID,"batet"));
     public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagRegistry.block(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
     
-    public static void registerItems(){
+    public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_ingot"), LUSS_INGOT);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_axe"), LUSS_AXE);
@@ -106,6 +107,9 @@ public class HM_Items {
         Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "vuld_ore"), VULD_ORE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_ore"),
             new BlockItem(VULD_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "corrupted_bone"), CORRUPTED_BONE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "corrupted_bone"),
+            new BlockItem(CORRUPTED_BONE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
             
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_helm"), BATET_HELM);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_chestplate"), BATET_CHESTPLATE);

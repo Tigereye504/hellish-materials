@@ -26,7 +26,7 @@ public class HM_Listeners {
 
     //public static final ConfiguredFeature<?,?> VULD_ORE_VEIN = ConfiguredFeature.
     
-    public static void registerListeners(){
+    public static void register(){
         //newConfiguredFeature();
         //Registry.BIOME_SOURCE_KEY.forEach(LussOre::SpawnLussInBiome);
         //Registry.BIOME.forEach(VuldOre::SpawnVuldInBiome);

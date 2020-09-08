@@ -66,5 +66,5 @@ public class HM_Config {
 		}
     }
     
-    public static float poke(){return ZOMBIE_PIGLIN_BATET_ARMOR_CHANCE;}
+    public static float init(){return ZOMBIE_PIGLIN_BATET_ARMOR_CHANCE;}
 }
