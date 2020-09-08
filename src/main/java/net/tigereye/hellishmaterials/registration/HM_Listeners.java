@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.registration;
 
+import net.minecraft.entity.damage.DamageSource;
 //import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
@@ -53,7 +54,7 @@ public class HM_Listeners {
         });
         
         LivingEntityDropLootCallback.EVENT.register((source, causedByPlayer, loot) -> {
-            if (source.name == "wither") {
+            if (source == DamageSource.WITHER) {
                 loot.add(new ItemStack(HM_Items.VULD_DROP));
             }
             if (source.getAttacker() instanceof PlayerEntity) {
