@@ -4,13 +4,11 @@
   "package": "net.tigereye.hellishmaterials.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "BlockDropStacksMixin",
     "GlowstoneBlobFeatureGenerateMixin",
     "ItemPostMineMixin",
     "LivingEntityApplyDamageMixin",
     "LivingEntityBaseTickMixin",
     "LivingEntityDropEquipmentMixin",
-    "LivingEntityDropLootMixin",
     "PiglinEntityEquipmentMixin",
     "PlayerEntityApplyDamageMixin",
     "StatusEffectInstanceMixin",

@@ -1,45 +1,19 @@
 package net.tigereye.hellishmaterials.registration;
 
 import net.minecraft.entity.damage.DamageSource;
-//import net.fabricmc.fabric.api.event.registry.RegistryEntryAddedCallback;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.TypedActionResult;
-/*
-import net.minecraft.util.registry.BuiltinRegistries;
-import net.minecraft.util.registry.Registry;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.feature.ConfiguredFeature;
-
-import net.tigereye.hellishmaterials.blocks.BatetOre;
-import net.tigereye.hellishmaterials.blocks.LussOre;
-import net.tigereye.hellishmaterials.blocks.VuldOre;
-*/
-import net.tigereye.hellishmaterials.events.BlockDropStacksCallback;
-import net.tigereye.hellishmaterials.events.LivingEntityDropLootCallback;
+import net.tigereye.modifydropsapi.api.BlockDropStacksCallback_ModifyDrops;
+import net.tigereye.modifydropsapi.api.LivingEntityDropLootCallback_ModifyDrops;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
 
 
 //registers listeners for events
 //this includes ore generation, as it turns out
 public class HM_Listeners {
-
-    //public static final ConfiguredFeature<?,?> VULD_ORE_VEIN = ConfiguredFeature.
     
     public static void register(){
-        //newConfiguredFeature();
-        //Registry.BIOME_SOURCE_KEY.forEach(LussOre::SpawnLussInBiome);
-        //Registry.BIOME.forEach(VuldOre::SpawnVuldInBiome);
-        //Registry.BIOME.forEach(BatetOre::SpawnBatetInBiome);
-        
-        //BuiltinRegistries.BIOME.CONFIGURED_FEATURE_WORLDGEN.
-        //GenerationStep.Feature.UNDERGROUND_ORES
-
-        //RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> LussOre.SpawnLussInBiome(biome));
-        //RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> VuldOre.SpawnVuldInBiome(biome));
-        //RegistryEntryAddedCallback.event(Registry.BIOME).register((i, identifier, biome) -> BatetOre.SpawnBatetInBiome(biome));
-
-        BlockDropStacksCallback.EVENT.register((state, world, pos, blockEntity, entity, stack, stacksToDrop) -> {
+        BlockDropStacksCallback_ModifyDrops.EVENT.register((state, world, pos, blockEntity, entity, stack, stacksToDrop) -> {
             if (entity instanceof PlayerEntity) {
                 if(stack.getItem().isIn(HM_Items.TAG_LUSS))
                 {
@@ -50,10 +24,10 @@ public class HM_Listeners {
                     stacksToDrop.clear();
                 }
             }
-            return TypedActionResult.pass(stacksToDrop);
+            return stacksToDrop;
         });
         
-        LivingEntityDropLootCallback.EVENT.register((source, causedByPlayer, loot) -> {
+        LivingEntityDropLootCallback_ModifyDrops.EVENT.register((entity, source, causedByPlayer, loot) -> {
             if (source == DamageSource.WITHER) {
                 loot.add(new ItemStack(HM_Items.VULD_DROP));
             }
@@ -69,7 +43,7 @@ public class HM_Listeners {
                     loot.clear();
                 }
             }
-            return TypedActionResult.pass(loot);
+            return loot;
         });
     }
 }
