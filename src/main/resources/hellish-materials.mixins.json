@@ -9,6 +9,7 @@
     "LivingEntityApplyDamageMixin",
     "LivingEntityBaseTickMixin",
     "LivingEntityDropEquipmentMixin",
+    "ModelPredicateProviderRegistryMixin",
     "PiglinEntityEquipmentMixin",
     "PlayerEntityApplyDamageMixin",
     "StatusEffectInstanceMixin",

@@ -20,16 +20,7 @@ import net.tigereye.hellishmaterials.blocks.BatetOre;
 import net.tigereye.hellishmaterials.blocks.LussBlock;
 import net.tigereye.hellishmaterials.blocks.LussOre;
 import net.tigereye.hellishmaterials.blocks.VuldOre;
-import net.tigereye.hellishmaterials.items.BaseAxe;
-import net.tigereye.hellishmaterials.items.BaseHoe;
-import net.tigereye.hellishmaterials.items.BasePickaxe;
-import net.tigereye.hellishmaterials.items.BaseShovel;
-import net.tigereye.hellishmaterials.items.BaseSword;
-import net.tigereye.hellishmaterials.items.BatetMaterial;
-import net.tigereye.hellishmaterials.items.LussDust;
-import net.tigereye.hellishmaterials.items.LussMaterial;
-import net.tigereye.hellishmaterials.items.Vuld;
-import net.tigereye.hellishmaterials.items.VuldMaterial;
+import net.tigereye.hellishmaterials.items.*;
 
 public class HM_Items {
 
@@ -72,6 +63,9 @@ public class HM_Items {
     public static final Item BATET_SWORD = new BaseSword(new BatetMaterial());
     public static final Block BATET_ORE = new BatetOre();
     public static final Block BATET_BLOCK = new BatetBlock();
+
+    public static final Item LUCKSTONE = new Item(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS));
+    public static final Item MORATORIUM = new Moratorium();
     
     public static final Tag<Item> TAG_LUSS = TagRegistry.item(new Identifier(HellishMaterials.MODID,"luss"));
     public static final Tag<Item> TAG_VULD = TagRegistry.item(new Identifier(HellishMaterials.MODID,"vuld"));
@@ -128,5 +122,9 @@ public class HM_Items {
         Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "batet_block"), BATET_BLOCK);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_block"),
             new BlockItem(BATET_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "moratorium"), MORATORIUM);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luckstone"), LUCKSTONE);
+
     }
 }

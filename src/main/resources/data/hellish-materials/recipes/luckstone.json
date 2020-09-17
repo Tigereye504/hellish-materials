@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " O ",
+        "OLO",
+        " O "
+    ],
+    "key": {
+        "O": {
+            "item": "minecraft:obsidian"
+        },
+        "L": {
+            "item": "hellish-materials:luss_ingot"
+        }
+    },
+    "result": {
+        "item": "hellish-materials:luckstone",
+        "count": 1
+    }
+}

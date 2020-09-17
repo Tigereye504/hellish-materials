@@ -101,7 +101,7 @@ public class LussDust extends Item{
             return ActionResult.PASS;
         }
 
-        compFactor = LussLuck.Randomizer(compFactor, context.getPlayer().getLuck());
+        compFactor = LussLuck.StackSizeRandomizer(compFactor, context.getPlayer().getLuck());
 
         context.getWorld().breakBlock(context.getBlockPos(), false);
         World w = context.getWorld();

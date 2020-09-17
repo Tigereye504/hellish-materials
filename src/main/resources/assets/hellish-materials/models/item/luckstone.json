@@ -1,0 +1,13 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "hellish-materials:item/luckstone"
+    },
+    "overrides": [
+        { "predicate": { "luck": 2}, "model": "hellish-materials:item/luckstone_very_lucky" },
+        { "predicate": { "luck": 1}, "model": "hellish-materials:item/luckstone_lucky" },
+        { "predicate": { "luck": 0}, "model": "hellish-materials:item/luckstone" },
+        { "predicate": { "luck": -1}, "model": "hellish-materials:item/luckstone_unlucky" },
+        { "predicate": { "luck": -2}, "model": "hellish-materials:item/luckstone_very_unlucky" }
+    ]
+}
