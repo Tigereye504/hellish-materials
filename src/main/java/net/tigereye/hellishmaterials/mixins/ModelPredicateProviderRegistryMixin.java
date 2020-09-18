@@ -14,6 +14,7 @@ import net.minecraft.item.Items;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
+import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 import org.spongepowered.asm.mixin.Mixin;
@@ -26,8 +27,8 @@ public class ModelPredicateProviderRegistryMixin {
     private static void register(Item item, Identifier id, ModelPredicateProvider provider){}
 
     static{
-        register(HM_Items.LUCKSTONE, new Identifier("luck"), new ModelPredicateProvider() {
-            private float luck = 0;
+        register(HM_Items.LUCKSTONE, new Identifier(HellishMaterials.MODID, "luck"), new ModelPredicateProvider() {
+            private float luck = 6;
             private float luckroll = 0.5f;
             private long lastTickRolled = 0;
 
@@ -35,35 +36,36 @@ public class ModelPredicateProviderRegistryMixin {
                 if(clientWorld != null){
                     if(clientWorld.getTime() - lastTickRolled >= 20){
                         lastTickRolled = clientWorld.getTime();
-                        rollLuckstoneLuck(livingEntity);
+                        luck = rollLuckstoneLuck(livingEntity);
+                        System.out.println("Luckstone Diplay: "+luck);
                     }
                 }
                 return luck;
             }
 
-            private void rollLuckstoneLuck(LivingEntity livingEntity){
+            private float rollLuckstoneLuck(LivingEntity livingEntity){
+                float newLuck;
                 if (livingEntity != null) {
                     if (livingEntity instanceof PlayerEntity) {
                         luckroll = LussLuck.RandomFloatWithLuck(((PlayerEntity) livingEntity).getLuck());
-                        System.out.println("Luckstone Rolled "+luckroll);
                     }
                 }
                 if(luckroll > .99f){
-                    luck = 2;
+                    newLuck = 5;
                 }
                 else if(luckroll > .80f){
-                    luck = 1;
+                    newLuck = 4;
                 }
                 else if(luckroll > .20f){
-                    luck = 0;
+                    newLuck = 3;
                 }
                 else if(luckroll > .01f){
-                    luck = -1;
+                    newLuck = 2;
                 }
                 else{
-                    luck = -2;
+                    newLuck = 1;
                 }
-                System.out.println("Luckstone Diplay: "+luck);
+                return newLuck;
             }
         });
     }

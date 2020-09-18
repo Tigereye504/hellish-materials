@@ -4,10 +4,10 @@
         "layer0": "hellish-materials:item/luckstone"
     },
     "overrides": [
-        { "predicate": { "luck": 2}, "model": "hellish-materials:item/luckstone_very_lucky" },
-        { "predicate": { "luck": 1}, "model": "hellish-materials:item/luckstone_lucky" },
-        { "predicate": { "luck": 0}, "model": "hellish-materials:item/luckstone" },
-        { "predicate": { "luck": -1}, "model": "hellish-materials:item/luckstone_unlucky" },
-        { "predicate": { "luck": -2}, "model": "hellish-materials:item/luckstone_very_unlucky" }
+        { "predicate": { "hellish-materials:luck": 1.0}, "model": "hellish-materials:item/luckstone_very_unlucky" },
+        { "predicate": { "hellish-materials:luck": 2.0}, "model": "hellish-materials:item/luckstone_unlucky" },
+        { "predicate": { "hellish-materials:luck": 3.0}, "model": "hellish-materials:item/luckstone" },
+        { "predicate": { "hellish-materials:luck": 4.0}, "model": "hellish-materials:item/luckstone_lucky" },
+        { "predicate": { "hellish-materials:luck": 5.0}, "model": "hellish-materials:item/luckstone_very_lucky" }
     ]
 }

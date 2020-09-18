@@ -32,10 +32,11 @@
     "item.hellish-materials.batet_pickaxe": "Batet Pickaxe",
     "item.hellish-materials.batet_shovel": "Batet Shovel",
     "item.hellish-materials.batet_sword": "Batet Sword",
-    "item.hellish-materials.moratorium": "Moratorium",
     "block.hellish-materials.batet_ore": "Batet Ore",
     "block.hellish-materials.batet_block": "Batet Block",
     "effect.hellish-materials.blood_debt": "Blood Debt",
+    "item.hellish-materials.moratorium": "Moratorium",
+    "item.hellish-materials.luckstone": "Luckstone",
     "death.attack.hmBloodDebt": "%1$s's past caught up to them",
     "death.attack.hmBloodDebt.player": "%1$s's past caught up to them while fighting %2$s"
 }
