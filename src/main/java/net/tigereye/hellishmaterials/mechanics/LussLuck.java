@@ -4,34 +4,54 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.tigereye.hellishmaterials.items.Luckstone;
 
 public class LussLuck {
 
-    public static float RandomFloatWithLuck(float luckFactor)
+    public static float RandomFloatWithLuck(PlayerEntity player)
     {
-        Random rand = new Random();
-        return RandomFloatWithLuck(luckFactor, rand);
+        return RandomFloatWithLuck(player,player.getLuck());
     }
-
-    public static float RandomFloatWithLuck(float luckFactor, Random rand)
+    public static float RandomFloatWithLuck(PlayerEntity player,float luckFactor)
     {
-        float n = rand.nextFloat();
-        //apply luck, increasing or decreasing the roll by up to luck*10% of
-        //the difference between the roll and 99 or 0
+        float n = 0;
+        float m = 0;
+
+        //search for a luckstone. If one is found, extract up to two rolls from it
+        //don't worry about it running out; it returns 0 if empty
+        int luckStonePos = Luckstone.FindLuckstone(player.inventory);
+        if(luckStonePos != -1){
+            ItemStack luckstone = player.inventory.getStack(luckStonePos);
+            n = Luckstone.popRoll(luckstone);
+            m = Luckstone.popRoll(luckstone);
+        }
+        //if the luckstone wasn't there or ran out, roll dice
+        if(n == 0){
+            n = player.getRandom().nextFloat();
+        }
+        if(m == 0){
+            m = player.getRandom().nextFloat();
+        }
+        //apply luck formula
         if(luckFactor>0){ //average result is .5+luck*.025
-            n = n + ((luckFactor/10)*rand.nextFloat()*(1-n));
+            n = n + ((luckFactor/10)*m*(1-n));
         }
         else if(luckFactor<0){
-            n = n + ((luckFactor/10)*rand.nextFloat()*n);
+            n = n + ((luckFactor/10)*m*n);
         }
+
         return n;
     }
 
-    public static int StackSizeRandomizer(float compFactor, float luckFactor)
+    public static int StackSizeRandomizer(float compFactor, PlayerEntity player){
+        return StackSizeRandomizer(compFactor, player, player.getLuck());
+    }
+    public static int StackSizeRandomizer(float compFactor, PlayerEntity player, float luckFactor)
     {
         Random rand = new Random();
-        float n = RandomFloatWithLuck(luckFactor, rand);
+        float n = RandomFloatWithLuck(player,luckFactor);
 
         if(n>=.99){ //major jackpot
             if(rand.nextInt(100)==99){
@@ -96,17 +116,17 @@ public class LussLuck {
         }
     }
 
-    public static int ToolSingleStackRandomizer(int remainingToolDurability, int dropCount, float luckFactor){
+    public static int ToolSingleStackRandomizer(int remainingToolDurability, int dropCount, PlayerEntity player){
         if(remainingToolDurability < 0){
-            return StackSizeRandomizer(dropCount,luckFactor);
+            return StackSizeRandomizer(dropCount,player);
         }
-        return StackSizeRandomizer(dropCount,luckFactor-((float)remainingToolDurability/5)+4);
+        return StackSizeRandomizer(dropCount,player,player.getLuck()-((float)remainingToolDurability/5)+4);
     }
 
-    public static List<ItemStack> ToolListItemStackRandomizer(List<ItemStack> target, ItemStack tool, float luckFactor){
+    public static List<ItemStack> ToolListItemStackRandomizer(List<ItemStack> target, ItemStack tool, PlayerEntity player){
         int remainingDamage;
         int returnDrops;
-        List<ItemStack> returnlist = new ArrayList<ItemStack>();
+        List<ItemStack> returnlist = new ArrayList<>();
         for( ItemStack singleStack : target){
             if(tool.isDamageable()){
                 remainingDamage = tool.getMaxDamage()-tool.getDamage();
@@ -115,7 +135,7 @@ public class LussLuck {
                 remainingDamage = -1;
             }
 
-            returnDrops = LussLuck.ToolSingleStackRandomizer(remainingDamage, singleStack.getCount(), luckFactor);
+            returnDrops = LussLuck.ToolSingleStackRandomizer(remainingDamage, singleStack.getCount(), player);
             
             if (singleStack.isStackable()){
                 if(returnDrops > singleStack.getMaxCount()){
@@ -139,4 +159,6 @@ public class LussLuck {
         }
         return returnlist;
     }
+
+
 }

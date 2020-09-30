@@ -64,7 +64,7 @@ public class HM_Items {
     public static final Block BATET_ORE = new BatetOre();
     public static final Block BATET_BLOCK = new BatetBlock();
 
-    public static final Item LUCKSTONE = new Item(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS));
+    public static final Item LUCKSTONE = new Luckstone();
     public static final Item MORATORIUM = new Moratorium();
     
     public static final Tag<Item> TAG_LUSS = TagRegistry.item(new Identifier(HellishMaterials.MODID,"luss"));

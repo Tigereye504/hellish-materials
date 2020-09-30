@@ -20,8 +20,8 @@ public class LussDust extends Item{
     
     @Override
     public ActionResult useOnBlock(ItemUsageContext context){
-        Item targetItem = Items.DIRT;
-        int compFactor = 0;
+        Item targetItem;
+        int compFactor;
         Block targetBlock = context.getWorld().getBlockState(context.getBlockPos()).getBlock();
         
         //wish I could use a switch here...
@@ -101,7 +101,7 @@ public class LussDust extends Item{
             return ActionResult.PASS;
         }
 
-        compFactor = LussLuck.StackSizeRandomizer(compFactor, context.getPlayer().getLuck());
+        compFactor = LussLuck.StackSizeRandomizer(compFactor, context.getPlayer());
 
         context.getWorld().breakBlock(context.getBlockPos(), false);
         World w = context.getWorld();

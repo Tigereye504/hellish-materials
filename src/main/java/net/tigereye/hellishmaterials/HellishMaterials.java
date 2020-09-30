@@ -10,6 +10,7 @@ import net.tigereye.hellishmaterials.registration.HM_StatusEffects;
 public class HellishMaterials implements ModInitializer{
     
     public static final String MODID = "hellish-materials";
+    public static final boolean DEBUG = false;
 
     @Override
     public void onInitialize() {

@@ -8,8 +8,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
 import net.tigereye.hellishmaterials.HellishMaterials;
+import net.tigereye.hellishmaterials.items.Luckstone;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
 import net.tigereye.hellishmaterials.registration.HM_Items;
 import org.spongepowered.asm.mixin.Mixin;
@@ -23,44 +25,22 @@ public class ModelPredicateProviderRegistryMixin {
 
     static{
         register(HM_Items.LUCKSTONE, new Identifier(HellishMaterials.MODID, "luck"), new ModelPredicateProvider() {
-            private float luck = 6;
-            private float luckroll = 0.5f;
-            private long lastTickRolled = 0;
+            private float luck = 1;
+            private long lastTick = 0;
 
             public float call(ItemStack itemStack, ClientWorld clientWorld, LivingEntity livingEntity) {
-                if(clientWorld != null){
-                    if(clientWorld.getTime() - lastTickRolled >= 20){
-                        lastTickRolled = clientWorld.getTime();
-                        luck = rollLuckstoneLuck(livingEntity);
-                        System.out.println("Luckstone Diplay: "+luck);
+                if (clientWorld != null) {
+                    if (clientWorld.getTime() != lastTick) {
+                        lastTick = clientWorld.getTime();
+                        //luck = assessLuckstoneLuck(itemStack, livingEntity);
+                        CompoundTag tag = itemStack.getOrCreateTag();
+                        if (tag.contains(Luckstone.DISPLAY_KEY)) {
+                            luck = tag.getFloat(Luckstone.DISPLAY_KEY);
+                        }
+                        //System.out.println("Luckstone Diplay: "+luck);
                     }
                 }
                 return luck;
-            }
-
-            private float rollLuckstoneLuck(LivingEntity livingEntity){
-                float newLuck;
-                if (livingEntity != null) {
-                    if (livingEntity instanceof PlayerEntity) {
-                        luckroll = LussLuck.RandomFloatWithLuck(((PlayerEntity) livingEntity).getLuck());
-                    }
-                }
-                if(luckroll > .99f){
-                    newLuck = 5;
-                }
-                else if(luckroll > .80f){
-                    newLuck = 4;
-                }
-                else if(luckroll > .20f){
-                    newLuck = 3;
-                }
-                else if(luckroll > .01f){
-                    newLuck = 2;
-                }
-                else{
-                    newLuck = 1;
-                }
-                return newLuck;
             }
         });
     }

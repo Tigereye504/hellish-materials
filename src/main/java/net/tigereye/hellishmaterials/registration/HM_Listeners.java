@@ -9,7 +9,6 @@ import net.tigereye.hellishmaterials.mechanics.LussLuck;
 
 
 //registers listeners for events
-//this includes ore generation, as it turns out
 public class HM_Listeners {
     
     public static void register(){
@@ -17,7 +16,7 @@ public class HM_Listeners {
             if (entity instanceof PlayerEntity) {
                 if(stack.getItem().isIn(HM_Items.TAG_LUSS))
                 {
-                    stacksToDrop = LussLuck.ToolListItemStackRandomizer(stacksToDrop, stack, ((PlayerEntity)entity).getLuck());
+                    stacksToDrop = LussLuck.ToolListItemStackRandomizer(stacksToDrop, stack, ((PlayerEntity)entity));
                 }
                 else if(stack.getItem().isIn(HM_Items.TAG_VULD))
                 {
@@ -36,7 +35,7 @@ public class HM_Listeners {
                 ItemStack stack = player.getStackInHand(player.getActiveHand());
                 if(stack.getItem().isIn(HM_Items.TAG_LUSS))
                 {
-                    loot = LussLuck.ToolListItemStackRandomizer(loot, stack, player.getLuck());
+                    loot = LussLuck.ToolListItemStackRandomizer(loot, stack, player);
                 }
                 else if(stack.getItem().isIn(HM_Items.TAG_VULD))
                 {

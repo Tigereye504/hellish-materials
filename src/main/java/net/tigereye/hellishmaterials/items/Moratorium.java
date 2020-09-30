@@ -43,9 +43,9 @@ public class Moratorium extends Item{
         if(healing > 0) {
             BatetDeferment.deferDamage(user,healing*DEBT_FACTOR,1);
             itemStack.damage((int) healing, user, (Consumer<LivingEntity>) ((p) -> {
-                ((LivingEntity) p).sendToolBreakStatus(user.getActiveHand());
+                p.sendToolBreakStatus(user.getActiveHand());
             }));
         }
-        return TypedActionResult.fail(itemStack);
+        return TypedActionResult.success(itemStack);
     }
 }
