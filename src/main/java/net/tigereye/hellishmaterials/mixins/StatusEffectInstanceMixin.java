@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.mixins;
 
+import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -11,7 +12,6 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.nbt.CompoundTag;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
-import net.tigereye.hellishmaterials.registration.HM_StatusEffects;
 
 @Mixin(StatusEffectInstance.class)
 public class StatusEffectInstanceMixin implements BloodDebtInstance{
@@ -22,7 +22,7 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         method = "fromTag",
         cancellable = true)
     private static void RedirectToBloodDebtFromTagMixin(CompoundTag tag, CallbackInfoReturnable<StatusEffectInstance> info){
-        if(StatusEffect.byRawId(tag.getByte("Id")) == HM_StatusEffects.HM_BLOODDEBT){
+        if(StatusEffect.byRawId(tag.getByte("Id")) == HMStatusEffects.HM_BLOODDEBT){
             info.setReturnValue(bloodDebtFromTag(tag));
         }
     }
@@ -31,7 +31,7 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         at = @At("HEAD"),
         method = "toTag")
     public CompoundTag BloodMagicToTagMixin(CompoundTag tag) {
-        if(((StatusEffectInstance)(Object)this).getEffectType() == HM_StatusEffects.HM_BLOODDEBT){
+        if(((StatusEffectInstance)(Object)this).getEffectType() == HMStatusEffects.HM_BLOODDEBT){
             tag.putFloat("HM_BloodDebt", bloodDebt);
         }
         return tag;
@@ -46,7 +46,6 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
 
     public float removeDebt(float amount){
         if(bloodDebt < amount){
-            amount -= bloodDebt;
             bloodDebt = 0;
         }
         else{
@@ -84,7 +83,7 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         if (tag.contains("HM_BloodDebt")) {
            debt = tag.getFloat("HM_BloodDebt");
         }  
-        return HM_StatusEffects.newBloodDebtStatusEffectInstance(debt);
+        return HMStatusEffects.newBloodDebtStatusEffectInstance(debt);
     }
 
 }

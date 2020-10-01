@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.mixins;
 
+import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
@@ -12,7 +13,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.registration.HM_Items;
 
 @Mixin(Item.class)
 public class ItemPostMineMixin {
@@ -21,7 +21,7 @@ public class ItemPostMineMixin {
         at = @At("HEAD"),
         method = "postMine")
         public void HellishMaterialsPostMineMixin(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> info){
-            if(stack.getItem().isIn(HM_Items.TAG_BATET)){
+            if(stack.getItem().isIn(HMItems.TAG_BATET)){
                 BatetDeferment.ForgiveDebts(miner,state.getHardness(world, pos));
             }
         }

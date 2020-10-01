@@ -1,6 +1,5 @@
 package net.tigereye.hellishmaterials.items;
 
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
@@ -12,11 +11,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.HellishMaterials;
-import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.registration.HM_Items;
+import net.tigereye.hellishmaterials.registration.HMItems;
 
 import java.util.Random;
-import java.util.function.Consumer;
 
 public class Luckstone extends Item {
     public static final int NUMBER_OF_ROLLS = 10;
@@ -95,9 +92,12 @@ public class Luckstone extends Item {
             return 0;
         }
         for(int i = 1; i <= count; i++){
-            if(tag.contains(BANKED_ROLLS_KEY+count)) {
-                total += tag.getFloat(BANKED_ROLLS_KEY + count);
+            if(tag.contains(BANKED_ROLLS_KEY+i)) {
+                total += tag.getFloat(BANKED_ROLLS_KEY+i);
             }
+        }
+        if(HellishMaterials.DEBUG){
+            System.out.println("Luckstone Total: "+total);
         }
         return total/count;
     }
@@ -125,7 +125,7 @@ public class Luckstone extends Item {
 
     public static int FindLuckstone(Inventory inv){
         for(int i = 0; i < inv.size();i++){
-            if(inv.getStack(i).getItem() == HM_Items.LUCKSTONE){
+            if(inv.getStack(i).getItem() == HMItems.LUCKSTONE){
                 return i;
             }
         }

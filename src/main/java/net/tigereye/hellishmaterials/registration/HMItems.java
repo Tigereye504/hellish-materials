@@ -22,7 +22,7 @@ import net.tigereye.hellishmaterials.blocks.LussOre;
 import net.tigereye.hellishmaterials.blocks.VuldOre;
 import net.tigereye.hellishmaterials.items.*;
 
-public class HM_Items {
+public class HMItems {
 
     public static final Item LUSS_DUST = new LussDust(new Item.Settings().group(ItemGroup.MISC));
     public static final Item LUSS_INGOT = new Item(new Item.Settings().group(ItemGroup.MISC));
@@ -64,6 +64,8 @@ public class HM_Items {
     public static final Block BATET_ORE = new BatetOre();
     public static final Block BATET_BLOCK = new BatetBlock();
 
+    public static final Item LUSS_DICE = new LussDice();
+    public static final Item EXPLODING_DICE = new ExplodingDice();
     public static final Item LUCKSTONE = new Luckstone();
     public static final Item MORATORIUM = new Moratorium();
     
@@ -125,6 +127,8 @@ public class HM_Items {
 
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "moratorium"), MORATORIUM);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luckstone"), LUCKSTONE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dice"), LUSS_DICE);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "exploding_dice"), EXPLODING_DICE);
 
     }
 }

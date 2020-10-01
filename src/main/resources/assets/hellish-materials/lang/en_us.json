@@ -37,6 +37,8 @@
     "effect.hellish-materials.blood_debt": "Blood Debt",
     "item.hellish-materials.moratorium": "Moratorium",
     "item.hellish-materials.luckstone": "Luckstone",
+    "item.hellish-materials.luss_dice": "Luss Dice",
+    "item.hellish-materials.exploding_dice": "Exploding Dice",
     "death.attack.hmBloodDebt": "%1$s's past caught up to them",
     "death.attack.hmBloodDebt.player": "%1$s's past caught up to them while fighting %2$s"
 }

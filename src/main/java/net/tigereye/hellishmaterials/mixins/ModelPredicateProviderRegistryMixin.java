@@ -5,15 +5,13 @@ import net.minecraft.client.item.ModelPredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.world.ClientWorld;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.util.Identifier;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.items.Luckstone;
-import net.tigereye.hellishmaterials.mechanics.LussLuck;
-import net.tigereye.hellishmaterials.registration.HM_Items;
+import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
@@ -24,7 +22,7 @@ public class ModelPredicateProviderRegistryMixin {
     private static void register(Item item, Identifier id, ModelPredicateProvider provider){}
 
     static{
-        register(HM_Items.LUCKSTONE, new Identifier(HellishMaterials.MODID, "luck"), new ModelPredicateProvider() {
+        register(HMItems.LUCKSTONE, new Identifier(HellishMaterials.MODID, "luck"), new ModelPredicateProvider() {
             private float luck = 1;
             private long lastTick = 0;
 

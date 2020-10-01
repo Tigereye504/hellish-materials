@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.mixins;
 
+import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -9,8 +10,7 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.mob.PiglinEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.LocalDifficulty;
-import net.tigereye.hellishmaterials.registration.HM_Config;
-import net.tigereye.hellishmaterials.registration.HM_Items;
+import net.tigereye.hellishmaterials.registration.HMConfig;
 
 @Mixin(PiglinEntity.class)
 public class PiglinEntityEquipmentMixin {
@@ -22,11 +22,11 @@ public class PiglinEntityEquipmentMixin {
     private void HellishMaterialsPiglinInitializeMixin(LocalDifficulty difficulty, CallbackInfo info){
         
         if (((PiglinEntity) (Object) this).isAdult()) {
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HM_Items.LUSS_HOE), HM_Config.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HM_Items.LUSS_SHOVEL), HM_Config.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HM_Items.LUSS_PICKAXE), HM_Config.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HM_Items.LUSS_AXE), HM_Config.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HM_Items.LUSS_SWORD), HM_Config.PIGLIN_LUSS_TOOL_CHANCE);
+            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_HOE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_SHOVEL), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_PICKAXE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_AXE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_SWORD), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
             }
     }
 

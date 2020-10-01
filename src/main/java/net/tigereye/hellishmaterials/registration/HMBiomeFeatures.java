@@ -18,7 +18,7 @@ import net.tigereye.hellishmaterials.HellishMaterials;
 //import net.tigereye.hellishmaterials.blocks.LussOre;
 //import net.tigereye.hellishmaterials.blocks.VuldOre;
 
-public class HM_BiomeFeatures {
+public class HMBiomeFeatures {
     public static final ConfiguredFeature<?,?> VULD_ORE_VEIN = BuiltinRegistries.CONFIGURED_FEATURE.get(new Identifier(HellishMaterials.MODID, "vuld_ore_vein"));
     public static final ConfiguredFeature<?,?> VULD_ORE_OVERWORLD_TEST = BuiltinRegistries.CONFIGURED_FEATURE.get(new Identifier(HellishMaterials.MODID, "vuld_ore_overworld_test"));
     

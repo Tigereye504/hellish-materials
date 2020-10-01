@@ -2,6 +2,7 @@ package net.tigereye.hellishmaterials.mixins;
 
 import java.util.Random;
 
+import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.At;
@@ -14,7 +15,6 @@ import net.minecraft.world.StructureWorldAccess;
 import net.minecraft.world.gen.chunk.ChunkGenerator;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.GlowstoneBlobFeature;
-import net.tigereye.hellishmaterials.registration.HM_Items;
 
 @Mixin(GlowstoneBlobFeature.class)
 public class GlowstoneBlobFeatureGenerateMixin {
@@ -35,7 +35,7 @@ public class GlowstoneBlobFeatureGenerateMixin {
                     && !structureWorldAccess.getBlockState(lussBlockPos.up()).isOf(Blocks.AIR))
                     {
                         //transform the block above the glowstone into luss
-                        structureWorldAccess.setBlockState(lussBlockPos.up(), HM_Items.LUSS_ORE.getDefaultState(), 2);
+                        structureWorldAccess.setBlockState(lussBlockPos.up(), HMItems.LUSS_ORE.getDefaultState(), 2);
                     }
                 }
             }
@@ -58,7 +58,7 @@ public class GlowstoneBlobFeatureGenerateMixin {
             //grow a crystal
             int spikelength = 2 + random.nextInt(3) + random.nextInt(3);
             for (int i = 0; i < spikelength; i++){
-                structureWorldAccess.setBlockState(batetSeedPos.up(i), HM_Items.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(batetSeedPos.up(i), HMItems.BATET_ORE.getDefaultState(), 2);
             }
             HM_GrowHorizontalBatetSpike(structureWorldAccess, random, batetSeedPos, Direction.NORTH);
             HM_GrowHorizontalBatetSpike(structureWorldAccess, random, batetSeedPos, Direction.SOUTH);
@@ -90,13 +90,13 @@ public class GlowstoneBlobFeatureGenerateMixin {
         //grow the spike
         while(spikelength > 0){
             if(spikelength > 1){
-                structureWorldAccess.setBlockState(blockPos2, HM_Items.BATET_ORE.getDefaultState(), 2);
-                structureWorldAccess.setBlockState(blockPos2.up(), HM_Items.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(blockPos2, HMItems.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(blockPos2.up(), HMItems.BATET_ORE.getDefaultState(), 2);
                 blockPos2 = blockPos2.offset(direction).up();
                 spikelength -= 2;
             }
             else{
-                structureWorldAccess.setBlockState(blockPos2, HM_Items.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(blockPos2, HMItems.BATET_ORE.getDefaultState(), 2);
                 spikelength = 0;
             }
         }
@@ -121,13 +121,13 @@ public class GlowstoneBlobFeatureGenerateMixin {
         //grow the spike
         while(spikelength > 0){
             if(spikelength > 1){
-                structureWorldAccess.setBlockState(blockPos2, HM_Items.BATET_ORE.getDefaultState(), 2);
-                structureWorldAccess.setBlockState(blockPos2.up(), HM_Items.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(blockPos2, HMItems.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(blockPos2.up(), HMItems.BATET_ORE.getDefaultState(), 2);
                 blockPos2 = blockPos2.offset(direction).offset(direction2).up();
                 spikelength -= 2;
             }
             else{
-                structureWorldAccess.setBlockState(blockPos2, HM_Items.BATET_ORE.getDefaultState(), 2);
+                structureWorldAccess.setBlockState(blockPos2, HMItems.BATET_ORE.getDefaultState(), 2);
                 spikelength = 0;
             }
         }

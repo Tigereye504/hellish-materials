@@ -8,8 +8,8 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.registration.HM_DamageSource;
-import net.tigereye.hellishmaterials.registration.HM_Items;
+import net.tigereye.hellishmaterials.registration.HMDamageSource;
+import net.tigereye.hellishmaterials.registration.HMItems;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityApplyDamageMixin {
@@ -42,11 +42,11 @@ public class PlayerEntityApplyDamageMixin {
     @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage")
     public float HellishMaterialsPlayerApplyDamageMixin(float amount, DamageSource source) {
         if(source.getAttacker() instanceof LivingEntity){
-            if(((LivingEntity)(source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()).getItem().isIn(HM_Items.TAG_BATET)){
+            if(((LivingEntity)(source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()).getItem().isIn(HMItems.TAG_BATET)){
                 BatetDeferment.ForgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
             }
         }
-        if(source != HM_DamageSource.HM_BLOOD_DEBT){
+        if(source != HMDamageSource.HM_BLOOD_DEBT){
             amount = BatetDeferment.deferDamage(((LivingEntity)(Object)this), amount);
         }
         return amount;

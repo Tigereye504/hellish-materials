@@ -5,7 +5,7 @@ import net.minecraft.item.ArmorMaterial;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
-import net.tigereye.hellishmaterials.registration.HM_Items;
+import net.tigereye.hellishmaterials.registration.HMItems;
 
 public class BatetArmorMaterial implements ArmorMaterial {
 
@@ -34,7 +34,7 @@ public class BatetArmorMaterial implements ArmorMaterial {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(HM_Items.BATET_GEM);
+        return Ingredient.ofItems(HMItems.BATET_GEM);
     }
 
     @Override

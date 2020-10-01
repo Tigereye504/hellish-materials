@@ -11,7 +11,7 @@ import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
 import net.tigereye.hellishmaterials.mob_effect.HM_StatusEffect;
 
-public class HM_StatusEffects{
+public class HMStatusEffects {
     
     public static StatusEffect HM_BLOODDEBT = new HM_StatusEffect(StatusEffectType.HARMFUL, 104562){
         public boolean canApplyUpdateEffect(int duration, int amplifier) {
@@ -23,7 +23,7 @@ public class HM_StatusEffects{
                 BloodDebtInstance instance = (BloodDebtInstance)entity.getStatusEffect(HM_BLOODDEBT);
                 float dmg = instance.drawRepayment();
                 System.out.println("Repaying "+dmg+" Blood Debt\n");
-                entity.damage(HM_DamageSource.HM_BLOOD_DEBT, dmg);
+                entity.damage(HMDamageSource.HM_BLOOD_DEBT, dmg);
                 if(instance.getDebt() == 0){
                     System.out.println("Blood Debt Resolved\n");
                     entity.removeStatusEffect(HM_BLOODDEBT);
@@ -37,7 +37,7 @@ public class HM_StatusEffects{
     }
 
     public static StatusEffectInstance newBloodDebtStatusEffectInstance(float debt) {
-        StatusEffectInstance bloodDebt = new StatusEffectInstance(HM_StatusEffects.HM_BLOODDEBT,
+        StatusEffectInstance bloodDebt = new StatusEffectInstance(HMStatusEffects.HM_BLOODDEBT,
                 BatetDeferment.REPAYMENT_PERIOD * 1000 - 1, 0, false, true, true);
         ((BloodDebtInstance)bloodDebt).addDebt(debt);
         return bloodDebt;

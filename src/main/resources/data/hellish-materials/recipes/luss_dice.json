@@ -1,0 +1,22 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "hellish-materials:luss_ingot"
+        },
+        {
+            "item": "hellish-materials:luss_ingot"
+        },
+        {
+            "item": "hellish-materials:luss_ingot"
+        },
+        {
+            "item": "hellish-materials:luss_ingot"
+        }
+    ],
+    "result": {
+        "item": "hellish-materials:luss_dice",
+        "count": 1
+    },
+    "group": "luss_dice"
+}

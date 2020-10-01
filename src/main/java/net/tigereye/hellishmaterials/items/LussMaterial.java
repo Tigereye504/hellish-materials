@@ -2,7 +2,7 @@ package net.tigereye.hellishmaterials.items;
 
 import net.minecraft.item.ToolMaterial;
 import net.minecraft.recipe.Ingredient;
-import net.tigereye.hellishmaterials.registration.HM_Items;
+import net.tigereye.hellishmaterials.registration.HMItems;
 
 public class LussMaterial implements ToolMaterial{
 
@@ -33,7 +33,7 @@ public class LussMaterial implements ToolMaterial{
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(HM_Items.LUSS_INGOT);
+        return Ingredient.ofItems(HMItems.LUSS_INGOT);
     }
     
 }

@@ -4,8 +4,8 @@ import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
-import net.tigereye.hellishmaterials.registration.HM_Items;
-import net.tigereye.hellishmaterials.registration.HM_StatusEffects;
+import net.tigereye.hellishmaterials.registration.HMItems;
+import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class BatetDeferment {
 
@@ -27,19 +27,19 @@ public class BatetDeferment {
     public static float findBloodDebtFactor(LivingEntity entity){
         float bloodDebtFactor = 0;
         ItemStack armor = entity.getEquippedStack(EquipmentSlot.HEAD);
-        if(armor.getItem().isIn(HM_Items.TAG_BATET)){
+        if(armor.getItem().isIn(HMItems.TAG_BATET)){
             bloodDebtFactor += .25;
         }
         armor = entity.getEquippedStack(EquipmentSlot.CHEST);
-        if(armor.getItem().isIn(HM_Items.TAG_BATET)){
+        if(armor.getItem().isIn(HMItems.TAG_BATET)){
             bloodDebtFactor += .25;
         }
         armor = entity.getEquippedStack(EquipmentSlot.LEGS);
-        if(armor.getItem().isIn(HM_Items.TAG_BATET)){
+        if(armor.getItem().isIn(HMItems.TAG_BATET)){
             bloodDebtFactor += .25;
         }
         armor = entity.getEquippedStack(EquipmentSlot.FEET);
-        if(armor.getItem().isIn(HM_Items.TAG_BATET)){
+        if(armor.getItem().isIn(HMItems.TAG_BATET)){
             bloodDebtFactor += .25;
         }
         return bloodDebtFactor;
@@ -47,25 +47,25 @@ public class BatetDeferment {
 
     private static void addBloodDebt(LivingEntity entity, float amount){
         if(amount > 0){
-            if(entity.hasStatusEffect(HM_StatusEffects.HM_BLOODDEBT)){
-                ((BloodDebtInstance)(entity.getStatusEffect(HM_StatusEffects.HM_BLOODDEBT))).addDebt(amount);
+            if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
+                ((BloodDebtInstance)(entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT))).addDebt(amount);
             }
             else{
-                    entity.addStatusEffect(HM_StatusEffects.newBloodDebtStatusEffectInstance(amount));
+                    entity.addStatusEffect(HMStatusEffects.newBloodDebtStatusEffectInstance(amount));
             }
         }
     }
 
 	public static void ForgiveDebts(LivingEntity entity) {
-        if(entity.hasStatusEffect(HM_StatusEffects.HM_BLOODDEBT)){
-            entity.removeStatusEffect(HM_StatusEffects.HM_BLOODDEBT);
+        if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
+            entity.removeStatusEffect(HMStatusEffects.HM_BLOODDEBT);
         }
     }
 
     public static void ForgiveDebts(LivingEntity entity, float amount) {
-        if(entity.hasStatusEffect(HM_StatusEffects.HM_BLOODDEBT)){
-            if(((BloodDebtInstance)entity.getStatusEffect(HM_StatusEffects.HM_BLOODDEBT)).removeDebt(amount) == 0){
-                entity.removeStatusEffect(HM_StatusEffects.HM_BLOODDEBT);
+        if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
+            if(((BloodDebtInstance)entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT)).removeDebt(amount) == 0){
+                entity.removeStatusEffect(HMStatusEffects.HM_BLOODDEBT);
             }
         }
     }

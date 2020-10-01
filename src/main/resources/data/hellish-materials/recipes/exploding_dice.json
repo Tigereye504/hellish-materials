@@ -1,0 +1,25 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "hellish-materials:luss_dice"
+        },
+        {
+            "item": "hellish-materials:batet_gem"
+        },
+        {
+            "item": "hellish-materials:batet_gem"
+        },
+        {
+            "item": "hellish-materials:batet_gem"
+        },
+        {
+            "item": "hellish-materials:batet_gem"
+        }
+    ],
+    "result": {
+        "item": "hellish-materials:exploding_dice",
+        "count": 1
+    },
+    "group": "exploding_dice"
+}

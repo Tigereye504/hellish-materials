@@ -8,24 +8,25 @@ import net.minecraft.loot.condition.RandomChanceWithLootingLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.util.Identifier;
 
-public class HM_LootTables {
+public class HMLootTables {
     
     private static final Identifier WITHER_SKELETON_LOOT_TABLE_ID = new Identifier("minecraft", "entities/wither_skeleton");
     private static final Identifier WITHER_LOOT_TABLE_ID = new Identifier("minecraft", "entities/wither");
-    
+    //TODO: add luss dice, exploding dice, luckstone, luss, and batet to bastion loot table
+    //TODO: add vuld drops, luckstone, and moratorium to nether fortress loot table
     public static void register(){
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
             if (WITHER_LOOT_TABLE_ID.equals(id)) {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                     .rolls(ConstantLootTableRange.create(1))
-                    .with(ItemEntry.builder(HM_Items.VULD))
+                    .with(ItemEntry.builder(HMItems.VULD))
                     .conditionally(KilledByPlayerLootCondition.builder());
                 supplier.pool(poolBuilder);
             }
             if (WITHER_SKELETON_LOOT_TABLE_ID.equals(id)) {
                 FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
                     .rolls(ConstantLootTableRange.create(1))
-                    .with(ItemEntry.builder(HM_Items.VULD_DROP))
+                    .with(ItemEntry.builder(HMItems.VULD_DROP))
                     .conditionally(KilledByPlayerLootCondition.builder())
                     .conditionally(RandomChanceWithLootingLootCondition.builder(.05f, .02f));
                 supplier.pool(poolBuilder);

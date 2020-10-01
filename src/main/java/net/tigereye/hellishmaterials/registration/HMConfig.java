@@ -11,7 +11,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.fabricmc.loader.api.FabricLoader;
 
-public class HM_Config {
+public class HMConfig {
     public static final float ZOMBIE_PIGLIN_BATET_TOOL_CHANCE;
     public static final float ZOMBIE_PIGLIN_BATET_ARMOR_CHANCE;
     public static final float ZOMBIE_PIGLIN_BATET_CHAMPION_CHANCE;
