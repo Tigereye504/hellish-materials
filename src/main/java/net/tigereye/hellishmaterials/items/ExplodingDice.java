@@ -5,27 +5,23 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.LiteralText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
-import net.minecraft.world.GameRules;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.mechanics.LussLuck;
-
-import java.util.Collection;
-import java.util.Iterator;
 
 public class ExplodingDice extends DiceItem {
     private static final int LOW_DURATION = 45*20;
     private static final int MID_DURATION = 90*20;
     private static final int HIGH_DURATION = 180*20;
     private static final int FOUR_DURATION = (4*60*20)+(44*20)+4;
-    private static final int BLOOD_COST = 6;
+    private static final int BLOOD_COST = 5;
 
     public ExplodingDice() {
         super(new Settings().maxCount(1).group(ItemGroup.TOOLS));
@@ -45,8 +41,8 @@ public class ExplodingDice extends DiceItem {
         user.sendMessage(new LiteralText(out), true);
 
         createShockwave(user,10);
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),HIGH_DURATION,3));
-        spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(kind),HIGH_DURATION,3));
+        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
+        spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -120,27 +116,28 @@ public class ExplodingDice extends DiceItem {
                 ", " + die3 +
                 ", and " + die4 + ".";
         user.sendMessage(new LiteralText(out), true);
+        user.world.playSound(user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 4.0F, 1.0F, false);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
 
     private StatusEffect getPrizeStatusEffectType(int die1){
         switch (die1) {
             case 1:
-                return StatusEffects.FIRE_RESISTANCE;
+                return StatusEffects.JUMP_BOOST;
             case 2:
-                return StatusEffects.WATER_BREATHING;
+                return StatusEffects.HEALTH_BOOST;
             case 3:
-                return StatusEffects.SPEED;
+                return StatusEffects.HASTE;
             case 4:
-                return StatusEffects.LUCK;
+                return StatusEffects.SPEED;
             case 5:
-                return StatusEffects.ABSORPTION;
+                return StatusEffects.RESISTANCE;
             case 6:
                 return StatusEffects.STRENGTH;
             case 7:
-                return StatusEffects.REGENERATION;
+                return StatusEffects.LUCK;
             default:
-                return StatusEffects.RESISTANCE;
+                return StatusEffects.REGENERATION;
         }
     }
 

@@ -3,10 +3,13 @@ package net.tigereye.hellishmaterials.registration;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.potion.Potion;
 import net.minecraft.tag.Tag;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -68,7 +71,10 @@ public class HMItems {
     public static final Item EXPLODING_DICE = new ExplodingDice();
     public static final Item LUCKSTONE = new Luckstone();
     public static final Item MORATORIUM = new Moratorium();
-    
+
+    public static final Potion LONG_LUCK = new Potion("luck", new StatusEffectInstance[]{new StatusEffectInstance(StatusEffects.LUCK, 9600)});
+    public static final Potion STRONG_LUCK = new Potion("luck", new StatusEffectInstance[]{new StatusEffectInstance(StatusEffects.LUCK, 1800, 1)});
+
     public static final Tag<Item> TAG_LUSS = TagRegistry.item(new Identifier(HellishMaterials.MODID,"luss"));
     public static final Tag<Item> TAG_VULD = TagRegistry.item(new Identifier(HellishMaterials.MODID,"vuld"));
     public static final Tag<Item> TAG_BATET = TagRegistry.item(new Identifier(HellishMaterials.MODID,"batet"));
@@ -129,6 +135,9 @@ public class HMItems {
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luckstone"), LUCKSTONE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dice"), LUSS_DICE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "exploding_dice"), EXPLODING_DICE);
+
+        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "long_luck"), LONG_LUCK);
+        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "strong_luck"), STRONG_LUCK);
 
     }
 }
