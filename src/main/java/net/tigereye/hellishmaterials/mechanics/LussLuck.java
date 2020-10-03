@@ -9,6 +9,9 @@ import net.minecraft.item.ItemStack;
 import net.tigereye.hellishmaterials.items.Luckstone;
 
 public class LussLuck {
+    private static final float LUCK_EFFECTIVENESS = 2;  //effects how quickly luck causes the average roll to shift
+                                                        //if LUCK_EFFECTIVENESS = 1, luck will have no effect at all.
+                                                        //bad things could happen if it is set to less than 1
 
     public static float RandomFloatWithLuck(PlayerEntity player)
     {
@@ -16,30 +19,33 @@ public class LussLuck {
     }
     public static float RandomFloatWithLuck(PlayerEntity player,float luckFactor)
     {
-        float n = 0;
-        float m = 0;
 
-        //search for a luckstone. If one is found, extract up to two rolls from it
-        //don't worry about it running out; it returns 0 if empty
+        float n = 0;
+        //TODO: Add and move to RandomFloatWithLuckSetResult event
+        //search for a luckstone. If one is found, extract a roll from it
         int luckStonePos = Luckstone.FindLuckstone(player.inventory);
         if(luckStonePos != -1){
             ItemStack luckstone = player.inventory.getStack(luckStonePos);
             n = Luckstone.popRoll(luckstone);
-            m = Luckstone.popRoll(luckstone);
         }
+
         //if the luckstone wasn't there or ran out, roll dice
         if(n == 0){
             n = player.getRandom().nextFloat();
         }
-        if(m == 0){
-            m = player.getRandom().nextFloat();
-        }
+
+        //TODO: Add and move to RandomFloatWithLuckModifyResult event
         //apply luck formula
-        if(luckFactor>0){ //average result is .5+luck*.025
-            n = n + ((luckFactor/10)*m*(1-n));
+        if(luckFactor>0){ //as luckFactor approaches infinity, the average roll approaches .75 as correctionFactor approaches 1
+            float m = player.getRandom().nextFloat();
+            float imperfection = 1-n;
+            float correctionFactor = 1-(1/(float)Math.pow(LUCK_EFFECTIVENESS,luckFactor));
+            n = n + imperfection*correctionFactor*m;
         }
-        else if(luckFactor<0){
-            n = n + ((luckFactor/10)*m*n);
+        else if(luckFactor<0){ //as luckFactor approaches negative infinity, the average roll approaches .25 as correctionFactor approaches 1
+            float m = player.getRandom().nextFloat();
+            float correctionFactor = 1-(1/(float)Math.pow(LUCK_EFFECTIVENESS,-luckFactor));
+            n = n - n*correctionFactor*m;
         }
 
         return n;
@@ -116,26 +122,26 @@ public class LussLuck {
         }
     }
 
-    public static int ToolSingleStackRandomizer(int remainingToolDurability, int dropCount, PlayerEntity player){
-        if(remainingToolDurability < 0){
+    public static int ToolSingleStackRandomizer(float percentUsed, int dropCount, PlayerEntity player){
+        if(percentUsed < 0){
             return StackSizeRandomizer(dropCount,player);
         }
-        return StackSizeRandomizer(dropCount,player,player.getLuck()-((float)remainingToolDurability/5)+4);
+        return StackSizeRandomizer(dropCount,player,player.getLuck()+(percentUsed-.2f));
     }
 
     public static List<ItemStack> ToolListItemStackRandomizer(List<ItemStack> target, ItemStack tool, PlayerEntity player){
-        int remainingDamage;
+        float percentUsed;
         int returnDrops;
         List<ItemStack> returnlist = new ArrayList<>();
         for( ItemStack singleStack : target){
             if(tool.isDamageable()){
-                remainingDamage = tool.getMaxDamage()-tool.getDamage();
+                percentUsed = tool.getMaxDamage()/tool.getDamage();
             }
             else{
-                remainingDamage = -1;
+                percentUsed = -1;
             }
 
-            returnDrops = LussLuck.ToolSingleStackRandomizer(remainingDamage, singleStack.getCount(), player);
+            returnDrops = LussLuck.ToolSingleStackRandomizer(percentUsed, singleStack.getCount(), player);
             
             if (singleStack.isStackable()){
                 if(returnDrops > singleStack.getMaxCount()){
