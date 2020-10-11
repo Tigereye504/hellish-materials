@@ -30,9 +30,9 @@ public class ZombifiedPiglinEntityEquipmentMixin {
             ((ZombifiedPiglinEntity) (Object) this).equipStack(EquipmentSlot.FEET , new ItemStack(HMItems.BATET_BOOTS));
             ((ZombifiedPiglinEntity) (Object) this).equipStack(EquipmentSlot.MAINHAND , new ItemStack(HMItems.BATET_SWORD));
             ((ZombifiedPiglinEntity) (Object) this).equipStack(EquipmentSlot.OFFHAND , new ItemStack(Items.ENCHANTED_GOLDEN_APPLE));
-            ((ZombifiedPiglinEntity) (Object) this).applyStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,36000,2));
-            ((ZombifiedPiglinEntity) (Object) this).applyStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE,36000,1));
-            ((ZombifiedPiglinEntity) (Object) this).applyStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,36000,1));
+            ((ZombifiedPiglinEntity) (Object) this).addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,36000,2));
+            ((ZombifiedPiglinEntity) (Object) this).addStatusEffect(new StatusEffectInstance(StatusEffects.RESISTANCE,36000,1));
+            ((ZombifiedPiglinEntity) (Object) this).addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,36000,1));
         }
         else{
             HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.BATET_HOE), HMConfig.ZOMBIE_PIGLIN_BATET_TOOL_CHANCE);

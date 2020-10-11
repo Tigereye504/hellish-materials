@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import jdk.internal.jline.internal.Nullable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.tigereye.hellishmaterials.items.Luckstone;
@@ -17,33 +18,44 @@ public class LussLuck {
     {
         return RandomFloatWithLuck(player,player.getLuck());
     }
-    public static float RandomFloatWithLuck(PlayerEntity player,float luckFactor)
+    public static float RandomFloatWithLuck(@Nullable PlayerEntity player,float luckFactor)
     {
-
+        Random random;
         float n = 0;
+        if(player != null){
+            random = player.getRandom();
+        }
+        else{
+            random = new Random();
+        }
         //TODO: Add and move to RandomFloatWithLuckSetResult event
         //search for a luckstone. If one is found, extract a roll from it
-        int luckStonePos = Luckstone.FindLuckstone(player.inventory);
-        if(luckStonePos != -1){
-            ItemStack luckstone = player.inventory.getStack(luckStonePos);
-            n = Luckstone.popRoll(luckstone);
+        if(player != null) {
+            int luckStonePos = Luckstone.FindLuckstone(player.inventory);
+            if (luckStonePos != -1) {
+                ItemStack luckstone = player.inventory.getStack(luckStonePos);
+                n = Luckstone.popRoll(luckstone);
+            }
+            //if the luckstone wasn't there or ran out, roll dice
+            if(n == 0){
+                n = random.nextFloat();
+            }
+        }
+        else{
+            n = random.nextFloat();
         }
 
-        //if the luckstone wasn't there or ran out, roll dice
-        if(n == 0){
-            n = player.getRandom().nextFloat();
-        }
 
         //TODO: Add and move to RandomFloatWithLuckModifyResult event
         //apply luck formula
         if(luckFactor>0){ //as luckFactor approaches infinity, the average roll approaches .75 as correctionFactor approaches 1
-            float m = player.getRandom().nextFloat();
+            float m = random.nextFloat();
             float imperfection = 1-n;
             float correctionFactor = 1-(1/(float)Math.pow(LUCK_EFFECTIVENESS,luckFactor));
             n = n + imperfection*correctionFactor*m;
         }
         else if(luckFactor<0){ //as luckFactor approaches negative infinity, the average roll approaches .25 as correctionFactor approaches 1
-            float m = player.getRandom().nextFloat();
+            float m = random.nextFloat();
             float correctionFactor = 1-(1/(float)Math.pow(LUCK_EFFECTIVENESS,-luckFactor));
             n = n - n*correctionFactor*m;
         }
@@ -51,10 +63,14 @@ public class LussLuck {
         return n;
     }
 
-    public static int StackSizeRandomizer(float compFactor, PlayerEntity player){
-        return StackSizeRandomizer(compFactor, player, player.getLuck());
+    public static int StackSizeRandomizer(float compFactor, @Nullable PlayerEntity player){
+        float playerLuck = 0;
+        if(player != null){
+            playerLuck = player.getLuck();
+        }
+        return StackSizeRandomizer(compFactor, player, playerLuck);
     }
-    public static int StackSizeRandomizer(float compFactor, PlayerEntity player, float luckFactor)
+    public static int StackSizeRandomizer(float compFactor, @Nullable PlayerEntity player, float luckFactor)
     {
         Random rand = new Random();
         float n = RandomFloatWithLuck(player,luckFactor);
@@ -122,14 +138,18 @@ public class LussLuck {
         }
     }
 
-    public static int ToolSingleStackRandomizer(float percentUsed, int dropCount, PlayerEntity player){
+    public static int ToolSingleStackRandomizer(float percentUsed, int dropCount, @Nullable PlayerEntity player){
         if(percentUsed < 0){
             return StackSizeRandomizer(dropCount,player);
         }
-        return StackSizeRandomizer(dropCount,player,player.getLuck()+(percentUsed-.2f));
+        float playerLuck = 0;
+        if(player != null){
+            playerLuck = player.getLuck();
+        }
+        return StackSizeRandomizer(dropCount,player,playerLuck+(percentUsed-.2f));
     }
 
-    public static List<ItemStack> ToolListItemStackRandomizer(List<ItemStack> target, ItemStack tool, PlayerEntity player){
+    public static List<ItemStack> ToolListItemStackRandomizer(List<ItemStack> target, ItemStack tool, @Nullable PlayerEntity player){
         float percentUsed;
         int returnDrops;
         List<ItemStack> returnlist = new ArrayList<>();

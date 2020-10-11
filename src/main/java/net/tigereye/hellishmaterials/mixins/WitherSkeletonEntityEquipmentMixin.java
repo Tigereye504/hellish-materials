@@ -30,8 +30,8 @@ public class WitherSkeletonEntityEquipmentMixin {
             ((WitherSkeletonEntity) (Object) this).equipStack(EquipmentSlot.FEET , new ItemStack(HMItems.VULD_BOOTS));
             ((WitherSkeletonEntity) (Object) this).equipStack(EquipmentSlot.MAINHAND , new ItemStack(HMItems.VULD_SWORD));
             ((WitherSkeletonEntity) (Object) this).equipStack(EquipmentSlot.OFFHAND , new ItemStack(Items.SHIELD));
-            ((WitherSkeletonEntity) (Object) this).applyStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH,36000,1));
-            ((WitherSkeletonEntity) (Object) this).applyStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,36000,1));
+            ((WitherSkeletonEntity) (Object) this).addStatusEffect(new StatusEffectInstance(StatusEffects.STRENGTH,36000,1));
+            ((WitherSkeletonEntity) (Object) this).addStatusEffect(new StatusEffectInstance(StatusEffects.SPEED,36000,1));
         }
         else{
             HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.VULD_HOE), HMConfig.WITHER_SKELETON_VULD_TOOL_CHANCE);

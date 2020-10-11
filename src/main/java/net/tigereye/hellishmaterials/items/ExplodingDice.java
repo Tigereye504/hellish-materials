@@ -41,7 +41,7 @@ public class ExplodingDice extends DiceItem {
         user.sendMessage(new LiteralText(out), true);
 
         createShockwave(user,10);
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
         spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
         return TypedActionResult.success(user.getStackInHand(hand));
     }
@@ -55,8 +55,8 @@ public class ExplodingDice extends DiceItem {
 
         int leftover = die1+die2+die3+die4-(kind*3);
         createShockwave(user,4);
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),HIGH_DURATION,1));
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(leftover),LOW_DURATION,2));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),HIGH_DURATION,1));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(leftover),LOW_DURATION,2));
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -68,8 +68,8 @@ public class ExplodingDice extends DiceItem {
         user.sendMessage(new LiteralText(out), true);
 
         createShockwave(user,4);
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair1),MID_DURATION,1));
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair2),MID_DURATION,1));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair1),MID_DURATION,1));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair2),MID_DURATION,1));
         spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(pair1),LOW_DURATION,1));
         spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(pair2),LOW_DURATION,1));
         return TypedActionResult.success(user.getStackInHand(hand));
@@ -91,7 +91,7 @@ public class ExplodingDice extends DiceItem {
             amplifier = 1;
         }
         createShockwave(user,amplifier+1);
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair),LOW_DURATION,amplifier));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair),LOW_DURATION,amplifier));
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -102,10 +102,10 @@ public class ExplodingDice extends DiceItem {
                 ", and " + die4 + ".";
 
         createShockwave(user,5);
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest),HIGH_DURATION,0));
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+1),HIGH_DURATION,0));
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+2),HIGH_DURATION,0));
-        user.applyStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+3),HIGH_DURATION,0));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest),HIGH_DURATION,0));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+1),HIGH_DURATION,0));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+2),HIGH_DURATION,0));
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+3),HIGH_DURATION,0));
         user.sendMessage(new LiteralText(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
