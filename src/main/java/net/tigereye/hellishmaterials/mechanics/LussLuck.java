@@ -154,8 +154,8 @@ public class LussLuck {
         int returnDrops;
         List<ItemStack> returnlist = new ArrayList<>();
         for( ItemStack singleStack : target){
-            if(tool.isDamageable()){
-                percentUsed = tool.getMaxDamage()/tool.getDamage();
+            if(tool.isDamageable() && tool.getMaxDamage() != 0){
+                percentUsed = tool.getDamage()/tool.getMaxDamage();
             }
             else{
                 percentUsed = -1;

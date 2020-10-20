@@ -20,7 +20,7 @@ public class LivingEntityApplyDamageMixin {
     public float HellishMaterialsApplyDamageMixin(float amount, DamageSource source) {
         if(source.getAttacker() instanceof LivingEntity){
             if(((LivingEntity)(source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()).getItem().isIn(HMItems.TAG_BATET)){
-                BatetDeferment.ForgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
+                BatetDeferment.forgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
             }
         }
 		if(source != HMDamageSource.HM_BLOOD_DEBT){

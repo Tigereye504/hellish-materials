@@ -22,7 +22,7 @@ public class ItemPostMineMixin {
         method = "postMine")
         public void HellishMaterialsPostMineMixin(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> info){
             if(stack.getItem().isIn(HMItems.TAG_BATET)){
-                BatetDeferment.ForgiveDebts(miner,state.getHardness(world, pos));
+                BatetDeferment.forgiveDebts(miner,state.getHardness(world, pos));
             }
         }
 }

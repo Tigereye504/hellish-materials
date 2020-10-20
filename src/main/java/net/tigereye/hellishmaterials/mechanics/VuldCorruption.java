@@ -26,6 +26,9 @@ public class VuldCorruption {
     }
     
     private static boolean isItemVuld(Item item){
+        if(item == null){
+            return false;
+        }
         return item.isIn(HMItems.TAG_VULD);
     }
 

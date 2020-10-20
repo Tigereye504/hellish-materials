@@ -45,7 +45,7 @@ public class BatetDeferment {
         return bloodDebtFactor;
     }
 
-    private static void addBloodDebt(LivingEntity entity, float amount){
+    public static void addBloodDebt(LivingEntity entity, float amount){
         if(amount > 0){
             if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
                 ((BloodDebtInstance)(entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT))).addDebt(amount);
@@ -56,13 +56,13 @@ public class BatetDeferment {
         }
     }
 
-	public static void ForgiveDebts(LivingEntity entity) {
+	public static void forgiveDebts(LivingEntity entity) {
         if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
             entity.removeStatusEffect(HMStatusEffects.HM_BLOODDEBT);
         }
     }
 
-    public static void ForgiveDebts(LivingEntity entity, float amount) {
+    public static void forgiveDebts(LivingEntity entity, float amount) {
         if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
             if(((BloodDebtInstance)entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT)).removeDebt(amount) == 0){
                 entity.removeStatusEffect(HMStatusEffects.HM_BLOODDEBT);
