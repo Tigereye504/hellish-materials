@@ -14,10 +14,12 @@ import net.tigereye.hellishmaterials.mob_effect.HM_StatusEffect;
 public class HMStatusEffects {
     
     public static StatusEffect HM_BLOODDEBT = new HM_StatusEffect(StatusEffectType.HARMFUL, 104562){
+        @Override
         public boolean canApplyUpdateEffect(int duration, int amplifier) {
             return duration % BatetDeferment.REPAYMENT_PERIOD == 0;
         }
 
+        @Override
         public void applyUpdateEffect(LivingEntity entity, int amplifier) {
             if(!(entity.world.isClient)){
                 BloodDebtInstance instance = (BloodDebtInstance)entity.getStatusEffect(HM_BLOODDEBT);

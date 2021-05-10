@@ -1,13 +1,13 @@
 package net.tigereye.hellishmaterials.mechanics;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-
-import jdk.internal.jline.internal.Nullable;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.tigereye.hellishmaterials.items.Luckstone;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class LussLuck {
     private static final float LUCK_EFFECTIVENESS = 2;  //effects how quickly luck causes the average roll to shift
@@ -18,7 +18,7 @@ public class LussLuck {
     {
         return RandomFloatWithLuck(player,player.getLuck());
     }
-    public static float RandomFloatWithLuck(@Nullable PlayerEntity player,float luckFactor)
+    public static float RandomFloatWithLuck(@Nullable PlayerEntity player, float luckFactor)
     {
         Random random;
         float n = 0;
@@ -155,7 +155,7 @@ public class LussLuck {
         List<ItemStack> returnlist = new ArrayList<>();
         for( ItemStack singleStack : target){
             if(tool.isDamageable() && tool.getMaxDamage() != 0){
-                percentUsed = tool.getDamage()/tool.getMaxDamage();
+                percentUsed = (float)tool.getDamage() / (float)tool.getMaxDamage();
             }
             else{
                 percentUsed = -1;

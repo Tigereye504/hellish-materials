@@ -5,7 +5,6 @@ import net.fabricmc.fabric.api.loot.v1.event.LootTableLoadingCallback;
 import net.minecraft.loot.BinomialLootTableRange;
 import net.minecraft.loot.ConstantLootTableRange;
 import net.minecraft.loot.condition.KilledByPlayerLootCondition;
-import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.condition.RandomChanceWithLootingLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.function.EnchantRandomlyLootFunction;
@@ -46,15 +45,6 @@ public class HMLootTables {
                         .with(ItemEntry.builder(HMItems.LUCKSTONE).weight(1))
                         .with(ItemEntry.builder(HMItems.MORATORIUM).weight(1));
                 supplier.pool(poolBuilder);
-            }
-            if (NETHER_FORTRESS_LOOT_TABLE_ID.equals(id)) {
-                FabricLootPoolBuilder poolBuilder = FabricLootPoolBuilder.builder()
-                        .rolls(BinomialLootTableRange.create(20,.15f))
-                        .with(ItemEntry.builder(HMItems.LUSS_INGOT).weight(10))
-                        .with(ItemEntry.builder(HMItems.BATET_GEM).weight(10))
-                        .with(ItemEntry.builder(HMItems.VULD_DROP).weight(2))
-                        .with(ItemEntry.builder(HMItems.LUCKSTONE).weight(1))
-                        .with(ItemEntry.builder(HMItems.MORATORIUM).weight(1));
                 supplier.pool(poolBuilder);
             }
             if (BASTION_TREASURE_TABLE_ID.equals(id)) {

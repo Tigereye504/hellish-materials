@@ -1,19 +1,14 @@
 package net.tigereye.hellishmaterials.items;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.Blocks;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemUsageContext;
-import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.mechanics.VuldCorruption;
 
 import java.util.function.Consumer;
 
@@ -42,9 +37,7 @@ public class Moratorium extends Item{
         }
         if(healing > 0) {
             BatetDeferment.deferDamage(user,healing*DEBT_FACTOR,1);
-            itemStack.damage((int) healing, user, (Consumer<LivingEntity>) ((p) -> {
-                p.sendToolBreakStatus(user.getActiveHand());
-            }));
+            itemStack.damage((int) healing, user, (Consumer<LivingEntity>) ((p) -> p.sendToolBreakStatus(user.getActiveHand())));
         }
         return TypedActionResult.success(itemStack);
     }
