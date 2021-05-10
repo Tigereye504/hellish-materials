@@ -3,6 +3,7 @@ package net.tigereye.hellishmaterials.mechanics;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
+import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
 import net.tigereye.hellishmaterials.registration.HMItems;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
@@ -27,19 +28,19 @@ public class BatetDeferment {
     public static float findBloodDebtFactor(LivingEntity entity){
         float bloodDebtFactor = 0;
         ItemStack armor = entity.getEquippedStack(EquipmentSlot.HEAD);
-        if(armor.getItem().isIn(HMItems.TAG_BATET)){
+        if(Utils.isBatet(armor)){
             bloodDebtFactor += .25;
         }
         armor = entity.getEquippedStack(EquipmentSlot.CHEST);
-        if(armor.getItem().isIn(HMItems.TAG_BATET)){
+        if(Utils.isBatet(armor)){
             bloodDebtFactor += .25;
         }
         armor = entity.getEquippedStack(EquipmentSlot.LEGS);
-        if(armor.getItem().isIn(HMItems.TAG_BATET)){
+        if(Utils.isBatet(armor)){
             bloodDebtFactor += .25;
         }
         armor = entity.getEquippedStack(EquipmentSlot.FEET);
-        if(armor.getItem().isIn(HMItems.TAG_BATET)){
+        if(Utils.isBatet(armor)){
             bloodDebtFactor += .25;
         }
         return bloodDebtFactor;

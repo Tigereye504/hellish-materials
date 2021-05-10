@@ -10,7 +10,7 @@ import net.tigereye.hellishmaterials.mechanics.VuldCorruption;
 
 @Mixin(LivingEntity.class)
 public class LivingEntityBaseTickMixin {
-    int HM_BloodDebtTimer = 0;
+    //int HM_BloodDebtTimer = 0;
 
     @Inject(
         at = @At("HEAD"),

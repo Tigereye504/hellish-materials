@@ -5,7 +5,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ToolItem;
+import net.minecraft.item.ToolMaterial;
 import net.minecraft.loot.context.LootContextParameters;
+import net.tigereye.hellishmaterials.Utils;
+import net.tigereye.hellishmaterials.items.LussMaterial;
+import net.tigereye.hellishmaterials.items.VuldMaterial;
 import net.tigereye.modifydropsapi.api.GenerateBlockLootCallbackModifyLoot;
 import net.tigereye.modifydropsapi.api.GenerateEntityLootCallbackAddLoot;
 import net.tigereye.modifydropsapi.api.GenerateEntityLootCallbackModifyLoot;
@@ -30,13 +35,12 @@ public class HMListeners {
                     }
                 }
                 ItemStack tool = lootContext.get(LootContextParameters.TOOL);
-                if(tool != null && tool.getItem().isIn(HMItems.TAG_LUSS))
-                {
-                    loot = LussLuck.ToolListItemStackRandomizer(loot, tool, player);
-                }
-                else if(tool != null && tool.getItem().isIn(HMItems.TAG_VULD))
-                {
-                    loot.clear();
+                if (tool != null) {
+                    if (Utils.isLuss(tool)) {
+                        loot = LussLuck.ToolListItemStackRandomizer(loot, tool, player);
+                    } else if (Utils.isVuld(tool)) {
+                        loot.clear();
+                    }
                 }
             }
             return loot;
@@ -64,13 +68,12 @@ public class HMListeners {
                 if(entity instanceof PlayerEntity){
                     player = (PlayerEntity)entity;
                 }
-                if(tool != null && tool.getItem().isIn(HMItems.TAG_LUSS))
-                {
-                    loot = LussLuck.ToolListItemStackRandomizer(loot, tool, player);
-                }
-                else if(tool != null && tool.getItem().isIn(HMItems.TAG_VULD))
-                {
-                    loot.clear();
+                if (tool != null) {
+                    if (Utils.isLuss(tool)) {
+                        loot = LussLuck.ToolListItemStackRandomizer(loot, tool, player);
+                    } else if (Utils.isVuld(tool)) {
+                        loot.clear();
+                    }
                 }
             }
             return loot;

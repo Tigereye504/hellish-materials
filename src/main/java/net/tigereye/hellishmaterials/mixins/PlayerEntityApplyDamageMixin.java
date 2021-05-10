@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.mixins;
 
+import net.tigereye.hellishmaterials.Utils;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
 import org.spongepowered.asm.mixin.injection.At;
@@ -42,7 +43,7 @@ public class PlayerEntityApplyDamageMixin {
     @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage")
     public float HellishMaterialsPlayerApplyDamageMixin(float amount, DamageSource source) {
         if(source.getAttacker() instanceof LivingEntity){
-            if(((LivingEntity)(source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()).getItem().isIn(HMItems.TAG_BATET)){
+            if(Utils.isBatet(((LivingEntity) (source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()))) {
                 BatetDeferment.forgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
             }
         }
