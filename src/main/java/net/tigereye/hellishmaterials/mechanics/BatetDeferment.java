@@ -5,7 +5,6 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.item.ItemStack;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
-import net.tigereye.hellishmaterials.registration.HMItems;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class BatetDeferment {
@@ -52,7 +51,7 @@ public class BatetDeferment {
                 ((BloodDebtInstance)(entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT))).addDebt(amount);
             }
             else{
-                    entity.addStatusEffect(HMStatusEffects.newBloodDebtStatusEffectInstance(amount));
+                entity.addStatusEffect(HMStatusEffects.newBloodDebtStatusEffectInstance(amount));
             }
         }
     }

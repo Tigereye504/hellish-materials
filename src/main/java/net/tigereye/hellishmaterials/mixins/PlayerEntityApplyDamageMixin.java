@@ -1,16 +1,14 @@
 package net.tigereye.hellishmaterials.mixins;
 
-import net.tigereye.hellishmaterials.Utils;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.ModifyVariable;
-import org.spongepowered.asm.mixin.injection.At;
-
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
+import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.registration.HMDamageSource;
-import net.tigereye.hellishmaterials.registration.HMItems;
+import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.ModifyVariable;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityApplyDamageMixin {

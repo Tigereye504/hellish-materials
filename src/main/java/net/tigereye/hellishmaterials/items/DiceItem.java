@@ -2,7 +2,6 @@ package net.tigereye.hellishmaterials.items;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -15,6 +14,7 @@ public class DiceItem extends Item {
         super(settings);
     }
 
+    @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!user.world.isClient()) {
             int die1 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);

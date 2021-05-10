@@ -155,7 +155,7 @@ public class LussLuck {
         List<ItemStack> returnlist = new ArrayList<>();
         for( ItemStack singleStack : target){
             if(tool.isDamageable() && tool.getMaxDamage() != 0){
-                percentUsed = tool.getDamage()/tool.getMaxDamage();
+                percentUsed = (float)tool.getDamage() / (float)tool.getMaxDamage();
             }
             else{
                 percentUsed = -1;

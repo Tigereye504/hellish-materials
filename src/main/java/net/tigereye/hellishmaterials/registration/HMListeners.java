@@ -5,17 +5,12 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolItem;
-import net.minecraft.item.ToolMaterial;
 import net.minecraft.loot.context.LootContextParameters;
 import net.tigereye.hellishmaterials.Utils;
-import net.tigereye.hellishmaterials.items.LussMaterial;
-import net.tigereye.hellishmaterials.items.VuldMaterial;
+import net.tigereye.hellishmaterials.mechanics.LussLuck;
 import net.tigereye.modifydropsapi.api.GenerateBlockLootCallbackModifyLoot;
 import net.tigereye.modifydropsapi.api.GenerateEntityLootCallbackAddLoot;
 import net.tigereye.modifydropsapi.api.GenerateEntityLootCallbackModifyLoot;
-import net.tigereye.modifydropsapi.api.GenerateLootCallbackModifyLoot;
-import net.tigereye.hellishmaterials.mechanics.LussLuck;
 
 import java.util.ArrayList;
 import java.util.List;

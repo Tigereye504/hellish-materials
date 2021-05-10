@@ -72,8 +72,8 @@ public class HMItems {
     public static final Item LUCKSTONE = new Luckstone();
     public static final Item MORATORIUM = new Moratorium();
 
-    public static final Potion LONG_LUCK = new Potion("luck", new StatusEffectInstance[]{new StatusEffectInstance(StatusEffects.LUCK, 9600)});
-    public static final Potion STRONG_LUCK = new Potion("luck", new StatusEffectInstance[]{new StatusEffectInstance(StatusEffects.LUCK, 1800, 1)});
+    public static final Potion LONG_LUCK = new Potion("luck", new StatusEffectInstance(StatusEffects.LUCK, 9600));
+    public static final Potion STRONG_LUCK = new Potion("luck", new StatusEffectInstance(StatusEffects.LUCK, 1800, 1));
 
     public static final Tag<Item> TAG_LUSS = TagRegistry.item(new Identifier(HellishMaterials.MODID,"luss"));
     public static final Tag<Item> TAG_VULD = TagRegistry.item(new Identifier(HellishMaterials.MODID,"vuld"));

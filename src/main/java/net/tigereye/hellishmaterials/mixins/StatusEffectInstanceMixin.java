@@ -19,7 +19,7 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
 
     @Inject(
         at = @At("HEAD"),
-        method = "fromTag",
+        method = "fromTag(Lnet/minecraft/nbt/CompoundTag;)Lnet/minecraft/entity/effect/StatusEffectInstance;",
         cancellable = true)
     private static void RedirectToBloodDebtFromTagMixin(CompoundTag tag, CallbackInfoReturnable<StatusEffectInstance> info){
         if(StatusEffect.byRawId(tag.getByte("Id")) == HMStatusEffects.HM_BLOODDEBT){
@@ -36,14 +36,14 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         }
         return tag;
     }
-     
-    
 
+    @Override
     public float addDebt(float amount){
         bloodDebt += amount;
         return bloodDebt;
     }
 
+    @Override
     public float removeDebt(float amount){
         if(bloodDebt < amount){
             bloodDebt = 0;
@@ -54,8 +54,9 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         return bloodDebt;
     }
 
+    @Override
     public float drawRepayment(){
-        float payment = 0;
+        float payment;
         if(bloodDebt <= BatetDeferment.MINIMUM_REPAYMENT){
             payment = bloodDebt;
             bloodDebt = 0;
@@ -70,10 +71,12 @@ public class StatusEffectInstanceMixin implements BloodDebtInstance{
         return payment;
     }
 
+    @Override
     public float getDebt(){
         return bloodDebt;
     }
 
+    @Override
     public void setDebt(float debt) {
         this.bloodDebt = debt;
     }

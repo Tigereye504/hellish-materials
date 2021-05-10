@@ -38,9 +38,7 @@ public class VuldOre extends Block {
         player.incrementStat(Stats.MINED.getOrCreateStat(this));
         player.addExhaustion(0.005F);
         dropStacks(state, world, pos, blockEntity, player, stack);
-        player.getStackInHand(player.getActiveHand()).damage(250, (LivingEntity)player, (Consumer<LivingEntity>)((p) -> {
-           ((LivingEntity) p).sendToolBreakStatus(player.getActiveHand());
-        }));
+        player.getStackInHand(player.getActiveHand()).damage(250, player, (Consumer<LivingEntity>)((p) -> p.sendToolBreakStatus(player.getActiveHand())));
     }
 
     /*public static void SpawnVuldInBiome(Biome biome) {
