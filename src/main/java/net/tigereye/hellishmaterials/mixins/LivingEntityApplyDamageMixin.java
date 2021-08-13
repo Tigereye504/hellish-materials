@@ -22,7 +22,7 @@ public class LivingEntityApplyDamageMixin {
                 BatetDeferment.forgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
             }
         }
-		if(source != HMDamageSource.HM_BLOOD_DEBT){
+		if(source != HMDamageSource.HM_BLOOD_DEBT && source != DamageSource.OUT_OF_WORLD){
             amount = BatetDeferment.deferDamage(((LivingEntity)(Object)this), amount);
         }
         return amount;

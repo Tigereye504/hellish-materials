@@ -2,9 +2,13 @@ package net.tigereye.hellishmaterials.mechanics;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.text.LiteralText;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
+import net.tigereye.hellishmaterials.registration.HMDamageSource;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class BatetDeferment {
@@ -52,6 +56,12 @@ public class BatetDeferment {
             }
             else{
                 entity.addStatusEffect(HMStatusEffects.newBloodDebtStatusEffectInstance(amount));
+            }
+            if(!entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
+                if(entity instanceof PlayerEntity){
+                    ((PlayerEntity)entity).sendMessage(new LiteralText("You cannot cheat Death so easily!"),true);
+                }
+                entity.damage(HMDamageSource.HM_BLOOD_DEBT,amount);
             }
         }
     }
