@@ -2,6 +2,7 @@ package net.tigereye.hellishmaterials.mixins;
 
 import java.util.Random;
 
+import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -21,14 +22,17 @@ public class GlowstoneBlobFeatureGenerateMixin {
     @Inject(
         at = @At("TAIL"),
         method = "generate")
-    public void HellishMaterialsGenerateLussAndBatet(StructureWorldAccess structureWorldAccess, ChunkGenerator chunkGenerator, Random random, BlockPos blockPos, DefaultFeatureConfig defaultFeatureConfig, CallbackInfoReturnable<Boolean> info){
+    public void HellishMaterialsGenerateLussAndBatet(FeatureContext<DefaultFeatureConfig> context, CallbackInfoReturnable<Boolean> info){
         //generate luss where glowstone and ceiling meet
         BlockPos lussBlockPos;
+        StructureWorldAccess structureWorldAccess = context.getWorld();
+        BlockPos origin = context.getOrigin();
+        Random random = context.getRandom();
         //for each block in the spawning area of a glowstone blob
         for(int y = -12; y <= 0; y++){
             for(int z = -8; z <= 8; z++){
                 for(int x = -8; x <= 8; x++){
-                    lussBlockPos = blockPos.add(x, y, z);
+                    lussBlockPos = origin.add(x, y, z);
                     //if that block is glowstone and the block above is neither glowstone nor air
                     if(structureWorldAccess.getBlockState(lussBlockPos).isOf(Blocks.GLOWSTONE)
                     && !structureWorldAccess.getBlockState(lussBlockPos.up()).isOf(Blocks.GLOWSTONE)
@@ -44,7 +48,7 @@ public class GlowstoneBlobFeatureGenerateMixin {
         //Generate Batet crystals in lava lakes below glowstone blobs
         BlockPos batetSeedPos;
         //Drop below the blob and drift up to 16 blocks on both horizontal axis.
-        batetSeedPos = blockPos.add(random.nextInt(33) - 16, -12, random.nextInt(33) - 16);
+        batetSeedPos = origin.add(random.nextInt(33) - 16, -12, random.nextInt(33) - 16);
         //decend until something non-air is found
         while (structureWorldAccess.getBlockState(batetSeedPos).isOf(Blocks.AIR)){
             batetSeedPos = batetSeedPos.down();

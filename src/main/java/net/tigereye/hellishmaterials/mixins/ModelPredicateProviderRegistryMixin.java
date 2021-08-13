@@ -3,6 +3,7 @@ package net.tigereye.hellishmaterials.mixins;
 
 import net.minecraft.client.item.ModelPredicateProvider;
 import net.minecraft.client.item.ModelPredicateProviderRegistry;
+import net.minecraft.client.item.UnclampedModelPredicateProvider;
 import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 import net.tigereye.hellishmaterials.CustomModelPredicateProvider;
@@ -15,7 +16,7 @@ import org.spongepowered.asm.mixin.Shadow;
 public class ModelPredicateProviderRegistryMixin {
 
     @Shadow
-    private static void register(Item item, Identifier id, ModelPredicateProvider provider){}
+    private static void register(Item item, Identifier id, UnclampedModelPredicateProvider provider){}
 
     static{
         register(HMItems.LUCKSTONE, new Identifier(HellishMaterials.MODID, "luck"), new CustomModelPredicateProvider());

@@ -31,9 +31,9 @@ public class LussLuck {
         //TODO: Add and move to RandomFloatWithLuckSetResult event
         //search for a luckstone. If one is found, extract a roll from it
         if(player != null) {
-            int luckStonePos = Luckstone.FindLuckstone(player.inventory);
+            int luckStonePos = Luckstone.FindLuckstone(player.getInventory());
             if (luckStonePos != -1) {
-                ItemStack luckstone = player.inventory.getStack(luckStonePos);
+                ItemStack luckstone = player.getInventory().getStack(luckStonePos);
                 n = Luckstone.popRoll(luckstone);
             }
             //if the luckstone wasn't there or ran out, roll dice

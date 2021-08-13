@@ -26,7 +26,7 @@ public class Utils {
         } else if (item instanceof ArmorItem) {
             isValidMaterial = ((ArmorItem) item).getMaterial() instanceof VuldArmorMaterial;
         }
-        return item.isIn(HMItems.TAG_VULD) || isValidMaterial;
+        return tool.isIn(HMItems.TAG_VULD) || isValidMaterial;
     }
 
     public static boolean isBatet(ItemStack tool) {
@@ -40,7 +40,7 @@ public class Utils {
         } else if (item instanceof ArmorItem) {
             isValidMaterial = ((ArmorItem) item).getMaterial() instanceof BatetArmorMaterial;
         }
-        return item.isIn(HMItems.TAG_BATET) || isValidMaterial;
+        return tool.isIn(HMItems.TAG_BATET) || isValidMaterial;
     }
 
     public static boolean isLuss(ItemStack tool) {
@@ -52,7 +52,7 @@ public class Utils {
         if (item instanceof ToolItem) {
             isValidMaterial = ((ToolItem) item).getMaterial() instanceof LussMaterial;
         }
-        return item.isIn(HMItems.TAG_LUSS) || isValidMaterial;
+        return tool.isIn(HMItems.TAG_LUSS) || isValidMaterial;
     }
 
 }

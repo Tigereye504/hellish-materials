@@ -5,7 +5,7 @@ import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
@@ -34,7 +34,7 @@ public class Luckstone extends Item {
     }
 
     public static void stockFutureRolls(ItemStack stack, Random random){
-        CompoundTag tag = stack.getOrCreateTag();
+        NbtCompound tag = stack.getOrCreateNbt();
         tag.putInt(BANKED_ROLLS_KEY,NUMBER_OF_ROLLS);
         for(int i = 1; i <= NUMBER_OF_ROLLS; i++){
             if(!tag.contains(BANKED_ROLLS_KEY+i)) {
@@ -54,7 +54,7 @@ public class Luckstone extends Item {
     }
 
     public static int getBankedRollsCount(ItemStack stack){
-        CompoundTag tag = stack.getOrCreateTag();
+        NbtCompound tag = stack.getOrCreateNbt();
         if(tag.contains(BANKED_ROLLS_KEY)){
             return tag.getInt(BANKED_ROLLS_KEY);
         }
@@ -67,7 +67,7 @@ public class Luckstone extends Item {
         if(count <= 0){
             return 0;
         }
-        CompoundTag tag = stack.getOrCreateTag();
+        NbtCompound tag = stack.getOrCreateNbt();
         if(count == 1){
             tag.putFloat(DISPLAY_KEY,1);
         }
@@ -87,7 +87,7 @@ public class Luckstone extends Item {
     public static float getAverageRoll(ItemStack stack){
         int count = getBankedRollsCount(stack);
         float total = 0;
-        CompoundTag tag = stack.getOrCreateTag();
+        NbtCompound tag = stack.getOrCreateNbt();
         if(count <= 0){
             return 0;
         }
@@ -105,7 +105,7 @@ public class Luckstone extends Item {
     private static void generateDisplayTier(ItemStack stack){
         float averageLuck;
         averageLuck = Luckstone.getAverageRoll(stack);
-        CompoundTag tag = stack.getOrCreateTag();
+        NbtCompound tag = stack.getOrCreateNbt();
         if(averageLuck > .75f){
             tag.putFloat(DISPLAY_KEY,5);
         }
