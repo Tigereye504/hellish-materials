@@ -25,7 +25,17 @@ public class HMStatusEffects {
                 BloodDebtInstance instance = (BloodDebtInstance)entity.getStatusEffect(HM_BLOODDEBT);
                 float dmg = instance.drawRepayment();
                 System.out.println("Repaying "+dmg+" Blood Debt\n");
-                entity.damage(HMDamageSource.HM_BLOOD_DEBT, dmg);
+                if(entity.getHealth() > dmg) {
+                    entity.setHealth(entity.getHealth() - dmg);
+                }
+                else{
+                    entity.setHealth(Float.MIN_VALUE);
+                    entity.setAbsorptionAmount(0);
+                    entity.damage(HMDamageSource.HM_BLOOD_DEBT, dmg);
+                    //if(!entity.isDead() && !entity.){
+                    //    entity.kill();
+                    //}
+                }
                 if(instance.getDebt() == 0){
                     System.out.println("Blood Debt Resolved\n");
                     entity.removeStatusEffect(HM_BLOODDEBT);
