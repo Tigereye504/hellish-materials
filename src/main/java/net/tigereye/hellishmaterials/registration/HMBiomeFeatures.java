@@ -18,10 +18,11 @@ import net.tigereye.hellishmaterials.HellishMaterials;
 //import net.tigereye.hellishmaterials.blocks.LussOre;
 //import net.tigereye.hellishmaterials.blocks.VuldOre;
 
-public class HMBiomeFeatures {
+public class HMBiomeFeatures {/*
     public static final ConfiguredFeature<?,?> VULD_ORE_VEIN = BuiltinRegistries.CONFIGURED_FEATURE.get(new Identifier(HellishMaterials.MODID, "vuld_ore_vein"));
     public static final ConfiguredFeature<?,?> VULD_ORE_OVERWORLD_TEST = BuiltinRegistries.CONFIGURED_FEATURE.get(new Identifier(HellishMaterials.MODID, "vuld_ore_overworld_test"));
-    
+    */
+    /*
     public static void addFeatures(){
         for (Biome biome : BuiltinRegistries.BIOME){
             if (biome.getCategory() != Biome.Category.NETHER){
@@ -35,8 +36,8 @@ public class HMBiomeFeatures {
                 //addFeatureToBiome(biome,GenerationStep.Feature.UNDERGROUND_ORES, BatetOre.BATET_ORE_VEIN);
             }
         }
-    }
-    
+    }*/
+    /*
     public static void addFeatureToBiome(Biome biome, GenerationStep.Feature feature, ConfiguredFeature<?, ?> configuredFeature) {
         //ConvertImmutableFeatures(biome);
         List<List<Supplier<ConfiguredFeature<?, ?>>>> biomeFeatures = biome.getGenerationSettings().getFeatures();
@@ -45,7 +46,7 @@ public class HMBiomeFeatures {
         }
         biomeFeatures.get(feature.ordinal()).add(() -> configuredFeature);
 
-    }
+    }*/
     /*
     private static void ConvertImmutableFeatures(Biome biome) {
         if (biome.getGenerationSettings().getFeatures() instanceof ImmutableList) {

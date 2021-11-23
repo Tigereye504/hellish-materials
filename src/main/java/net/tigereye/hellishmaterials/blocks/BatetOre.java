@@ -19,7 +19,7 @@ public class BatetOre extends Block {
         super(FabricBlockSettings.of(Material.STONE)
             .strength(3f,50f)
             .breakByHand(false)
-            .breakByTool(FabricToolTags.PICKAXES, 2)
+            //.breakByTool(FabricToolTags.PICKAXES, 2)
             .sounds(BlockSoundGroup.STONE)
             .nonOpaque());
     }

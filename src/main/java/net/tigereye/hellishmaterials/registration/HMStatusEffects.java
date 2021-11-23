@@ -3,7 +3,7 @@ package net.tigereye.hellishmaterials.registration;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectType;
+import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.tigereye.hellishmaterials.HellishMaterials;
@@ -13,7 +13,7 @@ import net.tigereye.hellishmaterials.mob_effect.HM_StatusEffect;
 
 public class HMStatusEffects {
     
-    public static StatusEffect HM_BLOODDEBT = new HM_StatusEffect(StatusEffectType.HARMFUL, 104562){
+    public static StatusEffect HM_BLOODDEBT = new HM_StatusEffect(StatusEffectCategory.HARMFUL, 104562){
         @Override
         public boolean canApplyUpdateEffect(int duration, int amplifier) {
             return duration % BatetDeferment.REPAYMENT_PERIOD == 0;

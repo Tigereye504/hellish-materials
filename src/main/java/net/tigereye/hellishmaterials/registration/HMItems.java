@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.registration;
 
+import net.fabricmc.fabric.api.tag.TagFactory;
 import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.entity.EquipmentSlot;
@@ -57,7 +58,7 @@ public class HMItems {
     public static final Item BATET_CHESTPLATE = new BaseArmor(BATET_ARMOR, EquipmentSlot.CHEST);
     public static final Item BATET_LEGGINGS = new BaseArmor(BATET_ARMOR, EquipmentSlot.LEGS);
     public static final Item BATET_BOOTS = new BaseArmor(BATET_ARMOR, EquipmentSlot.FEET);
-    public static final Item BATET_GEM = new Item(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item BATET_GEM = new Item(new Item.Settings().group(ItemGroup.MISC).fireproof());
     public static final Item BATET_FRAGMENT = new Item(new Item.Settings().group(ItemGroup.MISC));
     public static final Item BATET_AXE = new BaseAxe(new BatetMaterial());
     public static final Item BATET_HOE = new BaseHoe(new BatetMaterial());
@@ -75,10 +76,10 @@ public class HMItems {
     public static final Potion LONG_LUCK = new Potion("luck", new StatusEffectInstance(StatusEffects.LUCK, 9600));
     public static final Potion STRONG_LUCK = new Potion("luck", new StatusEffectInstance(StatusEffects.LUCK, 1800, 1));
 
-    public static final Tag<Item> TAG_LUSS = TagRegistry.item(new Identifier(HellishMaterials.MODID,"luss"));
-    public static final Tag<Item> TAG_VULD = TagRegistry.item(new Identifier(HellishMaterials.MODID,"vuld"));
-    public static final Tag<Item> TAG_BATET = TagRegistry.item(new Identifier(HellishMaterials.MODID,"batet"));
-    public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagRegistry.block(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
+    public static final Tag<Item> TAG_LUSS = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"luss"));
+    public static final Tag<Item> TAG_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"vuld"));
+    public static final Tag<Item> TAG_BATET = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"batet"));
+    public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
     
     public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);

@@ -29,7 +29,7 @@ public class VuldOre extends Block {
         super(FabricBlockSettings.of(Material.STONE)
             .strength(20f,800f)
             .breakByHand(false)
-            .breakByTool(FabricToolTags.PICKAXES, 2)
+            //.breakByTool(FabricToolTags.PICKAXES, 2)
             .sounds(BlockSoundGroup.SLIME));
     }
 
