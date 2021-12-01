@@ -20,6 +20,9 @@
   "entrypoints": {
     "main": [
       "net.tigereye.hellishmaterials.HellishMaterials"
+    ],
+    "client": [
+      "net.tigereye.hellishmaterials.HellishMaterialsClient"
     ]
   },
   "mixins": [

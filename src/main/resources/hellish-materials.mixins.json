@@ -10,7 +10,6 @@
     "LivingEntityApplyDamageMixin",
     "LivingEntityBaseTickMixin",
     "LivingEntityDropEquipmentMixin",
-    "ModelPredicateProviderRegistryMixin",
     "PiglinEntityEquipmentMixin",
     "PlayerEntityApplyDamageMixin",
     "StatusEffectInstanceMixin",
@@ -18,7 +17,6 @@
     "ZombifiedPiglinEntityEquipmentMixin"
   ],
   "client": [
-    
   ],
   "injectors": {
     "defaultRequire": 1
