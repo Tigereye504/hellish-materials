@@ -17,9 +17,9 @@ public class HellishMaterialsClient implements ClientModInitializer {
                 luck = tag.getFloat(Luckstone.DISPLAY_KEY);
             }
             if(HellishMaterials.DEBUG) {
-                System.out.println("Luckstone Diplay: " + luck);
+                System.out.println("Luckstone Diplay: " + luck/5);
             }
-            return luck;
+            return luck/5;
         });
     }
 }
