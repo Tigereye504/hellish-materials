@@ -16,7 +16,7 @@ import net.tigereye.hellishmaterials.registration.HMItems;
 import java.util.Random;
 
 public class Luckstone extends Item {
-    public static final int NUMBER_OF_ROLLS = 4;
+    public static final int NUMBER_OF_ROLLS = 8;
     private static final String BANKED_ROLLS_KEY = new Identifier(HellishMaterials.MODID,"banked_rolls").toString();
     public static final String DISPLAY_KEY = new Identifier(HellishMaterials.MODID,"display").toString();
 
