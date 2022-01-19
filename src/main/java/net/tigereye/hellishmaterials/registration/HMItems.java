@@ -1,8 +1,9 @@
 package net.tigereye.hellishmaterials.registration;
 
+import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.tag.TagFactory;
-import net.fabricmc.fabric.api.tag.TagRegistry;
 import net.minecraft.block.Block;
+import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -19,11 +20,8 @@ import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.armor.BaseArmor;
 import net.tigereye.hellishmaterials.armor.BatetArmorMaterial;
 import net.tigereye.hellishmaterials.armor.VuldArmorMaterial;
-import net.tigereye.hellishmaterials.blocks.BatetBlock;
-import net.tigereye.hellishmaterials.blocks.BatetOre;
-import net.tigereye.hellishmaterials.blocks.LussBlock;
-import net.tigereye.hellishmaterials.blocks.LussOre;
-import net.tigereye.hellishmaterials.blocks.VuldOre;
+import net.tigereye.hellishmaterials.blocks.*;
+import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
 import net.tigereye.hellishmaterials.items.*;
 
 public class HMItems {
@@ -52,6 +50,9 @@ public class HMItems {
     public static final Item VULD_SWORD = new BaseSword(new VuldMaterial());
     public static final Block VULD_ORE = new VuldOre();
     public static final Block CORRUPTED_BONE = new VuldOre();
+    public static final Item FLASK_OF_VAPOROUS_VULD = new FlaskOfVaporousVuld(new Item.Settings().group(ItemGroup.TOOLS).maxCount(16));
+    public static final Block VAPOROUS_VULD = new VaporousVuld();
+    public static BlockEntityType<VaporousVuldBlockEntity> VAPOROUS_VULD_BLOCK_ENTITY;
 
     public static final ArmorMaterial BATET_ARMOR = new BatetArmorMaterial();
     public static final Item BATET_HELM = new BaseArmor(BATET_ARMOR, EquipmentSlot.HEAD);
@@ -80,6 +81,7 @@ public class HMItems {
     public static final Tag<Item> TAG_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"vuld"));
     public static final Tag<Item> TAG_BATET = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"batet"));
     public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
+    public static final Tag<Block> TAG_IMMUNE_TO_VULD = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
     
     public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
@@ -113,7 +115,15 @@ public class HMItems {
         Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "corrupted_bone"), CORRUPTED_BONE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "corrupted_bone"),
             new BlockItem(CORRUPTED_BONE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-            
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "flask_of_vaporous_vuld"), FLASK_OF_VAPOROUS_VULD);
+
+        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "vaporous_vuld"), VAPOROUS_VULD);
+        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vaporous_vuld"),
+                new BlockItem(VAPOROUS_VULD, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+        VAPOROUS_VULD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,
+                new Identifier(HellishMaterials.MODID, "vaporous_vuld_block_entity"),
+                FabricBlockEntityTypeBuilder.create(VaporousVuldBlockEntity::new, VAPOROUS_VULD).build(null));
+
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_helm"), BATET_HELM);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_chestplate"), BATET_CHESTPLATE);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_leggings"), BATET_LEGGINGS);

@@ -12,6 +12,7 @@ public class HellishMaterials implements ModInitializer{
     @Override
     public void onInitialize() {
         HMConfig.init();
+        HMEntities.register();
         HMItems.register();
         HMListeners.register();
         HMStatusEffects.register();
