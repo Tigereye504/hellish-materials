@@ -16,19 +16,12 @@ public class LivingEntityBaseTickMixin {
         at = @At("HEAD"),
         method = "baseTick")
     private void HellishMaterialsBaseTickMixin(CallbackInfo info){
-        int vuldPoisoning = VuldCorruption.countVuldArmor(((LivingEntity) (Object) this));
-        if(vuldPoisoning > 2){
-            VuldCorruption.inflictCumulativeWither(((LivingEntity) (Object) this), 2, 1, 20);
-        }
-        else if(vuldPoisoning > 0){
-            VuldCorruption.inflictCumulativeWither(((LivingEntity) (Object) this), 2, 0, 20);
-        }
-        /*
-        HM_BloodDebtTimer++;
-        if(HM_BloodDebtTimer>BatetDeferment.REPAYMENT_PERIOD){
-            BatetDeferment.payBloodDebt((LivingEntity) (Object) this);
-            HM_BloodDebtTimer = 0;
-        }
-        */
+        //int vuldPoisoning = VuldCorruption.countVuldArmor(((LivingEntity) (Object) this));
+        //if(vuldPoisoning > 2){
+        //    VuldCorruption.inflictCumulativeWither(((LivingEntity) (Object) this), 2, 1, 20);
+        //}
+        //else if(vuldPoisoning > 0){
+        //    VuldCorruption.inflictCumulativeWither(((LivingEntity) (Object) this), 2, 0, 20);
+        //}
     }
 }

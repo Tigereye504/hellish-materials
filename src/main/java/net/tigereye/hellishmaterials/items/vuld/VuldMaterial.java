@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.items;
+package net.tigereye.hellishmaterials.items.vuld;
 
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
@@ -8,12 +8,12 @@ public class VuldMaterial implements ToolMaterial{
 
     @Override
     public int getDurability() {
-        return 17171; // 11*diamond durability
+        return 6244; // 4*diamond durability
     }
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 21.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone (so e5+)
+        return 46.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone
                         // 90 would auto-break ore
     }
 
@@ -25,12 +25,12 @@ public class VuldMaterial implements ToolMaterial{
     @Override
     public int getMiningLevel() {
         return 4;   //diamond+, though most things that tough
-                    //you problably dont wanna destroy...
+                    //you probably don't want to destroy...
     }
 
     @Override
     public int getEnchantability() {
-        return 1; //om nom magic, recommended to enchant before smithing
+        return 1; //om nom magic, also will be eating its own enchantments on inventory tick!
     }
 
     @Override

@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.items;
+package net.tigereye.hellishmaterials.items.luss;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
@@ -7,8 +7,9 @@ import net.minecraft.text.LiteralText;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.tigereye.hellishmaterials.items.DiceItem;
 
-public class LussDice extends DiceItem{
+public class LussDice extends DiceItem {
 
     public LussDice() {
         super(new Settings().maxCount(1).group(ItemGroup.TOOLS));

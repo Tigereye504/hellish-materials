@@ -1,11 +1,14 @@
-package net.tigereye.hellishmaterials.items;
+package net.tigereye.hellishmaterials.items.vuld;
 
+import net.minecraft.block.dispenser.ProjectileDispenserBehavior;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.projectile.ProjectileEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.Position;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.entity.FlaskOfVaporousVuldEntity;
 
@@ -29,5 +32,13 @@ public class FlaskOfVaporousVuld extends Item {
         }
 
         return TypedActionResult.success(itemStack, world.isClient());
+    }
+
+    public static class DispenserBehaviour extends ProjectileDispenserBehavior{
+
+        @Override
+        protected ProjectileEntity createProjectile(World world, Position position, ItemStack stack) {
+            return new FlaskOfVaporousVuldEntity(world, position.getX(),position.getY(),position.getZ());
+        }
     }
 }

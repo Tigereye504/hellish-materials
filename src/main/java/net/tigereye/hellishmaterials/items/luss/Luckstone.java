@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.items;
+package net.tigereye.hellishmaterials.items.luss;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;

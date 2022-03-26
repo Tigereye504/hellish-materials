@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.items;
+package net.tigereye.hellishmaterials.items.batet;
 
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.effect.StatusEffect;
@@ -14,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import net.tigereye.hellishmaterials.items.DiceItem;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 
 public class ExplodingDice extends DiceItem {

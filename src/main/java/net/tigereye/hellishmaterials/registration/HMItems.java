@@ -3,6 +3,8 @@ package net.tigereye.hellishmaterials.registration;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.block.Block;
+import net.minecraft.block.DispenserBlock;
+import net.minecraft.block.dispenser.DispenserBehavior;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -23,6 +25,11 @@ import net.tigereye.hellishmaterials.armor.VuldArmorMaterial;
 import net.tigereye.hellishmaterials.blocks.*;
 import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
 import net.tigereye.hellishmaterials.items.*;
+import net.tigereye.hellishmaterials.items.batet.BatetMaterial;
+import net.tigereye.hellishmaterials.items.batet.ExplodingDice;
+import net.tigereye.hellishmaterials.items.batet.Moratorium;
+import net.tigereye.hellishmaterials.items.luss.*;
+import net.tigereye.hellishmaterials.items.vuld.*;
 
 public class HMItems {
 
@@ -37,17 +44,17 @@ public class HMItems {
     public static final Block LUSS_BLOCK = new LussBlock();
 
     public static final ArmorMaterial VULD_ARMOR = new VuldArmorMaterial();
-    public static final Item VULD_HELM = new BaseArmor(VULD_ARMOR, EquipmentSlot.HEAD);
-    public static final Item VULD_CHESTPLATE = new BaseArmor(VULD_ARMOR, EquipmentSlot.CHEST);
-    public static final Item VULD_LEGGINGS = new BaseArmor(VULD_ARMOR, EquipmentSlot.LEGS);
-    public static final Item VULD_BOOTS = new BaseArmor(VULD_ARMOR, EquipmentSlot.FEET);
+    public static final Item VULD_HELM = new VuldArmor(VULD_ARMOR, EquipmentSlot.HEAD);
+    public static final Item VULD_CHESTPLATE = new VuldArmor(VULD_ARMOR, EquipmentSlot.CHEST);
+    public static final Item VULD_LEGGINGS = new VuldArmor(VULD_ARMOR, EquipmentSlot.LEGS);
+    public static final Item VULD_BOOTS = new VuldArmor(VULD_ARMOR, EquipmentSlot.FEET);
     public static final Item VULD = new Vuld(new Item.Settings().group(ItemGroup.MISC));
     public static final Item VULD_DROP = new Item(new Item.Settings().group(ItemGroup.MISC));
-    public static final Item VULD_AXE = new BaseAxe(new VuldMaterial());
-    public static final Item VULD_HOE = new BaseHoe(new VuldMaterial());
-    public static final Item VULD_PICKAXE = new BasePickaxe(new VuldMaterial());
-    public static final Item VULD_SHOVEL = new BaseShovel(new VuldMaterial());
-    public static final Item VULD_SWORD = new BaseSword(new VuldMaterial());
+    public static final Item VULD_AXE = new VuldAxe(new VuldMaterial());
+    public static final Item VULD_HOE = new VuldHoe(new VuldMaterial());
+    public static final Item VULD_PICKAXE = new VuldPickaxe(new VuldMaterial());
+    public static final Item VULD_SHOVEL = new VuldShovel(new VuldMaterial());
+    public static final Item VULD_SWORD = new VuldSword(new VuldMaterial());
     public static final Block VULD_ORE = new VuldOre();
     public static final Block CORRUPTED_BONE = new VuldOre();
     public static final Item FLASK_OF_VAPOROUS_VULD = new FlaskOfVaporousVuld(new Item.Settings().group(ItemGroup.TOOLS).maxCount(16));
@@ -80,8 +87,9 @@ public class HMItems {
     public static final Tag<Item> TAG_LUSS = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"luss"));
     public static final Tag<Item> TAG_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"vuld"));
     public static final Tag<Item> TAG_BATET = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"batet"));
+    public static final Tag<Item> ITEM_TAG_IMMUNE_TO_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
     public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
-    public static final Tag<Block> TAG_IMMUNE_TO_VULD = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
+    public static final Tag<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
     
     public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
@@ -149,6 +157,8 @@ public class HMItems {
 
         Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "long_luck"), LONG_LUCK);
         Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "strong_luck"), STRONG_LUCK);
+
+        DispenserBlock.registerBehavior(HMItems.FLASK_OF_VAPOROUS_VULD, new FlaskOfVaporousVuld.DispenserBehaviour());
 
     }
 }

@@ -6,9 +6,9 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
 import net.tigereye.hellishmaterials.armor.BatetArmorMaterial;
 import net.tigereye.hellishmaterials.armor.VuldArmorMaterial;
-import net.tigereye.hellishmaterials.items.BatetMaterial;
-import net.tigereye.hellishmaterials.items.LussMaterial;
-import net.tigereye.hellishmaterials.items.VuldMaterial;
+import net.tigereye.hellishmaterials.items.batet.BatetMaterial;
+import net.tigereye.hellishmaterials.items.luss.LussMaterial;
+import net.tigereye.hellishmaterials.items.vuld.VuldMaterial;
 import net.tigereye.hellishmaterials.registration.HMItems;
 
 public class Utils {

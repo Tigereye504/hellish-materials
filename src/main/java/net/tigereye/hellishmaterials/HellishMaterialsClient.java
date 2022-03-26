@@ -11,7 +11,7 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
 import net.tigereye.hellishmaterials.entity.FlaskOfVaporousVuldEntity;
 import net.tigereye.hellishmaterials.entity.FlaskOfVaporousVuldEntityRenderer;
-import net.tigereye.hellishmaterials.items.Luckstone;
+import net.tigereye.hellishmaterials.items.luss.Luckstone;
 import net.tigereye.hellishmaterials.registration.HMEntities;
 import net.tigereye.hellishmaterials.registration.HMItems;
 

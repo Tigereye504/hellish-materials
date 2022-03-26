@@ -3,18 +3,14 @@ package net.tigereye.hellishmaterials.blocks.entity;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
-import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.registration.HMItems;
 
 import java.util.List;
@@ -24,6 +20,10 @@ import static java.lang.Float.NaN;
 
 public class VaporousVuldBlockEntity extends BlockEntity{
 
+    private static final int DAMAGE_FREQUENCY = 8;
+    private static final int SPREAD_FREQUENCY = 16;
+    //private static final Random random = new Random();
+    public int timeOffset = -1;
     public double age = 0;
     public double progress = 0;
     public double lifespan = 18;
@@ -31,6 +31,7 @@ public class VaporousVuldBlockEntity extends BlockEntity{
 
     public VaporousVuldBlockEntity(BlockPos pos, BlockState state) {
         super(HMItems.VAPOROUS_VULD_BLOCK_ENTITY, pos, state);
+        //timeOffset = random.nextInt(SPREAD_FREQUENCY);
     }
 
     public void clearDecayResistance(Direction direction){
@@ -46,6 +47,7 @@ public class VaporousVuldBlockEntity extends BlockEntity{
     @Override
     public void writeNbt(NbtCompound tag) {
         super.writeNbt(tag);
+        tag.putInt("timeOffset",timeOffset);
         tag.putDouble("age",age);
         tag.putDouble("progress",progress);
         tag.putDouble("lifespan",lifespan);
@@ -54,19 +56,24 @@ public class VaporousVuldBlockEntity extends BlockEntity{
     @Override
     public void readNbt(NbtCompound tag) {
         super.readNbt(tag);
+        timeOffset = tag.getInt("timeOffset");
         age = tag.getDouble("age");
         progress = tag.getDouble("progress");
         lifespan = tag.getDouble("lifespan");
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, VaporousVuldBlockEntity be) {
-        if((!world.isClient()) && world.getTime() % 8 == 0) {
+        if(be.timeOffset == -1){
+            //be.timeOffset = 0;
+            be.timeOffset = world.getRandom().nextInt(SPREAD_FREQUENCY);
+        }
+        if((!world.isClient()) && world.getTime() % DAMAGE_FREQUENCY == 0) {
             Box hitbox = new Box(pos);
             List<LivingEntity> livingEntityList = world.getNonSpectatingEntities(LivingEntity.class, hitbox);
             List<ItemEntity> itemEntityList = world.getNonSpectatingEntities(ItemEntity.class, hitbox);
             for (ItemEntity ie :
                     itemEntityList) {
-                if (!(ie.getStack().isIn(HMItems.TAG_VULD))) {
+                if (!(ie.getStack().isIn(HMItems.ITEM_TAG_IMMUNE_TO_VULD))) {
                     ie.damage(DamageSource.WITHER, (float) Math.max(be.lifespan - be.age / 2, 2));
                 }
             }
@@ -74,27 +81,25 @@ public class VaporousVuldBlockEntity extends BlockEntity{
                     livingEntityList) {
                 le.damage(DamageSource.WITHER, (float) Math.max(be.lifespan - be.age / 2, 2));
             }
-            if (world.getTime() % 16 == 0) {
-                if (be.age > be.lifespan) {
-                    world.setBlockState(pos, Blocks.AIR.getDefaultState());
-                    world.removeBlockEntity(pos);
-                    return;
-                }
-
-                be.decayRes[0] = tryConsumeBlock(world, pos.down(), be, be.decayRes[0], world.getBlockState(pos.down()));
-                if (world.getTime() % 32 == 0) {
-                    be.decayRes[1] = tryConsumeBlock(world, pos.up(), be, be.decayRes[1], world.getBlockState(pos.up()));
-                }
-                be.decayRes[2] = tryConsumeBlock(world, pos.north(), be, be.decayRes[2], world.getBlockState(pos.north()));
-                be.decayRes[3] = tryConsumeBlock(world, pos.south(), be, be.decayRes[3], world.getBlockState(pos.south()));
-                be.decayRes[4] = tryConsumeBlock(world, pos.west(), be, be.decayRes[4], world.getBlockState(pos.west()));
-                be.decayRes[5] = tryConsumeBlock(world, pos.east(), be, be.decayRes[5], world.getBlockState(pos.east()));
-
-                be.age++;
-                be.progress++;
-
-
+        }
+        if ((!world.isClient()) && world.getTime() % SPREAD_FREQUENCY == be.timeOffset) {
+            if (be.age > be.lifespan) {
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
+                world.removeBlockEntity(pos);
+                return;
             }
+
+            be.decayRes[0] = tryConsumeBlock(world, pos.down(), be, be.decayRes[0], world.getBlockState(pos.down()));
+            if (world.getTime() % (SPREAD_FREQUENCY*2) == be.timeOffset) {
+                be.decayRes[1] = tryConsumeBlock(world, pos.up(), be, be.decayRes[1], world.getBlockState(pos.up()));
+            }
+            be.decayRes[2] = tryConsumeBlock(world, pos.north(), be, be.decayRes[2], world.getBlockState(pos.north()));
+            be.decayRes[3] = tryConsumeBlock(world, pos.south(), be, be.decayRes[3], world.getBlockState(pos.south()));
+            be.decayRes[4] = tryConsumeBlock(world, pos.west(), be, be.decayRes[4], world.getBlockState(pos.west()));
+            be.decayRes[5] = tryConsumeBlock(world, pos.east(), be, be.decayRes[5], world.getBlockState(pos.east()));
+
+            be.age++;
+            be.progress++;
         }
     }
 
@@ -107,7 +112,7 @@ public class VaporousVuldBlockEntity extends BlockEntity{
         }
         //if decay resistance has not been set and so is NaN, calculate it
         if(decayRes != decayRes){
-            if(target.isIn(HMItems.TAG_IMMUNE_TO_VULD)){
+            if(target.isIn(HMItems.BLOCK_TAG_IMMUNE_TO_VULD)){
                 be.age -= .05;
                 return -1;
             }

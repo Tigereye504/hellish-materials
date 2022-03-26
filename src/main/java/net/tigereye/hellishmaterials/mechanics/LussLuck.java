@@ -2,7 +2,7 @@ package net.tigereye.hellishmaterials.mechanics;
 
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.tigereye.hellishmaterials.items.Luckstone;
+import net.tigereye.hellishmaterials.items.luss.Luckstone;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;

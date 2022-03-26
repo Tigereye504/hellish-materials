@@ -1,0 +1,23 @@
+{
+  "replace": false,
+  "values": [
+    "#hellish-materials:vuld",
+    "#minecraft:diamond_ores",
+    "minecraft:ancient_debris",
+    "minecraft:diamond_block",
+    "minecraft:netherite_block",
+    "hellish-materials:vaporous_vuld",
+    "minecraft:diamond",
+    "minecraft:diamond_axe",
+    "minecraft:netherite_axe",
+    "minecraft:diamond_hoe",
+    "minecraft:netherite_hoe",
+    "minecraft:diamond_pickaxe",
+    "minecraft:netherite_pickaxe",
+    "minecraft:diamond_shovel",
+    "minecraft:netherite_shovel",
+    "minecraft:diamond_sword",
+    "minecraft:netherite_sword",
+    "minecraft:netherite_ingot"
+  ]
+}
