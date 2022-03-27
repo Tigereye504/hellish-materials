@@ -13,6 +13,7 @@ import net.tigereye.hellishmaterials.entity.FlaskOfVaporousVuldEntity;
 import net.tigereye.hellishmaterials.entity.FlaskOfVaporousVuldEntityRenderer;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
 import net.tigereye.hellishmaterials.registration.HMEntities;
+import net.tigereye.hellishmaterials.registration.HMGUI;
 import net.tigereye.hellishmaterials.registration.HMItems;
 
 import java.util.UUID;
@@ -20,6 +21,7 @@ import java.util.UUID;
 public class HellishMaterialsClient implements ClientModInitializer {
     @Override
     public void onInitializeClient() {
+        HMGUI.register();
         BlockRenderLayerMap.INSTANCE.putBlock(HMItems.VAPOROUS_VULD, RenderLayer.getCutout());
         FabricModelPredicateProviderRegistry.register(HMItems.LUCKSTONE, new Identifier("luck"), (itemStack, clientWorld, livingEntity, seed) -> {
             float luck = 1;

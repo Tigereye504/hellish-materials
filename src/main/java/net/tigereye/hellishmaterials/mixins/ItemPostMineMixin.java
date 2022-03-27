@@ -7,6 +7,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.Utils;
+import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,7 +22,7 @@ public class ItemPostMineMixin {
         method = "postMine")
         public void HellishMaterialsPostMineMixin(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> info){
             if(Utils.isBatet(stack)){
-                BatetDeferment.forgiveDebts(miner,state.getHardness(world, pos));
+                BatetDeferment.forgiveDebts(((BloodDebtTracker)(Object)this),state.getHardness(world, pos));
             }
         }
 }

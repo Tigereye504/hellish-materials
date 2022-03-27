@@ -28,7 +28,7 @@
   "mixins": [
     "hellish-materials.mixins.json"
   ],
-
+  "accessWidener" : "hellish-materials.accesswidener",
   "depends": {
     "fabricloader": ">=0.7.4",
     "fabric": "*",

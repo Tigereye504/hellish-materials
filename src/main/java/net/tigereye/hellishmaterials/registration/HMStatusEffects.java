@@ -1,18 +1,7 @@
 package net.tigereye.hellishmaterials.registration;
 
-import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffect;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
-import net.tigereye.hellishmaterials.HellishMaterials;
-import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
-import net.tigereye.hellishmaterials.mob_effect.HM_StatusEffect;
-
 public class HMStatusEffects {
-    
+    /*
     public static StatusEffect HM_BLOODDEBT = new HM_StatusEffect(StatusEffectCategory.HARMFUL, 104562){
         @Override
         public boolean canApplyUpdateEffect(int duration, int amplifier) {
@@ -25,33 +14,36 @@ public class HMStatusEffects {
                 BloodDebtInstance instance = (BloodDebtInstance)entity.getStatusEffect(HM_BLOODDEBT);
                 float dmg = instance.drawRepayment();
                 System.out.println("Repaying "+dmg+" Blood Debt\n");
-                if(entity.getHealth() > dmg) {
-                    entity.setHealth(entity.getHealth() - dmg);
-                }
-                else{
-                    entity.setHealth(Float.MIN_VALUE);
-                    entity.setAbsorptionAmount(0);
-                    entity.damage(HMDamageSource.HM_BLOOD_DEBT, dmg);
-                    //if(!entity.isDead() && !entity.){
-                    //    entity.kill();
-                    //}
-                }
+                BatetDeferment.takeLife(entity,dmg);
                 if(instance.getDebt() == 0){
                     System.out.println("Blood Debt Resolved\n");
-                    entity.removeStatusEffect(HM_BLOODDEBT);
                 }
             }
         }
+
+        @Override
+        public void onRemoved(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+            BloodDebtInstance instance = (BloodDebtInstance)entity.getStatusEffect(HM_BLOODDEBT);
+            if(instance == null){
+                System.out.println("Blood Debt is acting strange");
+            }
+            else if(instance.getDebt() != 0){
+                if(entity instanceof PlayerEntity){
+                    ((PlayerEntity)entity).sendMessage(new LiteralText("You cannot cheat Death so easily!"),true);
+                }
+                BatetDeferment.takeLife(entity,instance.getDebt());
+            }
+        }
     };
-
+    */
     public static void register(){
-        Registry.register(Registry.STATUS_EFFECT, new Identifier(HellishMaterials.MODID, "blood_debt"), HM_BLOODDEBT);
+        //Registry.register(Registry.STATUS_EFFECT, new Identifier(HellishMaterials.MODID, "blood_debt"), HM_BLOODDEBT);
     }
-
+    /*
     public static StatusEffectInstance newBloodDebtStatusEffectInstance(float debt) {
         StatusEffectInstance bloodDebt = new StatusEffectInstance(HMStatusEffects.HM_BLOODDEBT,
                 BatetDeferment.REPAYMENT_PERIOD * 1000 - 1, 0, false, true, true);
         ((BloodDebtInstance)bloodDebt).addDebt(debt);
         return bloodDebt;
-    }
+    }*/
 }

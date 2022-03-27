@@ -4,6 +4,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
 import net.tigereye.hellishmaterials.Utils;
+import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.registration.HMDamageSource;
 import org.spongepowered.asm.mixin.Mixin;
@@ -42,7 +43,7 @@ public class PlayerEntityApplyDamageMixin {
     public float HellishMaterialsPlayerApplyDamageMixin(float amount, DamageSource source) {
         if(source.getAttacker() instanceof LivingEntity){
             if(Utils.isBatet(((LivingEntity) (source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()))) {
-                BatetDeferment.forgiveDebts((LivingEntity)source.getAttacker(),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
+                BatetDeferment.forgiveDebts(((BloodDebtTracker)(Object)this),amount*BatetDeferment.BLOOD_THEFT_FACTOR);
             }
         }
         if(source != HMDamageSource.HM_BLOOD_DEBT && source != DamageSource.OUT_OF_WORLD){

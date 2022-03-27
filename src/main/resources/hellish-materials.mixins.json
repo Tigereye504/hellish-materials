@@ -5,18 +5,17 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "BrewingRecipeRegistryMixin",
+    "ClientPlayerEntityMixin",
     "GlowstoneBlobFeatureGenerateMixin",
     "ItemPostMineMixin",
-    "LivingEntityApplyDamageMixin",
-    "LivingEntityBaseTickMixin",
-    "LivingEntityDropEquipmentMixin",
+    "LivingEntityMixin",
     "PiglinEntityEquipmentMixin",
     "PlayerEntityApplyDamageMixin",
-    "StatusEffectInstanceMixin",
     "WitherSkeletonEntityEquipmentMixin",
     "ZombifiedPiglinEntityEquipmentMixin"
   ],
   "client": [
+    "InGameHudMixin"
   ],
   "injectors": {
     "defaultRequire": 1
