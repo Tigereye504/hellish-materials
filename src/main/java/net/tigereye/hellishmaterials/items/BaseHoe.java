@@ -11,6 +11,10 @@ public class BaseHoe extends HoeItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
+    public BaseHoe(ToolMaterial material, int attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+    }
+
     public BaseHoe(ToolMaterial material) {
         super(material, -3, -3f, new Item.Settings().group(ItemGroup.TOOLS));
     }

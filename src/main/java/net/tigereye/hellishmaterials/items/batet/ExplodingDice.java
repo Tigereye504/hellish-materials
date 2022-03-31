@@ -14,6 +14,7 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.items.DiceItem;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 
@@ -30,7 +31,7 @@ public class ExplodingDice extends DiceItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        BatetDeferment.deferDamage(user, BLOOD_COST,1);
+        BatetDeferment.addBloodDebt((BloodDebtTracker) user, BLOOD_COST);
         return super.use(world, user, hand);
     }
     @Override

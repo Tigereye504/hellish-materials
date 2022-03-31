@@ -2,9 +2,7 @@ package net.tigereye.hellishmaterials.items.vuld;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ToolMaterial;
+import net.minecraft.item.*;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.armor.BaseArmor;
 import net.tigereye.hellishmaterials.items.BaseAxe;
@@ -16,6 +14,9 @@ public class VuldAxe extends BaseAxe {
         super(material);
     }
 
+    public VuldAxe(ToolMaterial material, int attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+    }
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         super.inventoryTick(stack, world, entity, slot, selected);

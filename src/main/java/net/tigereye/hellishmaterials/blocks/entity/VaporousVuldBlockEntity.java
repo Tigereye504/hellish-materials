@@ -63,6 +63,9 @@ public class VaporousVuldBlockEntity extends BlockEntity{
     }
 
     public static void tick(World world, BlockPos pos, BlockState state, VaporousVuldBlockEntity be) {
+        if(state.getBlock() != HMItems.VAPOROUS_VULD){
+            world.removeBlockEntity(pos);
+        }
         if(be.timeOffset == -1){
             //be.timeOffset = 0;
             be.timeOffset = world.getRandom().nextInt(SPREAD_FREQUENCY);
@@ -84,8 +87,8 @@ public class VaporousVuldBlockEntity extends BlockEntity{
         }
         if ((!world.isClient()) && world.getTime() % SPREAD_FREQUENCY == be.timeOffset) {
             if (be.age > be.lifespan) {
-                world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 world.removeBlockEntity(pos);
+                world.setBlockState(pos, Blocks.AIR.getDefaultState());
                 return;
             }
 

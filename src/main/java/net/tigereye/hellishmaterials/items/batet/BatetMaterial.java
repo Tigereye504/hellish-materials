@@ -23,7 +23,7 @@ public class BatetMaterial implements ToolMaterial{
 
     @Override
     public int getMiningLevel() {
-        return 3; //diamond, so you can actually do stuff
+        return 2; //iron tier
     }
 
     @Override

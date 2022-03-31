@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 
 import java.util.function.Consumer;
@@ -21,7 +22,7 @@ public class Moratorium extends Item{
     }
     
     //when a player uses Moratorium, they convert all damage they are suffering to blooddebt
-    //if they are at full health, their absorption is instead filled to match their health
+    //if they are at full health, their absorption is instead filled to match their health - not any more it doesn't
     //again at cost of blooddebt
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
@@ -30,13 +31,7 @@ public class Moratorium extends Item{
         if(user.getHealth() < user.getMaxHealth()){
             healing = user.getMaxHealth() - user.getHealth();
             user.heal(healing);
-        }
-        else if(user.getAbsorptionAmount() < user.getMaxHealth()){
-            healing = user.getMaxHealth() - user.getAbsorptionAmount();
-            user.setAbsorptionAmount(user.getMaxHealth());
-        }
-        if(healing > 0) {
-            BatetDeferment.deferDamage(user,healing*DEBT_FACTOR,1);
+            BatetDeferment.addBloodDebt((BloodDebtTracker) user,healing*DEBT_FACTOR);
             itemStack.damage((int) healing, user, (Consumer<LivingEntity>) ((p) -> p.sendToolBreakStatus(user.getActiveHand())));
         }
         return TypedActionResult.success(itemStack);

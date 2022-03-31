@@ -13,7 +13,7 @@ public class VuldMaterial implements ToolMaterial{
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 46.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone
+        return 76.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone, 60 to auto break wood
                         // 90 would auto-break ore
     }
 

@@ -7,13 +7,18 @@ import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffect;
+import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.world.World;
+import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.registration.HMDamageSource;
+import net.tigereye.hellishmaterials.registration.HMStatusEffects;
+import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.injection.At;
@@ -25,9 +30,13 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements BloodDebtTracker {
 
+    @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
+
     @Shadow public abstract boolean isDead();
 
     @Shadow public abstract boolean isAlive();
+
+    @Shadow @Nullable public abstract StatusEffectInstance getStatusEffect(StatusEffect effect);
 
     private static final TrackedData<Float> HM_BLOODDEBT = DataTracker.registerData(LivingEntity.class, TrackedDataHandlerRegistry.FLOAT);
     int HM_BloodDebtTimer = 0;
@@ -44,11 +53,17 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
 
     @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage")
     public float HellishMaterialsApplyDamageMixin(float amount, DamageSource source) {
+        float bleedFactor = 0;
+        if(this.hasStatusEffect(HMStatusEffects.BLEEDING)){
+            bleedFactor += (this.getStatusEffect(HMStatusEffects.BLEEDING).getAmplifier()+1)*amount/4;
+        }
         if(source.getAttacker() instanceof LivingEntity){
             if(Utils.isBatet(((LivingEntity) (source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()))) {
-                BatetDeferment.forgiveDebts(this,amount*BatetDeferment.BLOOD_THEFT_FACTOR);
+                bleedFactor += .25f;
             }
         }
+        BatetDeferment.addBloodDebt(this,amount * bleedFactor);
+
 		if(source != HMDamageSource.HM_BLOOD_DEBT && source != DamageSource.OUT_OF_WORLD){
             amount = BatetDeferment.deferDamage(((LivingEntity)(Object)this), amount);
         }
@@ -77,25 +92,32 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
     private void HellishMaterialsBaseTickMixin(CallbackInfo info){
         float blooddebt = getBloodDebt();
         if(blooddebt > 0) {
-            HM_BloodDebtTimer++;
             if(isDead()){
                 setBloodDebt(0);
                 HM_BloodDebtActiveTick = false;
             }
-            else if (HM_BloodDebtTimer >= BatetDeferment.REPAYMENT_PERIOD) {
-                HM_BloodDebtTimer = 0;
-                HM_BloodDebtActiveTick = true;
-                float bloodToll = BatetDeferment.calculateRepayment(blooddebt);
-                System.out.println("Repaying "+bloodToll+" Blood Debt\n");
-                BatetDeferment.takeLife(((LivingEntity)(Object)this),bloodToll);
-                blooddebt -= bloodToll;
-                if(blooddebt <= 0){
-                    System.out.println("Blood Debt Resolved\n");
+            else if (!this.world.isClient()){
+                HM_BloodDebtTimer++;
+                float repaymentPeriodMultiplier = 1;
+                if (this.hasStatusEffect(HMStatusEffects.GUTS))
+                    repaymentPeriodMultiplier += (this.getStatusEffect(HMStatusEffects.GUTS).getAmplifier() + 1) * .5;
+                if (this.hasStatusEffect(HMStatusEffects.BLEEDING))
+                    repaymentPeriodMultiplier *= 2f / (this.getStatusEffect(HMStatusEffects.BLEEDING).getAmplifier() + 3);
+                if (HM_BloodDebtTimer >= BatetDeferment.REPAYMENT_PERIOD * repaymentPeriodMultiplier) {
+                    HM_BloodDebtTimer = 0;
+                    HM_BloodDebtActiveTick = true;
+                    float bloodToll = BatetDeferment.calculateRepayment(blooddebt);
+                    if(HellishMaterials.DEBUG)
+                        System.out.println("Repaying " + bloodToll + " Blood Debt\n");
+                    BatetDeferment.takeLife(((LivingEntity) (Object) this), bloodToll);
+                    blooddebt -= bloodToll;
+                    if (blooddebt <= 0 && HellishMaterials.DEBUG) {
+                        System.out.println("Blood Debt Resolved\n");
+                    }
+                    setBloodDebt(blooddebt);
+                } else {
+                    HM_BloodDebtActiveTick = false;
                 }
-                setBloodDebt(blooddebt);
-            }
-            else{
-                HM_BloodDebtActiveTick = false;
             }
         }
         else{
