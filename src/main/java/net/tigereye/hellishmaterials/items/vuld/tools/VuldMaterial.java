@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.items.vuld;
+package net.tigereye.hellishmaterials.items.vuld.tools;
 
 import net.minecraft.item.Items;
 import net.minecraft.item.ToolMaterial;
@@ -13,7 +13,7 @@ public class VuldMaterial implements ToolMaterial{
 
     @Override
     public float getMiningSpeedMultiplier() {
-        return 76.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone, 60 to auto break wood
+        return 40.0f;   // absurdly fast (diamond is 8), 45 is enough to auto break stone, 60 to auto break wood
                         // 90 would auto-break ore
     }
 
@@ -30,7 +30,7 @@ public class VuldMaterial implements ToolMaterial{
 
     @Override
     public int getEnchantability() {
-        return 1; //om nom magic, also will be eating its own enchantments on inventory tick!
+        return 1; //om nom magic
     }
 
     @Override

@@ -17,8 +17,8 @@ import org.jetbrains.annotations.Nullable;
 public class VaporousVuld extends BlockWithEntity implements BlockEntityProvider {
 
     public VaporousVuld(){
-        super(FabricBlockSettings.of(Material.AIR)
-                .air()
+        super(FabricBlockSettings.of(Material.SPONGE)
+                //.air()
                 .noCollision()
                 .nonOpaque());
     }

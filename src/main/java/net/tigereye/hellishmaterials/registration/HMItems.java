@@ -18,9 +18,9 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 import net.tigereye.hellishmaterials.HellishMaterials;
-import net.tigereye.hellishmaterials.armor.BaseArmor;
-import net.tigereye.hellishmaterials.armor.BatetArmorMaterial;
-import net.tigereye.hellishmaterials.armor.VuldArmorMaterial;
+import net.tigereye.hellishmaterials.items.BaseArmor;
+import net.tigereye.hellishmaterials.items.batet.BatetArmorMaterial;
+import net.tigereye.hellishmaterials.items.vuld.armor.*;
 import net.tigereye.hellishmaterials.blocks.*;
 import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
 import net.tigereye.hellishmaterials.items.*;
@@ -29,6 +29,7 @@ import net.tigereye.hellishmaterials.items.batet.ExplodingDice;
 import net.tigereye.hellishmaterials.items.batet.Moratorium;
 import net.tigereye.hellishmaterials.items.luss.*;
 import net.tigereye.hellishmaterials.items.vuld.*;
+import net.tigereye.hellishmaterials.items.vuld.tools.*;
 
 public class HMItems {
 
@@ -43,10 +44,10 @@ public class HMItems {
     public static final Block LUSS_BLOCK = new LussBlock();
 
     public static final ArmorMaterial VULD_ARMOR = new VuldArmorMaterial();
-    public static final Item VULD_HELM = new VuldArmor(VULD_ARMOR, EquipmentSlot.HEAD);
-    public static final Item VULD_CHESTPLATE = new VuldArmor(VULD_ARMOR, EquipmentSlot.CHEST);
-    public static final Item VULD_LEGGINGS = new VuldArmor(VULD_ARMOR, EquipmentSlot.LEGS);
-    public static final Item VULD_BOOTS = new VuldArmor(VULD_ARMOR, EquipmentSlot.FEET);
+    public static final Item VULD_HELM = new VuldHelmet(VULD_ARMOR, EquipmentSlot.HEAD);
+    public static final Item VULD_CHESTPLATE = new VuldChestplate(VULD_ARMOR, EquipmentSlot.CHEST);
+    public static final Item VULD_LEGGINGS = new VuldLeggings(VULD_ARMOR, EquipmentSlot.LEGS);
+    public static final Item VULD_BOOTS = new VuldBoots(VULD_ARMOR, EquipmentSlot.FEET);
     public static final Item VULD = new Vuld(new Item.Settings().group(ItemGroup.MISC));
     public static final Item VULD_DROP = new Item(new Item.Settings().group(ItemGroup.MISC));
     public static final Item VULD_AXE = new VuldAxe(new VuldMaterial());
@@ -96,6 +97,7 @@ public class HMItems {
     public static final Tag<Item> TAG_LUSS = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"luss"));
     public static final Tag<Item> TAG_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"vuld"));
     public static final Tag<Item> TAG_BATET = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"batet"));
+    public static final Tag<Item> TAG_LUSS_BLACKLIST = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"luss_blacklist"));
     public static final Tag<Item> ITEM_TAG_IMMUNE_TO_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
     public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
     public static final Tag<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));

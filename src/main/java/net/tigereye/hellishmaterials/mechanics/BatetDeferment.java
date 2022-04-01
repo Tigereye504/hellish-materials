@@ -15,16 +15,18 @@ public class BatetDeferment {
 
     public static final int REPAYMENT_PERIOD = 16;
     public static final float REPAYMENT_RATE = .05f;
+    public static final float OVER_LIMIT_PENALTY_RATE = .1f;
     public static final float MINIMUM_REPAYMENT = 1f;
     public static final float BLOOD_THEFT_FACTOR = .2f;
 
-    public static float calculateRepayment(float bloodDebt){
+    public static float calculateRepayment(float bloodDebt, float maximumHealth){
         float payment;
         if(bloodDebt <= BatetDeferment.MINIMUM_REPAYMENT){
             payment = bloodDebt;
         }
         else{
-            payment = bloodDebt * BatetDeferment.REPAYMENT_RATE;
+            payment = bloodDebt<=maximumHealth ? bloodDebt*REPAYMENT_RATE
+                    : bloodDebt * (REPAYMENT_RATE+(OVER_LIMIT_PENALTY_RATE*((bloodDebt/maximumHealth)-1)));
             if(payment < BatetDeferment.MINIMUM_REPAYMENT){
                 payment = BatetDeferment.MINIMUM_REPAYMENT;
             }

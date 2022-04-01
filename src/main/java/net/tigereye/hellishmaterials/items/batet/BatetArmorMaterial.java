@@ -1,20 +1,20 @@
-package net.tigereye.hellishmaterials.armor;
+package net.tigereye.hellishmaterials.items.batet;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.Items;
 import net.minecraft.recipe.Ingredient;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
+import net.tigereye.hellishmaterials.registration.HMItems;
 
-public class VuldArmorMaterial implements ArmorMaterial {
+public class BatetArmorMaterial implements ArmorMaterial {
 
     private static final int[] BASE_DURABILITY = new int[] { 13, 15, 16, 11 };
-    private static final int[] PROTECTION_AMOUNTS = new int[] { 6, 12, 16, 6 };
+    private static final int[] PROTECTION_AMOUNTS = new int[] { 2, 5, 6, 2 };
 
     @Override
     public int getDurability(EquipmentSlot slot) {
-        return BASE_DURABILITY[slot.getEntitySlotId()]*100;
+        return BASE_DURABILITY[slot.getEntitySlotId()]*33;
     }
 
     @Override
@@ -24,31 +24,31 @@ public class VuldArmorMaterial implements ArmorMaterial {
 
     @Override
     public int getEnchantability() {
-        return 1;
+        return 12;
     }
 
     @Override
     public SoundEvent getEquipSound() {
-        return SoundEvents.ENTITY_SLIME_SQUISH;
+        return SoundEvents.ITEM_ARMOR_EQUIP_IRON;
     }
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.ofItems(Items.DIAMOND);
+        return Ingredient.ofItems(HMItems.BATET_GEM);
     }
 
     @Override
     public String getName() {
-        return "vuld";
+        return "batet";
     }
 
     @Override
     public float getToughness() {
-        return 5;
+        return 0;
     }
 
     @Override
     public float getKnockbackResistance() {
-        return .3f;
+        return 0;
     }
 }

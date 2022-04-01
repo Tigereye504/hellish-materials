@@ -4,11 +4,11 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
-import net.tigereye.hellishmaterials.armor.BatetArmorMaterial;
-import net.tigereye.hellishmaterials.armor.VuldArmorMaterial;
+import net.tigereye.hellishmaterials.items.batet.BatetArmorMaterial;
+import net.tigereye.hellishmaterials.items.vuld.armor.VuldArmorMaterial;
 import net.tigereye.hellishmaterials.items.batet.BatetMaterial;
 import net.tigereye.hellishmaterials.items.luss.LussMaterial;
-import net.tigereye.hellishmaterials.items.vuld.VuldMaterial;
+import net.tigereye.hellishmaterials.items.vuld.tools.VuldMaterial;
 import net.tigereye.hellishmaterials.registration.HMItems;
 
 public class Utils {

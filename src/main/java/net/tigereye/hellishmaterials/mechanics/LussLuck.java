@@ -3,6 +3,7 @@ package net.tigereye.hellishmaterials.mechanics;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
+import net.tigereye.hellishmaterials.registration.HMItems;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -161,7 +162,12 @@ public class LussLuck {
                 percentUsed = -1;
             }
 
-            returnDrops = LussLuck.ToolSingleStackRandomizer(percentUsed, singleStack.getCount(), player);
+            if(!HMItems.TAG_LUSS_BLACKLIST.contains(singleStack.getItem())) {
+                returnDrops = LussLuck.ToolSingleStackRandomizer(percentUsed, singleStack.getCount(), player);
+            }
+            else{
+                returnDrops = singleStack.getCount();
+            }
             
             if (singleStack.isStackable()){
                 if(returnDrops > singleStack.getMaxCount()){

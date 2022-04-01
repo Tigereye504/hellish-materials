@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.armor;
+package net.tigereye.hellishmaterials.items;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;

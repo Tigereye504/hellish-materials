@@ -77,12 +77,16 @@ public class VaporousVuldBlockEntity extends BlockEntity{
             for (ItemEntity ie :
                     itemEntityList) {
                 if (!(ie.getStack().isIn(HMItems.ITEM_TAG_IMMUNE_TO_VULD))) {
-                    ie.damage(DamageSource.WITHER, (float) Math.max(be.lifespan - be.age / 2, 2));
+                    int damage = 3;
+                    for (double side:be.decayRes) if(side == -1) damage++;
+                    ie.damage(DamageSource.WITHER, damage);
                 }
             }
             for (LivingEntity le :
                     livingEntityList) {
-                le.damage(DamageSource.WITHER, (float) Math.max(be.lifespan - be.age / 2, 2));
+                int damage = 3;
+                for (double side:be.decayRes) if(side == -1) damage++;
+                le.damage(DamageSource.WITHER, damage);
             }
         }
         if ((!world.isClient()) && world.getTime() % SPREAD_FREQUENCY == be.timeOffset) {

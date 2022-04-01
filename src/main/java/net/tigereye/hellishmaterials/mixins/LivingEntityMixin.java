@@ -30,6 +30,10 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 @Mixin(LivingEntity.class)
 public abstract class LivingEntityMixin extends Entity implements BloodDebtTracker {
 
+    @Shadow public abstract float getHealth();
+
+    @Shadow public abstract float getMaxHealth();
+
     @Shadow public abstract boolean hasStatusEffect(StatusEffect effect);
 
     @Shadow public abstract boolean isDead();
@@ -106,9 +110,9 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
                 if (HM_BloodDebtTimer >= BatetDeferment.REPAYMENT_PERIOD * repaymentPeriodMultiplier) {
                     HM_BloodDebtTimer = 0;
                     HM_BloodDebtActiveTick = true;
-                    float bloodToll = BatetDeferment.calculateRepayment(blooddebt);
+                    float bloodToll = BatetDeferment.calculateRepayment(blooddebt,this.getMaxHealth());
                     if(HellishMaterials.DEBUG)
-                        System.out.println("Repaying " + bloodToll + " Blood Debt\n");
+                        System.out.println("Repaying " + bloodToll + " out of "+ blooddebt +" Blood Debt\n");
                     BatetDeferment.takeLife(((LivingEntity) (Object) this), bloodToll);
                     blooddebt -= bloodToll;
                     if (blooddebt <= 0 && HellishMaterials.DEBUG) {
