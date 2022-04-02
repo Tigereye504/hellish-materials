@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "hellish-materials:luss_block",
+    "minecraft:wet_sponge",
+    "minecraft:sponge"
+  ]
+}
