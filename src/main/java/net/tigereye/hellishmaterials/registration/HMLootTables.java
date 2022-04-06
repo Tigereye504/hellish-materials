@@ -17,8 +17,7 @@ public class HMLootTables {
     private static final Identifier NETHER_FORTRESS_LOOT_TABLE_ID = new Identifier("minecraft", "chests/nether_bridge");
     private static final Identifier BASTION_TREASURE_TABLE_ID = new Identifier("minecraft", "chests/bastion_treasure");
     private static final Identifier BASTION_OTHER_TABLE_ID = new Identifier("minecraft", "chests/bastion_other");
-    //TODO: add luss dice, exploding dice, luckstone, luss, and batet to bastion loot table
-    //TODO: add vuld drops, luckstone, and moratorium to nether fortress loot table
+
     public static void register(){
         LootTableLoadingCallback.EVENT.register((resourceManager, lootManager, id, supplier, setter) -> {
             if (WITHER_LOOT_TABLE_ID.equals(id)) {

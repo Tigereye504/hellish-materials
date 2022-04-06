@@ -16,6 +16,7 @@ import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
+import net.tigereye.hellishmaterials.mechanics.LussLuck;
 import net.tigereye.hellishmaterials.registration.HMDamageSource;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 import org.jetbrains.annotations.Nullable;
@@ -57,21 +58,7 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
 
     @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage")
     public float HellishMaterialsApplyDamageMixin(float amount, DamageSource source) {
-        float bleedFactor = 0;
-        if(this.hasStatusEffect(HMStatusEffects.BLEEDING)){
-            bleedFactor += (this.getStatusEffect(HMStatusEffects.BLEEDING).getAmplifier()+1)*amount/4;
-        }
-        if(source.getAttacker() instanceof LivingEntity){
-            if(Utils.isBatet(((LivingEntity) (source.getAttacker())).getStackInHand(((LivingEntity)(source.getAttacker())).getActiveHand()))) {
-                bleedFactor += .25f;
-            }
-        }
-        BatetDeferment.addBloodDebt(this,amount * bleedFactor);
-
-		if(source != HMDamageSource.HM_BLOOD_DEBT && source != DamageSource.OUT_OF_WORLD){
-            amount = BatetDeferment.deferDamage(((LivingEntity)(Object)this), amount);
-        }
-        return amount;
+        return Utils.applyDamageEffects((LivingEntity)(Object)this,amount,source);
     }
     
     @Inject(at = @At("HEAD"), method = "applyArmorToDamage", cancellable = true)

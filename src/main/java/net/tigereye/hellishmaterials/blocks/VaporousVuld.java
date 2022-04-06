@@ -19,6 +19,7 @@ public class VaporousVuld extends BlockWithEntity implements BlockEntityProvider
     public VaporousVuld(){
         super(FabricBlockSettings.of(Material.SPONGE)
                 //.air()
+                .strength(1000f,4f)
                 .noCollision()
                 .nonOpaque());
     }

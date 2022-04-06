@@ -23,6 +23,7 @@ public class HellishMaterials implements ModInitializer{
         HMListeners.register();
         HMStatusEffects.register();
         HMLootTables.register();
+        HMLussRandomAttackEffects.register();
         ResourceManagerHelper.get(ResourceType.SERVER_DATA).registerReloadListener(new LussDustLootManager());
     }
 }

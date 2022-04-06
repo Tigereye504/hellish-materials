@@ -17,11 +17,12 @@ import net.minecraft.world.explosion.Explosion;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.items.DiceItem;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
+import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class ExplodingDice extends DiceItem {
-    private static final int LOW_DURATION = 45*20;
-    private static final int MID_DURATION = 90*20;
-    private static final int HIGH_DURATION = 180*20;
+    private static final int LOW_DURATION = 15*20;
+    private static final int MID_DURATION = 45*20;
+    private static final int HIGH_DURATION = 90*20;
     private static final int FOUR_DURATION = (4*60*20)+(44*20)+4;
     private static final int BLOOD_COST = 5;
 
@@ -42,9 +43,9 @@ public class ExplodingDice extends DiceItem {
                 ", and " + die4 + ".";
         user.sendMessage(new LiteralText(out), true);
 
-        createShockwave(user,10);
-        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
-        spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,3));
+        createShockwave(user,8);
+        user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,0));
+        spawnEffectCloud(user,new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,0));
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -133,7 +134,7 @@ public class ExplodingDice extends DiceItem {
             case 4:
                 return StatusEffects.SPEED;
             case 5:
-                return StatusEffects.RESISTANCE;
+                return HMStatusEffects.GUTS;
             case 6:
                 return StatusEffects.STRENGTH;
             case 7:

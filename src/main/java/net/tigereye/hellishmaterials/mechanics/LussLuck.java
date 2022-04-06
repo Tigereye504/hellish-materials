@@ -1,9 +1,16 @@
 package net.tigereye.hellishmaterials.mechanics;
 
+import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.tigereye.hellishmaterials.interfaces.HM_PlayerEntity;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack.LussAttackEffect;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack.LussAttackEffectManager;
 import net.tigereye.hellishmaterials.registration.HMItems;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -14,6 +21,13 @@ public class LussLuck {
     private static final float LUCK_EFFECTIVENESS = 2;  //effects how quickly luck causes the average roll to shift
                                                         //if LUCK_EFFECTIVENESS = 1, luck will have no effect at all.
                                                         //bad things could happen if it is set to less than 1
+
+    private static final float EXTREMELY_LUCKY_ROLL = .99f;
+    private static final float VERY_LUCKY_ROLL = .94f;
+    private static final float LUCKY_ROLL = .75f;
+    private static final float UNLUCKY_ROLL = .125f;
+    private static final float VERY_UNLUCKY_ROLL = .03f;
+    private static final float EXTREMELY_UNLUCKY_ROLL = .005f;
 
     public static float RandomFloatWithLuck(PlayerEntity player)
     {
@@ -193,4 +207,47 @@ public class LussLuck {
     }
 
 
+    public static void tryRandomAttackEffect(LivingEntity attacker, @NotNull LivingEntity defender, float damage) {
+        float luck = 0;
+        if(attacker instanceof PlayerEntity) {
+            luck = ((PlayerEntity) attacker).getLuck() - (8*(1-((HM_PlayerEntity)attacker).getLastAttackCooldownProgressResult()));
+        }
+        else {
+            if(attacker.hasStatusEffect(StatusEffects.LUCK)){
+                luck = attacker.getStatusEffect(StatusEffects.LUCK).getAmplifier() + 1;
+            }
+            if(attacker.hasStatusEffect(StatusEffects.UNLUCK)){
+                luck -= attacker.getStatusEffect(StatusEffects.UNLUCK).getAmplifier() + 1;
+            }
+        }
+        tryRandomAttackEffect(attacker,defender,damage,luck);
+    }
+
+    public static void tryRandomAttackEffect(LivingEntity attacker, @NotNull LivingEntity defender, float damage, float luck) {
+        float roll;
+        Random random = attacker.getRandom();
+        LussAttackEffect effect;
+        if(attacker instanceof PlayerEntity) {
+            roll = RandomFloatWithLuck((PlayerEntity) attacker);
+        }
+        else {
+            roll = RandomFloatWithLuck(null,luck);
+        }
+        if(roll > UNLUCKY_ROLL && roll < LUCKY_ROLL){
+            return;
+        }
+        if(roll >= EXTREMELY_LUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.EXTREMELY_LUCKY,random);
+        else if(roll >= VERY_LUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.VERY_LUCKY,random);
+        else if(roll >= LUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.LUCKY,random);
+        else if(roll <= EXTREMELY_UNLUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.EXTREMELY_UNLUCKY,random);
+        else if(roll <= VERY_UNLUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.VERY_UNLUCKY,random);
+        else //roll <= UNLUCKY_ROLL
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.UNLUCKY,random);
+        effect.causeEffect(attacker,defender,damage,luck);
+    }
 }
