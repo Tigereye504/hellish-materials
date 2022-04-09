@@ -11,6 +11,10 @@ public class BaseShovel extends ShovelItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
+    public BaseShovel(ToolMaterial material, int attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+    }
+
     public BaseShovel(ToolMaterial material) {
         super(material, -1.5f, -3f, new Item.Settings().group(ItemGroup.TOOLS));
     }

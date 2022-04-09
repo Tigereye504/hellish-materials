@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " G ",
+        "DVD",
+        " D "
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:gunpowder"
+        },
+        "D": {
+            "item": "minecraft:diamond"
+        },
+        "V": {
+            "item": "hellish-materials:vuld"
+        }
+    },
+    "result": {
+        "item": "hellish-materials:flask_of_vaporous_vuld",
+        "count": 9
+    },
+    "group": "vaporousvuld"
+}

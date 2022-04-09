@@ -11,6 +11,10 @@ public class BaseAxe extends AxeItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
+    public BaseAxe(ToolMaterial material, int attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+    }
+
     public BaseAxe(ToolMaterial material) {
         super(material, 3f, -3f, new Item.Settings().group(ItemGroup.TOOLS));
     }

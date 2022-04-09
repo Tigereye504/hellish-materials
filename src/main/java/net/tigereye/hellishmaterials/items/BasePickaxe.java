@@ -11,8 +11,12 @@ public class BasePickaxe extends PickaxeItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
+    public BasePickaxe(ToolMaterial material, int attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+    }
+
     public BasePickaxe(ToolMaterial material) {
-        super(material, -2, -2.2f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, -2, -2.8f, new Item.Settings().group(ItemGroup.TOOLS));
     }
     
 }

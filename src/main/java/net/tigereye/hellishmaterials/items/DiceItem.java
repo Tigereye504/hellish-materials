@@ -17,12 +17,14 @@ public class DiceItem extends Item {
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         if (!user.world.isClient()) {
+            user.getItemCooldownManager().set(this, 20);
             int die1 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);
             int die2 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);
             int die3 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);
             int die4 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);
             return evaluateHand(world,user,hand,die1,die2,die3,die4);
         }
+        user.getItemCooldownManager().set(this, 20);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
 

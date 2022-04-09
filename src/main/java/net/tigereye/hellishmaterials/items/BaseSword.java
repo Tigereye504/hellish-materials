@@ -11,6 +11,10 @@ public class BaseSword extends SwordItem {
         super(material, attackDamage, attackSpeed, settings);
     }
 
+    public BaseSword(ToolMaterial material, int attackDamage, float attackSpeed) {
+        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+    }
+
     public BaseSword(ToolMaterial material) {
         super(material, 0, -2.4f, new Item.Settings().group(ItemGroup.TOOLS));
     }

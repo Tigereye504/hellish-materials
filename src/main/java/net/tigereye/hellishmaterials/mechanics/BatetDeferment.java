@@ -2,34 +2,53 @@ package net.tigereye.hellishmaterials.mechanics;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.particle.ParticleTypes;
+import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.math.MathHelper;
 import net.tigereye.hellishmaterials.Utils;
-import net.tigereye.hellishmaterials.mob_effect.BloodDebtInstance;
+import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.registration.HMDamageSource;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class BatetDeferment {
 
-    public static final int REPAYMENT_PERIOD = 40;
-    public static final float REPAYMENT_RATE = .1f;
-    public static final float MINIMUM_REPAYMENT = 4f;
+    public static final int REPAYMENT_PERIOD = 16;
+    public static final float REPAYMENT_RATE = .05f;
+    public static final float OVER_LIMIT_PENALTY_RATE = .1f;
+    public static final float MINIMUM_REPAYMENT = 1f;
     public static final float BLOOD_THEFT_FACTOR = .2f;
+
+    public static float calculateRepayment(float bloodDebt, float maximumHealth){
+        float payment;
+        if(bloodDebt <= BatetDeferment.MINIMUM_REPAYMENT){
+            payment = bloodDebt;
+        }
+        else{
+            payment = bloodDebt<=maximumHealth ? bloodDebt*REPAYMENT_RATE
+                    : bloodDebt * (REPAYMENT_RATE+(OVER_LIMIT_PENALTY_RATE*((bloodDebt/maximumHealth)-1)));
+            if(payment < BatetDeferment.MINIMUM_REPAYMENT){
+                payment = BatetDeferment.MINIMUM_REPAYMENT;
+            }
+        }
+        return payment;
+    }
 
     public static float deferDamage(LivingEntity entity, float amount) {
         return deferDamage(entity, amount, findBloodDebtFactor(entity));
     }
 
     public static float deferDamage(LivingEntity entity, float amount, float bloodDebtFactor) {
-        addBloodDebt(entity,amount*bloodDebtFactor);
+        addBloodDebt((BloodDebtTracker)entity,amount*bloodDebtFactor);
         amount *= (1-bloodDebtFactor);
 		return amount;
     }
 
     public static float findBloodDebtFactor(LivingEntity entity){
         float bloodDebtFactor = 0;
+        if(entity.hasStatusEffect(HMStatusEffects.GUTS)){
+            bloodDebtFactor += (entity.getStatusEffect(HMStatusEffects.GUTS).getAmplifier()+1)*.25;
+        }
         ItemStack armor = entity.getEquippedStack(EquipmentSlot.HEAD);
         if(Utils.isBatet(armor)){
             bloodDebtFactor += .25;
@@ -46,38 +65,33 @@ public class BatetDeferment {
         if(Utils.isBatet(armor)){
             bloodDebtFactor += .25;
         }
-        return bloodDebtFactor;
+        return Math.min(1,bloodDebtFactor);
     }
 
-    public static void addBloodDebt(LivingEntity entity, float amount){
-        if(amount > 0){
-            if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
-                ((BloodDebtInstance)(entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT))).addDebt(amount);
-            }
-            else{
-                entity.addStatusEffect(HMStatusEffects.newBloodDebtStatusEffectInstance(amount));
-            }
-            if(!entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
-                if(entity instanceof PlayerEntity){
-                    ((PlayerEntity)entity).sendMessage(new LiteralText("You cannot cheat Death so easily!"),true);
-                }
-                entity.damage(HMDamageSource.HM_BLOOD_DEBT,amount);
-            }
-        }
+    public static void addBloodDebt(BloodDebtTracker entity, float amount){
+        entity.setBloodDebt(entity.getBloodDebt()+amount);
     }
 
-	public static void forgiveDebts(LivingEntity entity) {
-        if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
-            entity.removeStatusEffect(HMStatusEffects.HM_BLOODDEBT);
-        }
+	public static void forgiveDebts(BloodDebtTracker entity) {
+        entity.setBloodDebt(0);
     }
 
-    public static void forgiveDebts(LivingEntity entity, float amount) {
-        if(entity.hasStatusEffect(HMStatusEffects.HM_BLOODDEBT)){
-            if(((BloodDebtInstance)entity.getStatusEffect(HMStatusEffects.HM_BLOODDEBT)).removeDebt(amount) == 0){
-                entity.removeStatusEffect(HMStatusEffects.HM_BLOODDEBT);
+    public static void forgiveDebts(BloodDebtTracker entity, float amount) {
+        entity.setBloodDebt(Math.max(0,entity.getBloodDebt() - amount));
+    }
+
+    public static void takeLife(LivingEntity entity, float dmg){
+        if(entity.getHealth() > dmg) {
+            entity.setHealth(entity.getHealth() - dmg);
+            if(entity.world instanceof ServerWorld) {
+                int count = MathHelper.ceil(dmg / 2);
+                ((ServerWorld)entity.world).spawnParticles(ParticleTypes.DAMAGE_INDICATOR,entity.getX(),entity.getBodyY(.5),entity.getZ(),count,0.1, 0.0, 0.1, 0.2);
             }
         }
+        else{
+            entity.setHealth(Float.MIN_VALUE);
+            entity.setAbsorptionAmount(0);
+            entity.damage(HMDamageSource.HM_BLOOD_DEBT, dmg);
+        }
     }
-
 }
