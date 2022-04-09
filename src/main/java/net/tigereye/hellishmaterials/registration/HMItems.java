@@ -1,7 +1,6 @@
 package net.tigereye.hellishmaterials.registration;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
-import net.fabricmc.fabric.api.tag.TagFactory;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.entity.BlockEntityType;
@@ -13,7 +12,7 @@ import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.potion.Potion;
-import net.minecraft.tag.Tag;
+import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
@@ -94,13 +93,13 @@ public class HMItems {
     public static final Potion LONG_UNLUCK = new Potion("unluck", new StatusEffectInstance(StatusEffects.UNLUCK, 9600));
     public static final Potion STRONG_UNLUCK = new Potion("unluck", new StatusEffectInstance(StatusEffects.UNLUCK, 1800, 1));
 
-    public static final Tag<Item> TAG_LUSS = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"luss"));
-    public static final Tag<Item> TAG_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"vuld"));
-    public static final Tag<Item> TAG_BATET = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"batet"));
-    public static final Tag<Item> TAG_LUSS_BLACKLIST = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"luss_blacklist"));
-    public static final Tag<Item> ITEM_TAG_IMMUNE_TO_VULD = TagFactory.ITEM.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
-    public static final Tag<Block> TAG_REPLACEABLE_VULD_ORE = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
-    public static final Tag<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagFactory.BLOCK.create(new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
+    public static final TagKey<Item> TAG_LUSS = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"luss"));
+    public static final TagKey<Item> TAG_VULD = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"vuld"));
+    public static final TagKey<Item> TAG_BATET = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"batet"));
+    public static final TagKey<Item> TAG_LUSS_BLACKLIST = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"luss_blacklist"));
+    public static final TagKey<Item> ITEM_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
+    public static final TagKey<Block> TAG_REPLACEABLE_VULD_ORE = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
+    public static final TagKey<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
     
     public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);

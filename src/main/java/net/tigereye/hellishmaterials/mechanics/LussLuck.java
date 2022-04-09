@@ -210,7 +210,7 @@ public class LussLuck {
                 percentUsed = -1;
             }
 
-            if(!HMItems.TAG_LUSS_BLACKLIST.contains(singleStack.getItem())) {
+            if(!singleStack.isIn(HMItems.TAG_LUSS_BLACKLIST)) {
                 returnDrops = LussLuck.ToolSingleStackRandomizer(percentUsed, singleStack.getCount(), player);
             }
             else{
