@@ -1,16 +1,16 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.passive.ChickenEntity;
+import net.minecraft.entity.mob.ShulkerEntity;
 
-public class LussAttackChickenOnHead implements LussAttackEffect{
+public class LussAttackShulkerOnHead implements LussAttackEffect{
 
 
     Quality quality;
     int weight;
-    public LussAttackChickenOnHead(Quality quality, int weight){
+    public LussAttackShulkerOnHead(Quality quality, int weight){
         this.quality = quality;
         this.weight = weight;
     }
@@ -26,12 +26,13 @@ public class LussAttackChickenOnHead implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, defender.world);
+        ShulkerEntity shulker = new ShulkerEntity(EntityType.SHULKER, defender.world);
         Entity topOfStack = defender;
         while(topOfStack.hasPassengers()){
             topOfStack = topOfStack.getFirstPassenger();
         }
-        defender.world.spawnEntity(chicken);
-        chicken.startRiding(topOfStack,true);
+        shulker.setTarget(defender);
+        defender.world.spawnEntity(shulker);
+        shulker.startRiding(topOfStack,true);
     }
 }

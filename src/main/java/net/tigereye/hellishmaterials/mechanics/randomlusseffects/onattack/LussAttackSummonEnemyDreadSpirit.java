@@ -1,4 +1,4 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.EquipmentSlot;
@@ -6,9 +6,7 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.VexEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.tigereye.hellishmaterials.registration.HMItems;
 
 public class LussAttackSummonEnemyDreadSpirit implements LussAttackEffect{
@@ -50,8 +48,8 @@ public class LussAttackSummonEnemyDreadSpirit implements LussAttackEffect{
         vex.setEquipmentDropChance(EquipmentSlot.CHEST,0);
         vex.setEquipmentDropChance(EquipmentSlot.LEGS,0);
         vex.setEquipmentDropChance(EquipmentSlot.FEET,0);
-        vex.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY,48000,0,false,true));
-        vex.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,48000,0,false,true));
-        vex.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK,48000,2,false,false));
+        vex.addStatusEffect(new StatusEffectInstance(StatusEffects.INVISIBILITY,24000,0,false,true));
+        vex.addStatusEffect(new StatusEffectInstance(StatusEffects.REGENERATION,24000,0,false,true));
+        vex.addStatusEffect(new StatusEffectInstance(StatusEffects.LUCK,24000,2,false,false));
     }
 }

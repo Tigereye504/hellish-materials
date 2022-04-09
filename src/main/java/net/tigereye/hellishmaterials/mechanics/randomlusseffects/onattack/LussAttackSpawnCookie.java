@@ -1,9 +1,7 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemConvertible;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.world.World;

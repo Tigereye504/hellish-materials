@@ -1,33 +1,67 @@
 package net.tigereye.hellishmaterials.mechanics;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.interfaces.HM_PlayerEntity;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
 import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect;
-import net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack.LussAttackEffect;
-import net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack.LussAttackEffectManager;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack.LussAttackEffect;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack.LussAttackEffectManager;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.onbreak.LussBreakEffect;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.onbreak.LussBreakEffectManager;
 import net.tigereye.hellishmaterials.registration.HMItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class LussLuck {
     private static final float LUCK_EFFECTIVENESS = 2;  //effects how quickly luck causes the average roll to shift
                                                         //if LUCK_EFFECTIVENESS = 1, luck will have no effect at all.
                                                         //bad things could happen if it is set to less than 1
 
-    private static final float EXTREMELY_LUCKY_ROLL = .99f;
-    private static final float VERY_LUCKY_ROLL = .94f;
-    private static final float LUCKY_ROLL = .75f;
-    private static final float UNLUCKY_ROLL = .125f;
-    private static final float VERY_UNLUCKY_ROLL = .03f;
-    private static final float EXTREMELY_UNLUCKY_ROLL = .005f;
+    private static final float EXTREMELY_LUCKY_ROLL = .99f;     //.99 to 1,    1.0% chance per event
+    private static final float VERY_LUCKY_ROLL = .92f;          //.92 to .99,  7.0% chance per event
+    private static final float LUCKY_ROLL = .40f;               //.40 to .92, 52.0% chance per event
+    private static final float UNLUCKY_ROLL = .05f;             //.05 to .40, 35.0% chance per event
+    private static final float VERY_UNLUCKY_ROLL = .005f;       //.005to .05,  4.5% chance per event
+    //private static final float EXTREMELY_UNLUCKY_ROLL = 0f;   //.0  to .005,  .5% chance per event
+    private static final int AVERAGE_ATTACKS_FOR_LUSS_EVENT = 2;
+    private static final int AVERAGE_WOUNDS_FOR_LUSS_EVENT = 8;
+    private static final int AVERAGE_BREAKS_FOR_LUSS_EVENT = 12;
+
+    public static final Map<Integer, Item> scatterGoldLootTable = new HashMap<Integer,Item>();
+
+    static{
+        scatterGoldLootTable.put(0, Items.GOLDEN_HOE);
+        scatterGoldLootTable.put(1, Items.GOLDEN_AXE);
+        scatterGoldLootTable.put(2, Items.GOLDEN_PICKAXE);
+        scatterGoldLootTable.put(3, Items.GOLDEN_SHOVEL);
+        scatterGoldLootTable.put(4, Items.GOLDEN_SWORD);
+        scatterGoldLootTable.put(5, Items.GOLDEN_HELMET);
+        scatterGoldLootTable.put(6, Items.GOLDEN_CHESTPLATE);
+        scatterGoldLootTable.put(7, Items.GOLDEN_LEGGINGS);
+        scatterGoldLootTable.put(8, Items.GOLDEN_BOOTS);
+        scatterGoldLootTable.put(9, Items.NETHER_GOLD_ORE);
+        scatterGoldLootTable.put(10, Items.DEEPSLATE_GOLD_ORE);
+        scatterGoldLootTable.put(11, Items.GOLD_ORE);
+        scatterGoldLootTable.put(12, Items.RAW_GOLD);
+        scatterGoldLootTable.put(13, Items.RAW_GOLD);
+        scatterGoldLootTable.put(14, Items.RAW_GOLD);
+        scatterGoldLootTable.put(15, Items.RAW_GOLD);
+        scatterGoldLootTable.put(16, Items.GOLD_INGOT);
+        scatterGoldLootTable.put(17, Items.GOLD_INGOT);
+        scatterGoldLootTable.put(18, Items.GOLD_INGOT);
+        scatterGoldLootTable.put(19, Items.GOLD_INGOT);
+    }
 
     public static float RandomFloatWithLuck(PlayerEntity player)
     {
@@ -224,8 +258,12 @@ public class LussLuck {
     }
 
     public static void tryRandomAttackEffect(LivingEntity attacker, @NotNull LivingEntity defender, float damage, float luck) {
-        float roll;
         Random random = attacker.getRandom();
+        if(random.nextInt(AVERAGE_ATTACKS_FOR_LUSS_EVENT) != 0){
+            return;
+        }
+
+        float roll;
         LussAttackEffect effect;
         if(attacker instanceof PlayerEntity) {
             roll = RandomFloatWithLuck((PlayerEntity) attacker);
@@ -242,12 +280,39 @@ public class LussLuck {
             effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.VERY_LUCKY,random);
         else if(roll >= LUCKY_ROLL)
             effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.LUCKY,random);
-        else if(roll <= EXTREMELY_UNLUCKY_ROLL)
-            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.EXTREMELY_UNLUCKY,random);
-        else if(roll <= VERY_UNLUCKY_ROLL)
-            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.VERY_UNLUCKY,random);
-        else //roll <= UNLUCKY_ROLL
+        else if(roll >= UNLUCKY_ROLL)
             effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.UNLUCKY,random);
+        else if(roll >= VERY_UNLUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.VERY_UNLUCKY,random);
+        else //if(roll >= EXTREMELY_UNLUCKY_ROLL)
+            effect = LussAttackEffectManager.getRandomLussAttackEffect(LussRandomEffect.Quality.EXTREMELY_UNLUCKY,random);
         effect.causeEffect(attacker,defender,damage,luck);
     }
+
+    public static void tryRandomBreakEffect(Block block, World world, BlockPos pos, BlockState state, PlayerEntity player) {
+        tryRandomBreakEffect(block,world,pos,state,player, player.getLuck());
+    }
+    public static void tryRandomBreakEffect(Block block, World world, BlockPos pos, BlockState state, PlayerEntity player, float luck) {
+        Random random = player.getRandom();
+        if(random.nextInt(AVERAGE_BREAKS_FOR_LUSS_EVENT) != 0){
+            return;
+        }
+
+        float roll;
+        LussBreakEffect effect;roll = RandomFloatWithLuck((PlayerEntity) player);
+        if(roll >= EXTREMELY_LUCKY_ROLL)
+            effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.EXTREMELY_LUCKY,random);
+        else if(roll >= VERY_LUCKY_ROLL)
+            effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.VERY_LUCKY,random);
+        else if(roll >= LUCKY_ROLL)
+            effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.LUCKY,random);
+        else if(roll >= UNLUCKY_ROLL)
+            effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.UNLUCKY,random);
+        else if(roll >= VERY_UNLUCKY_ROLL)
+            effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.VERY_UNLUCKY,random);
+        else //if(roll >= EXTREMELY_UNLUCKY_ROLL)
+            effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.EXTREMELY_UNLUCKY,random);        
+        effect.causeEffect(block,world,pos,state,player,luck);
+    }
+
 }

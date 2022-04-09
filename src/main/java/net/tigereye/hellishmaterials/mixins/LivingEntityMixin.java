@@ -9,6 +9,8 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
 import net.minecraft.world.World;
@@ -60,7 +62,18 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
     public float HellishMaterialsApplyDamageMixin(float amount, DamageSource source) {
         return Utils.applyDamageEffects((LivingEntity)(Object)this,amount,source);
     }
-    
+
+    @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;dropXp()V"), method = "drop", cancellable = true)
+    public void HellishMaterialsPreventDropXpMixin(DamageSource source, CallbackInfo ci){
+        if(source.getAttacker() instanceof LivingEntity) {
+            LivingEntity attacker = (LivingEntity) (source.getAttacker());
+            ItemStack weapon = attacker.getStackInHand(((LivingEntity) (source.getAttacker())).getActiveHand());
+            if (Utils.isVuld(weapon)) {
+                ci.cancel();
+            }
+        }
+    }
+
     @Inject(at = @At("HEAD"), method = "applyArmorToDamage", cancellable = true)
     public void HellishMaterialsApplyArmorToDamageMixin(DamageSource source, float amount, CallbackInfoReturnable<Float> info)
     {

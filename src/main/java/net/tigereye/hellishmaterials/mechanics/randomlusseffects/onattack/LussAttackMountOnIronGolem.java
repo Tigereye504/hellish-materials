@@ -1,13 +1,8 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.passive.ChickenEntity;
 import net.minecraft.entity.passive.IronGolemEntity;
-import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
-import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class LussAttackMountOnIronGolem implements LussAttackEffect{
 

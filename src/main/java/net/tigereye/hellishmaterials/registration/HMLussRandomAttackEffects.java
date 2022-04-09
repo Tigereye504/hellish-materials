@@ -2,17 +2,19 @@ package net.tigereye.hellishmaterials.registration;
 
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffects;
-import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect;
 import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect.Quality;
 import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect.Weight;
-import net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack.*;
+import net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack.*;
 
 public class HMLussRandomAttackEffects {
 
     //Extremely Lucky
-    public static LussAttackEffect THREE_VERY_LUCKY_EFFECTS = new LussAttackThreeVeryLuckyEffects();
+    public static LussAttackEffect MULTIPLE_LIGHTNING_STRIKES = new LussAttackMultipleLightningStrikes(Quality.EXTREMELY_LUCKY,Weight.COMMON);
+    public static LussAttackEffect SPAWN_SHULKER_ON_HEAD = new LussAttackShulkerOnHead(Quality.EXTREMELY_LUCKY,Weight.COMMON);
+    public static LussAttackEffect THREE_VERY_LUCKY_EFFECTS = new LussAttackThreeVeryLuckyEffects(Quality.EXTREMELY_LUCKY,Weight.COMMON);
 
     //Very Lucky
+    public static LussAttackEffect LIGHTNING_STRIKE = new LussAttackLightningStrike(Quality.VERY_LUCKY,Weight.COMMON);
     public static LussAttackEffect SCATTER_GOLD = new LussAttackScatterGold(Quality.VERY_LUCKY,Weight.COMMON);
     public static LussAttackEffect BLOW_AWAY = new LussAttackBlowAway(Quality.VERY_LUCKY,Weight.COMMON);
     public static LussAttackEffect LEVITATION_CLOUD = new LussAttackEffectCloud(Quality.VERY_LUCKY, Weight.COMMON, StatusEffects.LEVITATION,60,0, 120, 10, 1);
@@ -41,7 +43,7 @@ public class HMLussRandomAttackEffects {
     public static LussAttackEffect GRANT_SPEED = new LussAttackStatusEffect(Quality.UNLUCKY, Weight.COMMON,StatusEffects.SPEED,300,0);
     public static LussAttackEffect GRANT_REGENERATION = new LussAttackStatusEffect(Quality.UNLUCKY, Weight.RARE,StatusEffects.REGENERATION,300,0);
     public static LussAttackEffect GRANT_GUTS = new LussAttackStatusEffect(Quality.UNLUCKY, Weight.COMMON,HMStatusEffects.GUTS,300,0);
-    public static LussAttackEffect MOUNT_ON_SPIDER = new LussAttackMountOnSpider(Quality.LUCKY, Weight.COMMON);
+    public static LussAttackEffect MOUNT_ON_SPIDER = new LussAttackMountOnSpider(Quality.UNLUCKY, Weight.COMMON);
 
     //Very Unlucky
     public static LussAttackEffect MOUNT_ON_IRON_GOLEM = new LussAttackMountOnIronGolem(Quality.VERY_UNLUCKY, Weight.COMMON);
@@ -52,9 +54,12 @@ public class HMLussRandomAttackEffects {
     public static LussAttackEffect THREE_VERY_UNLUCKY_EFFECTS = new LussAttackThreeVeryUnluckyEffects(Quality.EXTREMELY_UNLUCKY, Weight.COMMON);
 
     public static void register(){
+        LussAttackEffectManager.registerEffect(MULTIPLE_LIGHTNING_STRIKES);
+        LussAttackEffectManager.registerEffect(SPAWN_SHULKER_ON_HEAD);
         LussAttackEffectManager.registerEffect(THREE_VERY_LUCKY_EFFECTS);
 
         LussAttackEffectManager.registerEffect(SCATTER_GOLD);
+        LussAttackEffectManager.registerEffect(LIGHTNING_STRIKE);
         LussAttackEffectManager.registerEffect(BLOW_AWAY);
         LussAttackEffectManager.registerEffect(LEVITATION_CLOUD);
         LussAttackEffectManager.registerEffect(SPAWN_CHICKEN_STACK_ON_HEAD);

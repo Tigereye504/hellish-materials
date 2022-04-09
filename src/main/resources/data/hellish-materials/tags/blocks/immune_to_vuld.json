@@ -5,6 +5,8 @@
       "minecraft:ancient_debris",
       "minecraft:diamond_block",
       "minecraft:netherite_block",
-      "hellish-materials:vaporous_vuld"
+      "hellish-materials:vaporous_vuld",
+      "minecraft:jukebox",
+      "minecraft:enchanting_table"
     ]
 }

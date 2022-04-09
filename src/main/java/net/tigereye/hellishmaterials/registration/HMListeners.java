@@ -64,9 +64,9 @@ public class HMListeners {
                     player = (PlayerEntity)entity;
                 }
                 if (tool != null) {
-                    if (Utils.isLuss(tool)) {
+                    /*if (Utils.isLuss(tool)) {
                         loot = LussLuck.ToolListItemStackRandomizer(loot, tool, player);
-                    } else if (Utils.isVuld(tool)) {
+                    } else */if (Utils.isVuld(tool)) {
                         loot.clear();
                     }
                 }

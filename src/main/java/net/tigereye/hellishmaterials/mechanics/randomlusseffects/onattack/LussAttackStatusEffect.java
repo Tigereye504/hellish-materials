@@ -1,9 +1,8 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 
 public class LussAttackStatusEffect implements LussAttackEffect{
 

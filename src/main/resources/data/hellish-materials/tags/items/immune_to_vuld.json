@@ -19,6 +19,8 @@
     "minecraft:netherite_shovel",
     "minecraft:diamond_sword",
     "minecraft:netherite_sword",
-    "minecraft:netherite_ingot"
+    "minecraft:netherite_ingot",
+    "minecraft:jukebox",
+    "minecraft:enchanting_table"
   ]
 }

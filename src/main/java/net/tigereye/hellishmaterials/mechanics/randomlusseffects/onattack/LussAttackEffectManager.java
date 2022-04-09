@@ -1,8 +1,7 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
-import com.google.common.collect.MultimapBuilder;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect;
 
@@ -12,7 +11,7 @@ public class LussAttackEffectManager {
 
     private static final Multimap<LussRandomEffect.Quality,LussAttackEffect> ATTACK_EFFECTS = ArrayListMultimap.create();
     private static Map<LussRandomEffect.Quality,Integer> WEIGHTS = new HashMap<>();
-    private static final LussAttackEffect NO_EFFECT = new LussAttackNoEffect();
+    private static final LussAttackEffect NO_EFFECT = new LussAttackNoEffect(LussRandomEffect.Quality.UNLUCKY,0);
 
     public static void registerEffect(LussAttackEffect effect){
         ATTACK_EFFECTS.put(effect.getQuality(),effect);

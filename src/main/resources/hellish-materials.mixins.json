@@ -4,6 +4,7 @@
   "package": "net.tigereye.hellishmaterials.mixins",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
+    "BlockMixin",
     "BrewingRecipeRegistryMixin",
     "ClientPlayerEntityMixin",
     "GlowstoneBlobFeatureGenerateMixin",

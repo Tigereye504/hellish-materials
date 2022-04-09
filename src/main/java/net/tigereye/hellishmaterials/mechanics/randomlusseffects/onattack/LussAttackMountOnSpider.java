@@ -1,9 +1,8 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.mob.SpiderEntity;
-import net.minecraft.entity.passive.IronGolemEntity;
 
 public class LussAttackMountOnSpider implements LussAttackEffect{
 

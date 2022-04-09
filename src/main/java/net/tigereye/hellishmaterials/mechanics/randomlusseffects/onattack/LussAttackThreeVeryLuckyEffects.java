@@ -1,18 +1,26 @@
-package net.tigereye.hellishmaterials.mechanics.randomlusseffects.attack;
+package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import net.minecraft.entity.LivingEntity;
 
 public class LussAttackThreeVeryLuckyEffects implements LussAttackEffect{
 
 
+    Quality quality;
+    int weight;
+
+    public LussAttackThreeVeryLuckyEffects(Quality quality, int weight){
+        this.quality = quality;
+        this.weight = weight;
+    }
+
     @Override
     public Quality getQuality() {
-        return Quality.EXTREMELY_LUCKY;
+        return this.quality;
     }
 
     @Override
     public int getWeight() {
-        return 60;
+        return this.weight;
     }
 
     @Override
