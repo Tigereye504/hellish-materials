@@ -17,6 +17,7 @@ public class LussOre extends Block {
     public LussOre(){
         super(FabricBlockSettings.of(Material.GLASS)
             .strength(0.5f,0.3f)
+            .requiresTool()
             .lightLevel(14)
             .sounds(BlockSoundGroup.GLASS));
     }

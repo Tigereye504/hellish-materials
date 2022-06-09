@@ -140,7 +140,7 @@ public class ExplodingDice extends DiceItem {
             case 7:
                 return StatusEffects.LUCK;
             default:
-                return StatusEffects.REGENERATION;
+                return StatusEffects.RESISTANCE;
         }
     }
 

@@ -12,21 +12,14 @@ import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
 import java.util.function.Consumer;
-/*import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.tigereye.hellishmaterials.registration.HM_Items;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;*/
 
 public class VuldOre extends Block {
     
     public VuldOre(){
         super(FabricBlockSettings.of(Material.STONE)
             .strength(20f,800f)
+            .requiresTool()
             //.breakByTool(FabricToolTags.PICKAXES, 2)
             .sounds(BlockSoundGroup.SLIME));
     }

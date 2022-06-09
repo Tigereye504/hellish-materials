@@ -103,7 +103,8 @@ public class HMItems {
     public static final TagKey<Block> TAG_REPLACEABLE_VULD_ORE = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
     public static final TagKey<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
 
-    public static void register(){
+
+  public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_ingot"), LUSS_INGOT);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_axe"), LUSS_AXE);
