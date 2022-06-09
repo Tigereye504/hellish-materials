@@ -9,7 +9,7 @@ import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -41,7 +41,7 @@ public class ExplodingDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
 
         createShockwave(user,8);
         user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(kind),FOUR_DURATION,0));
@@ -54,7 +54,7 @@ public class ExplodingDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
 
         int leftover = die1+die2+die3+die4-(kind*3);
         createShockwave(user,4);
@@ -68,7 +68,7 @@ public class ExplodingDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
 
         createShockwave(user,4);
         user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(pair1),MID_DURATION,1));
@@ -83,7 +83,7 @@ public class ExplodingDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
 
         int leftovers = die1+die2+die3+die4-(pair*2);
         int amplifier = 0;
@@ -109,7 +109,7 @@ public class ExplodingDice extends DiceItem {
         user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+1),HIGH_DURATION,0));
         user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+2),HIGH_DURATION,0));
         user.addStatusEffect(new StatusEffectInstance(getPrizeStatusEffectType(lowest+3),HIGH_DURATION,0));
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -118,7 +118,7 @@ public class ExplodingDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         user.world.playSound(user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 4.0F, 1.0F, false);
         return TypedActionResult.success(user.getStackInHand(hand));
     }

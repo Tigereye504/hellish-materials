@@ -2,10 +2,10 @@ package net.tigereye.hellishmaterials;
 
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.client.rendering.v1.EntityRendererRegistry;
-import net.fabricmc.fabric.api.object.builder.v1.client.model.FabricModelPredicateProviderRegistry;
-import net.fabricmc.fabric.impl.networking.ClientSidePacketRegistryImpl;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.item.ModelPredicateProviderRegistry;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Identifier;
@@ -23,7 +23,8 @@ public class HellishMaterialsClient implements ClientModInitializer {
     public void onInitializeClient() {
         HMGUI.register();
         BlockRenderLayerMap.INSTANCE.putBlock(HMItems.VAPOROUS_VULD, RenderLayer.getCutout());
-        FabricModelPredicateProviderRegistry.register(HMItems.LUCKSTONE, new Identifier("luck"), (itemStack, clientWorld, livingEntity, seed) -> {
+
+        ModelPredicateProviderRegistry.register(HMItems.LUCKSTONE, new Identifier("luck"), (itemStack, clientWorld, livingEntity, seed) -> {
             float luck = 1;
             NbtCompound tag = itemStack.getOrCreateNbt();
             if (tag.contains(Luckstone.DISPLAY_KEY)) {
@@ -36,7 +37,7 @@ public class HellishMaterialsClient implements ClientModInitializer {
         });
 
         EntityRendererRegistry.register(HMEntities.FLASK_OF_VAPOROUS_VULD_ENTITY, FlaskOfVaporousVuldEntityRenderer::new);
-        ClientSidePacketRegistryImpl.INSTANCE.register(FlaskOfVaporousVuldEntity.SPAWN_PACKET,((context, packet) -> {
+        ClientPlayNetworking.registerGlobalReceiver(FlaskOfVaporousVuldEntity.SPAWN_PACKET,((client, handler, packet, responseSender) -> {
             double x = packet.readDouble();
             double y = packet.readDouble();
             double z = packet.readDouble();
@@ -44,7 +45,7 @@ public class HellishMaterialsClient implements ClientModInitializer {
             int id = packet.readInt();
             UUID uuid = packet.readUuid();
 
-            context.getTaskQueue().execute(() -> {
+            client.execute(() -> {
                 FlaskOfVaporousVuldEntity proj = new FlaskOfVaporousVuldEntity(MinecraftClient.getInstance().world, x,y,z,id,uuid);
                 MinecraftClient.getInstance().world.addEntity(id,proj);
             });

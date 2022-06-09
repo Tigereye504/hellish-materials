@@ -3,7 +3,7 @@ package net.tigereye.hellishmaterials.items.luss;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.text.LiteralText;
+import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
@@ -23,7 +23,7 @@ public class LussDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -32,7 +32,7 @@ public class LussDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -41,7 +41,7 @@ public class LussDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -50,7 +50,7 @@ public class LussDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -59,7 +59,7 @@ public class LussDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
     @Override
@@ -68,7 +68,7 @@ public class LussDice extends DiceItem {
                 ", " + die2 +
                 ", " + die3 +
                 ", and " + die4 + ".";
-        user.sendMessage(new LiteralText(out), true);
+        user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
 }

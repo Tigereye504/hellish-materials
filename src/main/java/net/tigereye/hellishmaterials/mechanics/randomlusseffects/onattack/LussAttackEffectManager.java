@@ -2,10 +2,13 @@ package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onattack;
 
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.Multimap;
+import net.minecraft.util.math.random.Random;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.mechanics.randomlusseffects.LussRandomEffect;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 public class LussAttackEffectManager {
 

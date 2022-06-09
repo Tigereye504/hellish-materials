@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.mixins;
 
+import net.minecraft.util.math.random.Random;
 import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -20,9 +21,9 @@ public class WitherSkeletonEntityEquipmentMixin {
 
     @Inject(
         at = @At("TAIL"),
-        method = "initEquipment",
-        cancellable = true)
-    private void HellishMaterialsPiglinInitializeMixin(LocalDifficulty difficulty, CallbackInfo info){
+        method = "initEquipment"
+    )
+    private void HellishMaterialsPiglinInitializeMixin(Random random, LocalDifficulty difficulty, CallbackInfo info){
         if (((WitherSkeletonEntity) (Object) this).world.random.nextFloat() < HMConfig.WITHER_SKELETON_VULD_CHAMPION_CHANCE) {
             ((WitherSkeletonEntity) (Object) this).equipStack(EquipmentSlot.HEAD , new ItemStack(HMItems.VULD_HELM));
             ((WitherSkeletonEntity) (Object) this).equipStack(EquipmentSlot.CHEST , new ItemStack(HMItems.VULD_CHESTPLATE));
