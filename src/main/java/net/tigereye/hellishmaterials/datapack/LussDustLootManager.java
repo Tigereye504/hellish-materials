@@ -37,8 +37,13 @@ public class LussDustLootManager implements SimpleSynchronousResourceReloadListe
     public void reload(ResourceManager manager) {
         knownOutputs.clear();
         HellishMaterials.LOGGER.info("Loading Lust Dust Loot Entries.");
-        for(Identifier id : manager.findResources(RESOURCE_LOCATION, path -> path.endsWith(".json"))) {
-            try(InputStream stream = manager.getResource(id).getInputStream()) {
+        for(Identifier id : manager.findResources(RESOURCE_LOCATION, id -> id.getPath().endsWith(".json")).keySet()) {
+            var resource = manager.getResource(id);
+            if (resource.isEmpty()) {
+                HellishMaterials.LOGGER.error("Failed to load resource: " + id);
+                continue;
+            }
+            try(InputStream stream = resource.get().getInputStream()) {
                 Reader reader = new InputStreamReader(stream);
                 Pair<Identifier,Pair<Identifier,Integer>> flavorDataPair = SERIALIZER.read(id,new Gson().fromJson(reader,LussDustLootJsonFormat.class));
                 if(knownOutputs.containsKey(flavorDataPair.getLeft())){

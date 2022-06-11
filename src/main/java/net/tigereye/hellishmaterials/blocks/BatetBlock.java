@@ -12,7 +12,7 @@ public class BatetBlock extends Block {
             .strength(3f,6f)
             .requiresTool()
             //.breakByTool(FabricToolTags.PICKAXES, 2)
-            .lightLevel(10)
+            .luminance(10)
             .sounds(BlockSoundGroup.METAL));
     }
 }

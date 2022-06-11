@@ -9,7 +9,6 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.Packet;
@@ -18,7 +17,6 @@ import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.mechanics.LussLuck;
 import net.tigereye.hellishmaterials.registration.HMDamageSource;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 import org.jetbrains.annotations.Nullable;
@@ -58,9 +56,9 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
         this.dataTracker.startTracking(HM_BLOODDEBT,0f);
     }
 
-    @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage")
-    public float HellishMaterialsApplyDamageMixin(float amount, DamageSource source) {
-        return Utils.applyDamageEffects((LivingEntity)(Object)this,amount,source);
+    @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage", argsOnly = true)
+    public float HellishMaterialsApplyDamageMixin(float changeAmount, DamageSource source, float amount) {
+        return Utils.applyDamageEffects((LivingEntity)(Object)this,changeAmount,source);
     }
 
     @Inject(at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/LivingEntity;dropXp()V"), method = "drop", cancellable = true)
@@ -82,7 +80,7 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
         }
     }
 
-    @Inject(at = @At("HEAD"), method = "applyEnchantmentsToDamage", cancellable = true)
+    @Inject(at = @At("HEAD"), method = "modifyAppliedDamage", cancellable = true)
     public void HellishMaterialsApplyEnchantmentsToDamageMixin(DamageSource source, float amount, CallbackInfoReturnable<Float> info)
     {
         if(source == HMDamageSource.HM_BLOOD_DEBT){

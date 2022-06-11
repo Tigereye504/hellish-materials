@@ -3,7 +3,7 @@ package net.tigereye.hellishmaterials.entity;
 import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
-import net.fabricmc.fabric.impl.networking.ServerSidePacketRegistryImpl;
+import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
@@ -17,8 +17,8 @@ import net.minecraft.util.hit.EntityHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.HellishMaterials;
-import net.tigereye.hellishmaterials.registration.HMItems;
 import net.tigereye.hellishmaterials.registration.HMEntities;
+import net.tigereye.hellishmaterials.registration.HMItems;
 
 import java.util.UUID;
 
@@ -62,7 +62,7 @@ public class FlaskOfVaporousVuldEntity extends ThrownItemEntity {
         packet.writeInt(getId());
         packet.writeUuid(getUuid());
 
-        return ServerSidePacketRegistryImpl.INSTANCE.toPacket(SPAWN_PACKET, packet);
+        return ServerPlayNetworking.createS2CPacket(SPAWN_PACKET, packet);
     }
 
     protected void onEntityHit(EntityHitResult entityHitResult) {

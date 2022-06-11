@@ -9,11 +9,10 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.Hand;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.math.random.Random;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.registration.HMItems;
-
-import java.util.Random;
 
 public class Luckstone extends Item {
     public static final int NUMBER_OF_ROLLS = 8;

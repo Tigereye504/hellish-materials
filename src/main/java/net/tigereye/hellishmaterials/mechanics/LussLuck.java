@@ -9,6 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.random.Random;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.interfaces.HM_PlayerEntity;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
@@ -21,7 +23,11 @@ import net.tigereye.hellishmaterials.registration.HMItems;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 public class LussLuck {
     private static final float LUCK_EFFECTIVENESS = 2;  //effects how quickly luck causes the average roll to shift
@@ -75,7 +81,7 @@ public class LussLuck {
             random = player.getRandom();
         }
         else{
-            random = new Random();
+            random = Random.create();
         }
         //TODO: Add and move to RandomFloatWithLuckSetResult event
         //search for a luckstone. If one is found, extract a roll from it
@@ -121,7 +127,7 @@ public class LussLuck {
     }
     public static int StackSizeRandomizer(float compFactor, @Nullable PlayerEntity player, float luckFactor)
     {
-        Random rand = new Random();
+        Random rand = Random.create();
         float n = RandomFloatWithLuck(player,luckFactor);
 
         if(n>=.99){ //major jackpot

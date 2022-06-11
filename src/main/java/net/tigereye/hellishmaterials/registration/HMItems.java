@@ -15,19 +15,21 @@ import net.minecraft.potion.Potion;
 import net.minecraft.tag.TagKey;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-
 import net.tigereye.hellishmaterials.HellishMaterials;
-import net.tigereye.hellishmaterials.items.BaseArmor;
-import net.tigereye.hellishmaterials.items.batet.BatetArmorMaterial;
-import net.tigereye.hellishmaterials.items.vuld.armor.*;
 import net.tigereye.hellishmaterials.blocks.*;
 import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
 import net.tigereye.hellishmaterials.items.*;
+import net.tigereye.hellishmaterials.items.batet.BatetArmorMaterial;
 import net.tigereye.hellishmaterials.items.batet.BatetMaterial;
 import net.tigereye.hellishmaterials.items.batet.ExplodingDice;
 import net.tigereye.hellishmaterials.items.batet.Moratorium;
-import net.tigereye.hellishmaterials.items.luss.*;
-import net.tigereye.hellishmaterials.items.vuld.*;
+import net.tigereye.hellishmaterials.items.luss.Luckstone;
+import net.tigereye.hellishmaterials.items.luss.LussDice;
+import net.tigereye.hellishmaterials.items.luss.LussDust;
+import net.tigereye.hellishmaterials.items.luss.LussMaterial;
+import net.tigereye.hellishmaterials.items.vuld.FlaskOfVaporousVuld;
+import net.tigereye.hellishmaterials.items.vuld.Vuld;
+import net.tigereye.hellishmaterials.items.vuld.armor.*;
 import net.tigereye.hellishmaterials.items.vuld.tools.*;
 
 public class HMItems {
@@ -100,8 +102,9 @@ public class HMItems {
     public static final TagKey<Item> ITEM_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
     public static final TagKey<Block> TAG_REPLACEABLE_VULD_ORE = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
     public static final TagKey<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
-    
-    public static void register(){
+
+
+  public static void register(){
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_ingot"), LUSS_INGOT);
         Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_axe"), LUSS_AXE);
