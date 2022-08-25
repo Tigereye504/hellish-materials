@@ -37,7 +37,7 @@ public class LussBreakScatterGold implements LussBreakEffect {
     {
         int drops = LussLuck.StackSizeRandomizer(block.getHardness()*block.getHardness()/25,null,luck);
         for(int i = 0; i < drops; i++){
-            int rand = world.getRandom().nextInt(200);
+            int rand = player.getRandom().nextInt(200);
             Item item = LussLuck.scatterGoldLootTable.getOrDefault(rand, Items.GOLD_NUGGET);
             ItemEntity entity = new ItemEntity(world,
                     pos.getX()+.5,pos.getY()+.5,pos.getZ()+.5, new ItemStack(item, 1));

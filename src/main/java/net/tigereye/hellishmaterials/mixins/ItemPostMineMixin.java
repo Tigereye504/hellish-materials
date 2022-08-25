@@ -22,7 +22,7 @@ public class ItemPostMineMixin {
         method = "postMine")
         public void HellishMaterialsPostMineMixin(ItemStack stack, World world, BlockState state, BlockPos pos, LivingEntity miner, CallbackInfoReturnable<Boolean> info){
             if(Utils.isBatet(stack)){
-                BatetDeferment.forgiveDebts(((BloodDebtTracker)(Object)this),state.getHardness(world, pos));
+                BatetDeferment.forgiveDebts(((BloodDebtTracker)miner),state.getHardness(world, pos));
             }
         }
 }

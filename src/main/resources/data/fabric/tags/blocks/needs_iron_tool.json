@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "hellish-materials:luss_block"
+    "hellish-materials:luss_block",
+    "hellish-materials:vuld_ore"
   ]
 }

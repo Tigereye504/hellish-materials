@@ -27,11 +27,12 @@ public class Moratorium extends Item{
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        float healing = 0;
+        float healing;
         if(user.getHealth() < user.getMaxHealth()){
             healing = user.getMaxHealth() - user.getHealth();
             user.heal(healing);
             BatetDeferment.addBloodDebt((BloodDebtTracker) user,healing*DEBT_FACTOR);
+            user.getItemCooldownManager().set(this, 400);
             itemStack.damage((int) healing, user, (Consumer<LivingEntity>) ((p) -> p.sendToolBreakStatus(user.getActiveHand())));
         }
         return TypedActionResult.success(itemStack);

@@ -1,9 +1,9 @@
 {
   "replace": false,
   "values": [
-    "hellish-materials:batet_block",
-    "hellish-materials:batet_ore",
     "hellish-materials:luss_block",
+    "hellish-materials:batet_ore",
+    "hellish-materials:batet_block",
     "hellish-materials:vuld_ore"
   ]
 }
