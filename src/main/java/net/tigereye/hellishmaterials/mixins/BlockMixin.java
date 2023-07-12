@@ -17,7 +17,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 @Mixin(Block.class)
 public class BlockMixin {
     @Inject(at = @At(value="HEAD"), method = "afterBreak")
-    public void HMItemStackGetTooltipMixin(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci){
+    public void HMItemStackAfterBreakMixin(World world, PlayerEntity player, BlockPos pos, BlockState state, BlockEntity blockEntity, ItemStack tool, CallbackInfo ci){
         if (Utils.isLuss(tool)) {
             LussLuck.tryRandomBreakEffect((Block) (Object) this, world, pos, state, player);
         }

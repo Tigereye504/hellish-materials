@@ -19,10 +19,7 @@ import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.blocks.*;
 import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
 import net.tigereye.hellishmaterials.items.*;
-import net.tigereye.hellishmaterials.items.batet.BatetArmorMaterial;
-import net.tigereye.hellishmaterials.items.batet.BatetMaterial;
-import net.tigereye.hellishmaterials.items.batet.ExplodingDice;
-import net.tigereye.hellishmaterials.items.batet.Moratorium;
+import net.tigereye.hellishmaterials.items.batet.*;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
 import net.tigereye.hellishmaterials.items.luss.LussDice;
 import net.tigereye.hellishmaterials.items.luss.LussDust;
@@ -63,17 +60,17 @@ public class HMItems {
     public static BlockEntityType<VaporousVuldBlockEntity> VAPOROUS_VULD_BLOCK_ENTITY;
 
     public static final ArmorMaterial BATET_ARMOR = new BatetArmorMaterial();
-    public static final Item BATET_HELM = new BaseArmor(BATET_ARMOR, EquipmentSlot.HEAD);
-    public static final Item BATET_CHESTPLATE = new BaseArmor(BATET_ARMOR, EquipmentSlot.CHEST);
-    public static final Item BATET_LEGGINGS = new BaseArmor(BATET_ARMOR, EquipmentSlot.LEGS);
-    public static final Item BATET_BOOTS = new BaseArmor(BATET_ARMOR, EquipmentSlot.FEET);
+    public static final Item BATET_HELM = new BatetArmor(BATET_ARMOR, EquipmentSlot.HEAD);
+    public static final Item BATET_CHESTPLATE = new BatetArmor(BATET_ARMOR, EquipmentSlot.CHEST);
+    public static final Item BATET_LEGGINGS = new BatetArmor(BATET_ARMOR, EquipmentSlot.LEGS);
+    public static final Item BATET_BOOTS = new BatetArmor(BATET_ARMOR, EquipmentSlot.FEET);
     public static final Item BATET_GEM = new Item(new Item.Settings().group(ItemGroup.MISC).fireproof());
     public static final Item BATET_FRAGMENT = new Item(new Item.Settings().group(ItemGroup.MISC));
-    public static final Item BATET_AXE = new BaseAxe(new BatetMaterial(), 3, -3.1f);
+    public static final Item BATET_AXE = new BatetAxe(new BatetMaterial(), 3, -3.1f);
     public static final Item BATET_HOE = new BaseHoe(new BatetMaterial(), -5, -1);
     public static final Item BATET_PICKAXE = new BasePickaxe(new BatetMaterial());
     public static final Item BATET_SHOVEL = new BaseShovel(new BatetMaterial());
-    public static final Item BATET_SWORD = new BaseSword(new BatetMaterial());
+    public static final Item BATET_SWORD = new BatetSword(new BatetMaterial());
     public static final Block BATET_ORE = new BatetOre();
     public static final Block BATET_BLOCK = new BatetBlock();
 

@@ -1,5 +1,5 @@
 package net.tigereye.hellishmaterials.interfaces;
 
 public interface HM_PlayerEntity {
-    float getLastAttackCooldownProgressResult();
+    float hellish_materials$getLastAttackCooldownProgressResult();
 }

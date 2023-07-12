@@ -1,18 +1,16 @@
 package net.tigereye.hellishmaterials.items.vuld.armor;
 
-import com.google.common.collect.ImmutableMultimap;
-import com.google.common.collect.Multimap;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.EquipmentSlot;
-import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.text.Text;
 import net.minecraft.world.World;
-import org.spongepowered.include.com.google.common.collect.HashMultimap;
+import net.tigereye.hellishmaterials.HellishMaterials;
+import org.jetbrains.annotations.Nullable;
 
+import java.util.List;
 import java.util.UUID;
 
 public class VuldBoots extends VuldArmor {
@@ -28,5 +26,10 @@ public class VuldBoots extends VuldArmor {
     @Override
     protected EntityAttributeModifier getHealthLoss() {
         return mod;
+    }
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack,world,tooltip,context);
+        tooltip.add(Text.translatable("item." + HellishMaterials.MODID + ".vuld.tooltip"));
     }
 }

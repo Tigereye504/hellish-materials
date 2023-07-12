@@ -1,0 +1,14 @@
+{
+  "flavorID": "hellish-materials:very_metallic",
+  "statusID": "hellish-materials:guts",
+  "isDrawback": false,
+  "duration": 7200,
+  "magnitude": 1,
+  "weight": 6,
+  "value": 30,
+  "namePriority": 0,
+  "exclusions": [
+    "hellish-materials:extra_metallic",
+    "hellish-materials:metallic"
+  ]
+}

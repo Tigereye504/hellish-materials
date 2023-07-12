@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.interfaces.HM_PlayerEntity;
 import net.tigereye.hellishmaterials.items.luss.Luckstone;
@@ -44,7 +43,7 @@ public class LussLuck {
     private static final int AVERAGE_WOUNDS_FOR_LUSS_EVENT = 8;
     private static final int AVERAGE_BREAKS_FOR_LUSS_EVENT = 12;
 
-    public static final Map<Integer, Item> scatterGoldLootTable = new HashMap<Integer,Item>();
+    public static final Map<Integer, Item> scatterGoldLootTable = new HashMap<>();
 
     static{
         scatterGoldLootTable.put(0, Items.GOLDEN_HOE);
@@ -250,11 +249,11 @@ public class LussLuck {
     public static void tryRandomAttackEffect(LivingEntity attacker, @NotNull LivingEntity defender, float damage) {
         float luck = 0;
         if(attacker instanceof PlayerEntity) {
-            luck = ((PlayerEntity) attacker).getLuck() - (8*(1-((HM_PlayerEntity)attacker).getLastAttackCooldownProgressResult()));
+            luck = ((PlayerEntity) attacker).getLuck() - (8*(1-((HM_PlayerEntity)attacker).hellish_materials$getLastAttackCooldownProgressResult()));
         }
         else {
             if(attacker.hasStatusEffect(StatusEffects.LUCK)){
-                luck = attacker.getStatusEffect(StatusEffects.LUCK).getAmplifier() + 1;
+                luck += attacker.getStatusEffect(StatusEffects.LUCK).getAmplifier() + 1;
             }
             if(attacker.hasStatusEffect(StatusEffects.UNLUCK)){
                 luck -= attacker.getStatusEffect(StatusEffects.UNLUCK).getAmplifier() + 1;
@@ -305,7 +304,7 @@ public class LussLuck {
         }
 
         float roll;
-        LussBreakEffect effect;roll = RandomFloatWithLuck((PlayerEntity) player);
+        LussBreakEffect effect;roll = RandomFloatWithLuck(player);
         if(roll >= EXTREMELY_LUCKY_ROLL)
             effect = LussBreakEffectManager.getRandomLussBreakEffect(LussRandomEffect.Quality.EXTREMELY_LUCKY,random);
         else if(roll >= VERY_LUCKY_ROLL)

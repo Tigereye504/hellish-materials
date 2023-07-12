@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.items.batet;
 
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.AreaEffectCloudEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -14,10 +15,14 @@ import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
 import net.minecraft.world.explosion.Explosion;
+import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.items.DiceItem;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class ExplodingDice extends DiceItem {
     private static final int LOW_DURATION = 15*20;
@@ -124,24 +129,16 @@ public class ExplodingDice extends DiceItem {
     }
 
     private StatusEffect getPrizeStatusEffectType(int die1){
-        switch (die1) {
-            case 1:
-                return StatusEffects.JUMP_BOOST;
-            case 2:
-                return StatusEffects.HEALTH_BOOST;
-            case 3:
-                return StatusEffects.HASTE;
-            case 4:
-                return StatusEffects.SPEED;
-            case 5:
-                return HMStatusEffects.GUTS;
-            case 6:
-                return StatusEffects.STRENGTH;
-            case 7:
-                return StatusEffects.LUCK;
-            default:
-                return StatusEffects.RESISTANCE;
-        }
+        return switch (die1) {
+            case 1 -> StatusEffects.JUMP_BOOST;
+            case 2 -> StatusEffects.HEALTH_BOOST;
+            case 3 -> StatusEffects.HASTE;
+            case 4 -> StatusEffects.SPEED;
+            case 5 -> HMStatusEffects.GUTS;
+            case 6 -> StatusEffects.STRENGTH;
+            case 7 -> StatusEffects.LUCK;
+            default -> StatusEffects.RESISTANCE;
+        };
     }
 
     private void createShockwave(PlayerEntity player,float blastPower) {
@@ -160,5 +157,11 @@ public class ExplodingDice extends DiceItem {
         areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float) areaEffectCloudEntity.getDuration());
         areaEffectCloudEntity.addEffect(new StatusEffectInstance(appliedEffect));
         player.world.spawnEntity(areaEffectCloudEntity);
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack,world,tooltip,context);
+        tooltip.add(Text.translatable("item." + HellishMaterials.MODID + ".exploding_dice.tooltip"));
     }
 }

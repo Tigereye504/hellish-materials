@@ -5,6 +5,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.interfaces.HM_PlayerEntity;
 import org.spongepowered.asm.mixin.Mixin;
+import org.spongepowered.asm.mixin.Unique;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyVariable;
@@ -12,6 +13,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(PlayerEntity.class)
 public class PlayerEntityApplyDamageMixin implements HM_PlayerEntity {
+    @Unique
     private float HM_lastAttackCooldownProgressResult;
 
     @ModifyVariable(at = @At(value = "CONSTANT",ordinal = 2,args = "floatValue=0.0F"), method = "applyDamage", argsOnly = true)
@@ -24,7 +26,7 @@ public class PlayerEntityApplyDamageMixin implements HM_PlayerEntity {
         HM_lastAttackCooldownProgressResult = cir.getReturnValue();
     }
     @Override
-    public float getLastAttackCooldownProgressResult() {
+    public float hellish_materials$getLastAttackCooldownProgressResult() {
         return HM_lastAttackCooldownProgressResult;
     }
 }

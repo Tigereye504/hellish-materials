@@ -1,6 +1,7 @@
 package net.tigereye.hellishmaterials.mixins;
 
 import net.minecraft.util.math.random.Random;
+import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.registration.HMItems;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -21,19 +22,13 @@ public class PiglinEntityEquipmentMixin {
         method = "initEquipment"
     )
     private void HellishMaterialsPiglinInitializeMixin(Random random, LocalDifficulty localDifficulty, CallbackInfo ci){
-        
-        if (((PiglinEntity) (Object) this).isAdult()) {
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_HOE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_SHOVEL), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_PICKAXE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_AXE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
-            HM_EquipAtChance(EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_SWORD), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+        PiglinEntity lEntity = (PiglinEntity) (Object) this;
+        if (lEntity.isAdult()) {
+            Utils.GenerateEquipmentAtChance(random, lEntity, EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_HOE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            Utils.GenerateEquipmentAtChance(random, lEntity, EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_SHOVEL), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            Utils.GenerateEquipmentAtChance(random, lEntity, EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_PICKAXE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            Utils.GenerateEquipmentAtChance(random, lEntity, EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_AXE), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
+            Utils.GenerateEquipmentAtChance(random, lEntity, EquipmentSlot.MAINHAND, new ItemStack(HMItems.LUSS_SWORD), HMConfig.PIGLIN_LUSS_TOOL_CHANCE);
             }
-    }
-
-    private void HM_EquipAtChance(EquipmentSlot slot, ItemStack stack, float odds){
-        if (((PiglinEntity) (Object) this).world.random.nextFloat() < odds) {
-            ((PiglinEntity) (Object) this).equipStack(slot, stack);
-         }
     }
 }

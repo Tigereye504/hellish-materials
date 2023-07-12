@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials;
 
+import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.entity.player.PlayerEntity;
@@ -7,11 +8,12 @@ import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ToolItem;
+import net.minecraft.util.math.random.Random;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.items.batet.BatetArmorMaterial;
-import net.tigereye.hellishmaterials.items.vuld.armor.VuldArmorMaterial;
 import net.tigereye.hellishmaterials.items.batet.BatetMaterial;
 import net.tigereye.hellishmaterials.items.luss.LussMaterial;
+import net.tigereye.hellishmaterials.items.vuld.armor.VuldArmorMaterial;
 import net.tigereye.hellishmaterials.items.vuld.tools.VuldMaterial;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
@@ -87,5 +89,11 @@ public class Utils {
             amount = BatetDeferment.deferDamage(target, amount);
         }
         return amount;
+    }
+
+    public static void GenerateEquipmentAtChance(Random random, LivingEntity entity, EquipmentSlot slot, ItemStack stack, float odds){
+        if (random.nextFloat() < odds) {
+            entity.equipStack(slot, stack);
+        }
     }
 }

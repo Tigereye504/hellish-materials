@@ -1,5 +1,6 @@
 package net.tigereye.hellishmaterials.items.luss;
 
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -7,7 +8,11 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
+import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.items.DiceItem;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class LussDice extends DiceItem {
 
@@ -70,5 +75,11 @@ public class LussDice extends DiceItem {
                 ", and " + die4 + ".";
         user.sendMessage(Text.literal(out), true);
         return TypedActionResult.success(user.getStackInHand(hand));
+    }
+
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+        super.appendTooltip(stack,world,tooltip,context);
+        tooltip.add(Text.translatable("item." + HellishMaterials.MODID + ".luss_dice.tooltip"));
     }
 }
