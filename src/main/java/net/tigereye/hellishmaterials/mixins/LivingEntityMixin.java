@@ -11,13 +11,12 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
-import net.minecraft.network.Packet;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
-import net.tigereye.hellishmaterials.registration.HMDamageSource;
+import net.tigereye.hellishmaterials.registration.HMDamageTypes;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Mixin;
@@ -75,7 +74,7 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
     @Inject(at = @At("HEAD"), method = "applyArmorToDamage", cancellable = true)
     public void HellishMaterialsApplyArmorToDamageMixin(DamageSource source, float amount, CallbackInfoReturnable<Float> info)
     {
-        if(source == HMDamageSource.HM_BLOOD_DEBT){
+        if(source.isOf(HMDamageTypes.BLOOD_DEBT)){
             info.setReturnValue(amount);
         }
     }
@@ -83,7 +82,7 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
     @Inject(at = @At("HEAD"), method = "modifyAppliedDamage", cancellable = true)
     public void HellishMaterialsApplyEnchantmentsToDamageMixin(DamageSource source, float amount, CallbackInfoReturnable<Float> info)
     {
-        if(source == HMDamageSource.HM_BLOOD_DEBT){
+        if(source.isOf(HMDamageTypes.BLOOD_DEBT)){
             info.setReturnValue(amount);
         }
     }
@@ -98,7 +97,7 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
                 setBloodDebt(0);
                 HM_BloodDebtActiveTick = false;
             }
-            else if (!this.world.isClient()){
+            else if (!this.getEntityWorld().isClient()){
                 HM_BloodDebtTimer++;
                 float repaymentPeriodMultiplier = 1;
                 if (this.hasStatusEffect(HMStatusEffects.GUTS))
@@ -160,25 +159,5 @@ public abstract class LivingEntityMixin extends Entity implements BloodDebtTrack
     @Override
     public void setBloodDebt(float debt) {
         this.dataTracker.set(HM_BLOODDEBT,debt);
-    }
-
-    @Shadow
-    protected void initDataTracker() {
-
-    }
-
-    @Shadow
-    protected void readCustomDataFromNbt(NbtCompound nbt) {
-
-    }
-
-    @Shadow
-    protected void writeCustomDataToNbt(NbtCompound nbt) {
-
-    }
-
-    @Shadow
-    public Packet<?> createSpawnPacket() {
-        return null;
     }
 }

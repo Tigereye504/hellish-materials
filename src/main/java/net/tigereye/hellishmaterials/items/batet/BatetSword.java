@@ -16,11 +16,11 @@ public class BatetSword extends SwordItem {
     }
 
     public BatetSword(ToolMaterial material, int attackDamage, float attackSpeed) {
-        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, attackDamage, attackSpeed, new Item.Settings());
     }
 
     public BatetSword(ToolMaterial material) {
-        super(material, 3, -3f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, 0, -3f, new Item.Settings());
     }
 
 

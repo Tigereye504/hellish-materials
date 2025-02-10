@@ -3,12 +3,9 @@ package net.tigereye.hellishmaterials.mechanics.randomlusseffects.onbreak;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.entity.EntityType;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.SpawnReason;
 import net.minecraft.entity.mob.MobEntity;
-import net.minecraft.entity.mob.ShulkerEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -45,9 +42,11 @@ public class LussBreakSpawnMob implements LussBreakEffect {
     @Override
     public void causeEffect(Block block, World world, BlockPos pos, BlockState state, PlayerEntity player, float luck)
     {
-        if(world instanceof ServerWorld) {
-            MobEntity entity = entityType.spawn((ServerWorld)world, null, null, player, pos, SpawnReason.TRIGGERED, true, false);
-            entity.setBaby(isBaby);
+        if(world instanceof ServerWorld sWorld) {
+            MobEntity entity = entityType.spawn(sWorld, pos, SpawnReason.TRIGGERED);
+            if(entity != null) {
+                entity.setBaby(isBaby);
+            }
         }
     }
 

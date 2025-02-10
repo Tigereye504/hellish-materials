@@ -6,7 +6,6 @@ import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
@@ -14,7 +13,6 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.world.World;
-import net.minecraft.world.explosion.Explosion;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
 import net.tigereye.hellishmaterials.items.DiceItem;
@@ -32,7 +30,7 @@ public class ExplodingDice extends DiceItem {
     private static final int BLOOD_COST = 5;
 
     public ExplodingDice() {
-        super(new Settings().maxCount(1).group(ItemGroup.TOOLS));
+        super(new Settings().maxCount(1));
     }
 
     @Override
@@ -124,7 +122,7 @@ public class ExplodingDice extends DiceItem {
                 ", " + die3 +
                 ", and " + die4 + ".";
         user.sendMessage(Text.literal(out), true);
-        user.world.playSound(user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 4.0F, 1.0F, false);
+        user.getWorld().playSound(user.getX(), user.getY(), user.getZ(), SoundEvents.BLOCK_FIRE_EXTINGUISH, SoundCategory.BLOCKS, 4.0F, 1.0F, false);
         return TypedActionResult.success(user.getStackInHand(hand));
     }
 
@@ -142,21 +140,23 @@ public class ExplodingDice extends DiceItem {
     }
 
     private void createShockwave(PlayerEntity player,float blastPower) {
-        if (!player.world.isClient) {
-            player.world.createExplosion(player, player.getX(), player.getY(), player.getZ(), blastPower, Explosion.DestructionType.NONE);
+        if (!player.getWorld().isClient) {
+            //TODO: this may cause exploding dice to break blocks.
+            player.getWorld().createExplosion(player, player.getX(), player.getY(), player.getZ(), blastPower, World.ExplosionSourceType.NONE);
+
         }
 
     }
 
     private static void spawnEffectCloud(PlayerEntity player,StatusEffectInstance appliedEffect) {
-        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(player.world, player.getX(), player.getY(), player.getZ());
+        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(player.getWorld(), player.getX(), player.getY(), player.getZ());
         areaEffectCloudEntity.setRadius(2.5F);
         areaEffectCloudEntity.setRadiusOnUse(-0.5F);
         areaEffectCloudEntity.setWaitTime(10);
         areaEffectCloudEntity.setDuration(areaEffectCloudEntity.getDuration() / 2);
         areaEffectCloudEntity.setRadiusGrowth(-areaEffectCloudEntity.getRadius() / (float) areaEffectCloudEntity.getDuration());
         areaEffectCloudEntity.addEffect(new StatusEffectInstance(appliedEffect));
-        player.world.spawnEntity(areaEffectCloudEntity);
+        player.getWorld().spawnEntity(areaEffectCloudEntity);
     }
 
     @Override

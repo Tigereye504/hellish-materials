@@ -3,7 +3,7 @@ package net.tigereye.hellishmaterials.blocks;
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.Material;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -17,7 +17,7 @@ import java.util.function.Consumer;
 public class VuldOre extends Block {
     
     public VuldOre(){
-        super(FabricBlockSettings.of(Material.STONE)
+        super(FabricBlockSettings.copyOf(Blocks.STONE)
             .strength(20f,800f)
             .requiresTool()
             //.breakByTool(FabricToolTags.PICKAXES, 2)

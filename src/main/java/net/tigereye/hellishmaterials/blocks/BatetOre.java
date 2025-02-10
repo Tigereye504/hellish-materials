@@ -2,23 +2,15 @@ package net.tigereye.hellishmaterials.blocks;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
+import net.minecraft.block.Blocks;
 import net.minecraft.sound.BlockSoundGroup;
-/*import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.feature.OreFeatureConfig;
-import net.tigereye.hellishmaterials.registration.HM_Items;
-import net.minecraft.world.gen.GenerationStep;
-import net.minecraft.world.gen.decorator.Decorator;
-import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
-import net.minecraft.world.gen.feature.Feature;*/
 
 public class BatetOre extends Block {
     
     public BatetOre(){
-        super(FabricBlockSettings.of(Material.STONE)
-            .strength(3f,50f)
+        super(FabricBlockSettings.copyOf(Blocks.IRON_BLOCK)
+            .strength(3f,5f)
             .requiresTool()
-            //.breakByTool(FabricToolTags.PICKAXES, 2)
             .sounds(BlockSoundGroup.STONE)
             .nonOpaque());
     }

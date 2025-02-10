@@ -1,12 +1,15 @@
 {
-    "type": "minecraft:smithing",
-    "base": {
-      "item": "minecraft:diamond_pickaxe"
-    },
-    "addition": {
-      "item": "hellish-materials:vuld"
-    },
-    "result": {
-      "item": "hellish-materials:vuld_pickaxe"
-    }
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "minecraft:diamond_pickaxe"
+  },
+  "addition": {
+    "item": "hellish-materials:vuld"
+  },
+  "result": {
+    "item": "hellish-materials:vuld_pickaxe"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
   }
+}

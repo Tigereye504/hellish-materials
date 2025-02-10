@@ -5,7 +5,6 @@ import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.entity.ItemEntity;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.damage.DamageSource;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Box;
@@ -79,14 +78,14 @@ public class VaporousVuldBlockEntity extends BlockEntity{
                 if (!(ie.getStack().isIn(HMItems.ITEM_TAG_IMMUNE_TO_VULD))) {
                     int damage = 3;
                     for (double side:be.decayRes) if(side == -1) damage++;
-                    ie.damage(DamageSource.WITHER, damage);
+                    ie.damage(world.getDamageSources().wither(), damage);
                 }
             }
             for (LivingEntity le :
                     livingEntityList) {
                 int damage = 3;
                 for (double side:be.decayRes) if(side == -1) damage++;
-                le.damage(DamageSource.WITHER, damage);
+                le.damage(world.getDamageSources().wither(), damage);
             }
         }
         if ((!world.isClient()) && world.getTime() % SPREAD_FREQUENCY == be.timeOffset) {

@@ -2,21 +2,18 @@ package net.tigereye.hellishmaterials.items.vuld.armor;
 
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemStack;
-import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.items.BaseArmor;
 
 public abstract class VuldArmor extends BaseArmor {
 
 
-    public VuldArmor(ArmorMaterial material, EquipmentSlot slot) {
+    public VuldArmor(ArmorMaterial material, ArmorItem.Type slot) {
         super(material, slot);
     }
     /*
@@ -36,8 +33,7 @@ public abstract class VuldArmor extends BaseArmor {
         if (slot == getSlotType()) {
             ImmutableMultimap.Builder<EntityAttribute, EntityAttributeModifier> builder = ImmutableMultimap.builder();
             builder.putAll(oldMultiMap).put(EntityAttributes.GENERIC_MAX_HEALTH,getHealthLoss());
-            Multimap<EntityAttribute, EntityAttributeModifier> ret = builder.build();
-            return ret;
+            return builder.build();
         }
         return oldMultiMap;
     }

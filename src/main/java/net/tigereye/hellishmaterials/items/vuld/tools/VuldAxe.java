@@ -18,7 +18,7 @@ public class VuldAxe extends BaseAxe {
     }
 
     public VuldAxe(ToolMaterial material, int attackDamage, float attackSpeed) {
-        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, attackDamage, attackSpeed, new Item.Settings());
     }
 
     @Override

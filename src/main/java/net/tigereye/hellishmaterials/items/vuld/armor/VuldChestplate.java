@@ -1,8 +1,8 @@
 package net.tigereye.hellishmaterials.items.vuld.armor;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -18,7 +18,7 @@ public class VuldChestplate extends VuldArmor {
     protected static EntityAttributeModifier mod = new EntityAttributeModifier(UUID.fromString("2ef3fb6f-59bd-41bb-9925-f6a8ba480ed0"),
             "HM_Vuld_Chestplate_Health_Penalty",-.32, EntityAttributeModifier.Operation.MULTIPLY_TOTAL);
 
-    public VuldChestplate(ArmorMaterial material, EquipmentSlot slot) {
+    public VuldChestplate(ArmorMaterial material, ArmorItem.Type slot) {
         super(material, slot);
     }
 

@@ -1,10 +1,8 @@
 package net.tigereye.hellishmaterials.items.batet;
 
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.world.World;
@@ -15,8 +13,8 @@ import java.util.List;
 
 public class BatetArmor extends ArmorItem {
 
-    public BatetArmor(ArmorMaterial material, EquipmentSlot slot){
-        super(material, slot, new Settings().group(ItemGroup.COMBAT));
+    public BatetArmor(ArmorMaterial material, ArmorItem.Type armorType){
+        super(material, armorType, new Settings());
     }
 
     @Override

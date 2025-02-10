@@ -3,6 +3,7 @@ package net.tigereye.hellishmaterials;
 import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.damage.DamageSource;
+import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ArmorItem;
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ import net.tigereye.hellishmaterials.items.vuld.armor.VuldArmorMaterial;
 import net.tigereye.hellishmaterials.items.vuld.tools.VuldMaterial;
 import net.tigereye.hellishmaterials.mechanics.BatetDeferment;
 import net.tigereye.hellishmaterials.mechanics.LussLuck;
-import net.tigereye.hellishmaterials.registration.HMDamageSource;
+import net.tigereye.hellishmaterials.registration.HMDamageTypes;
 import net.tigereye.hellishmaterials.registration.HMItems;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
@@ -85,7 +86,7 @@ public class Utils {
         }
         BatetDeferment.addBloodDebt((BloodDebtTracker) target,amount * bleedFactor);
 
-        if(source != HMDamageSource.HM_BLOOD_DEBT && source != DamageSource.OUT_OF_WORLD){
+        if(!(source.isOf(HMDamageTypes.BLOOD_DEBT) || source.isOf(DamageTypes.OUT_OF_WORLD))){
             amount = BatetDeferment.deferDamage(target, amount);
         }
         return amount;

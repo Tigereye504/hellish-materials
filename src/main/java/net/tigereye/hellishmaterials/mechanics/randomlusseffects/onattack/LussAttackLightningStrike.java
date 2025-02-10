@@ -27,8 +27,8 @@ public class LussAttackLightningStrike implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, defender.world);
+        LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, defender.getWorld());
         lightning.setPos(defender.getX(),defender.getY(),defender.getZ());
-        defender.world.spawnEntity(lightning);
+        defender.getWorld().spawnEntity(lightning);
     }
 }

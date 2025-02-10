@@ -26,13 +26,13 @@ public class LussAttackShulkerOnHead implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        ShulkerEntity shulker = new ShulkerEntity(EntityType.SHULKER, defender.world);
+        ShulkerEntity shulker = new ShulkerEntity(EntityType.SHULKER, defender.getWorld());
         Entity topOfStack = defender;
-        while(topOfStack.hasPassengers()){
+        while(topOfStack != null && topOfStack.hasPassengers()){
             topOfStack = topOfStack.getFirstPassenger();
         }
         shulker.setTarget(defender);
-        defender.world.spawnEntity(shulker);
+        defender.getWorld().spawnEntity(shulker);
         shulker.startRiding(topOfStack,true);
     }
 }

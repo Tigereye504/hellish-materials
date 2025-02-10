@@ -5,19 +5,17 @@ import net.minecraft.block.*;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
 import net.tigereye.hellishmaterials.registration.HMItems;
-import org.jetbrains.annotations.Nullable;
 
 public class VaporousVuld extends BlockWithEntity implements BlockEntityProvider {
 
     public VaporousVuld(){
-        super(FabricBlockSettings.of(Material.SPONGE)
+        super(FabricBlockSettings.copyOf(Blocks.AIR)
                 //.air()
                 .strength(1000f,4f)
                 .noCollision()

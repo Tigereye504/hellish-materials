@@ -40,7 +40,7 @@ public class LussAttackEffectCloud implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(defender.world, defender.getX(), defender.getBodyY(0.5), defender.getZ());
+        AreaEffectCloudEntity areaEffectCloudEntity = new AreaEffectCloudEntity(defender.getWorld(), defender.getX(), defender.getBodyY(0.5), defender.getZ());
         areaEffectCloudEntity.setRadius(cloudRadius);
         areaEffectCloudEntity.setRadiusOnUse(0);
         areaEffectCloudEntity.setDurationOnUse(-cloudDurationPerUse);
@@ -48,6 +48,6 @@ public class LussAttackEffectCloud implements LussAttackEffect{
         areaEffectCloudEntity.setDuration(cloudDuration);
         areaEffectCloudEntity.setRadiusGrowth(0);
         areaEffectCloudEntity.addEffect(new StatusEffectInstance(effect,duration,amplification));
-        defender.world.spawnEntity(areaEffectCloudEntity);
+        defender.getWorld().spawnEntity(areaEffectCloudEntity);
     }
 }

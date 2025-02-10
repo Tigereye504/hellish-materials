@@ -16,11 +16,11 @@ public class BatetAxe extends AxeItem {
     }
 
     public BatetAxe(ToolMaterial material, int attackDamage, float attackSpeed) {
-        super(material, attackDamage, attackSpeed, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, attackDamage, attackSpeed, new Item.Settings());
     }
 
     public BatetAxe(ToolMaterial material) {
-        super(material, 3f, -3f, new Item.Settings().group(ItemGroup.TOOLS));
+        super(material, 3f, -3f, new Item.Settings());
     }
 
 

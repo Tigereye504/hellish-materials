@@ -4,7 +4,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.text.Text;
@@ -25,13 +24,13 @@ public class Luckstone extends Item {
     public static final String DISPLAY_KEY = new Identifier(HellishMaterials.MODID,"display").toString();
 
     public Luckstone() {
-        super(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS));
+        super(new Item.Settings().maxCount(1));
     }
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
         ItemStack itemStack = user.getStackInHand(hand);
-        if(!user.world.isClient()) {
+        if(!user.getWorld().isClient()) {
             stockFutureRolls(itemStack, user.getRandom());
         }
         return TypedActionResult.success(itemStack);

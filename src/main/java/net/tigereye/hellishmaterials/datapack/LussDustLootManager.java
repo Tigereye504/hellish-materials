@@ -2,16 +2,14 @@ package net.tigereye.hellishmaterials.datapack;
 
 import com.google.gson.Gson;
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener;
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.recipe.CraftingRecipe;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.recipe.ShapelessRecipe;
+import net.minecraft.registry.Registries;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Pair;
-import net.minecraft.util.registry.Registry;
 import net.minecraft.world.World;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import org.jetbrains.annotations.Nullable;
@@ -80,9 +78,9 @@ public class LussDustLootManager implements SimpleSynchronousResourceReloadListe
         Pair<Identifier,Integer> output;
         for (ShapelessRecipe recipe:
                 singleBlockRecipes) {
-            if(recipe.getIngredients().get(0).test(Registry.BLOCK.get(block).asItem().getDefaultStack())){
-                ItemStack itemStack = recipe.getOutput();
-                output = new Pair<>(Registry.ITEM.getId(itemStack.getItem()),itemStack.getCount());
+            if(recipe.getIngredients().get(0).test(Registries.BLOCK.get(block).asItem().getDefaultStack())){
+                ItemStack itemStack = recipe.getOutput(world.getRegistryManager());
+                output = new Pair<>(Registries.ITEM.getId(itemStack.getItem()),itemStack.getCount());
                 knownOutputs.put(block,output);
                 return output;
             }

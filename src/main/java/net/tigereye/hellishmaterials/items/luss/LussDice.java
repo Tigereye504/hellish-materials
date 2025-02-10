@@ -2,7 +2,6 @@ package net.tigereye.hellishmaterials.items.luss;
 
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -17,7 +16,7 @@ import java.util.List;
 public class LussDice extends DiceItem {
 
     public LussDice() {
-        super(new Settings().maxCount(1).group(ItemGroup.TOOLS));
+        super(new Settings().maxCount(1));
     }
     
     //luss dice generate 4 luck-dependant values from 1 to 8, and displays the result in chat.

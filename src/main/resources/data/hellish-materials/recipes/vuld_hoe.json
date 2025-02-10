@@ -1,12 +1,15 @@
 {
-    "type": "minecraft:smithing",
-    "base": {
-      "item": "minecraft:diamond_hoe"
-    },
-    "addition": {
-      "item": "hellish-materials:vuld"
-    },
-    "result": {
-      "item": "hellish-materials:vuld_hoe"
-    }
+  "type": "minecraft:smithing_transform",
+  "base": {
+    "item": "minecraft:diamond_hoe"
+  },
+  "addition": {
+    "item": "hellish-materials:vuld"
+  },
+  "result": {
+    "item": "hellish-materials:vuld_hoe"
+  },
+  "template": {
+    "item": "minecraft:netherite_upgrade_smithing_template"
   }
+}

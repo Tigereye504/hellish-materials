@@ -4,7 +4,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
@@ -23,7 +22,7 @@ public class Moratorium extends Item{
     private static final float DEBT_FACTOR = 1.25f;
 
     public Moratorium() {
-        super(new Item.Settings().maxCount(1).group(ItemGroup.TOOLS).maxDamage(DURABILITY));
+        super(new Item.Settings().maxCount(1).maxDamage(DURABILITY));
     }
     
     //when a player uses Moratorium, they convert all damage they are suffering to blooddebt

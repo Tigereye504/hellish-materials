@@ -1,20 +1,20 @@
 package net.tigereye.hellishmaterials.registration;
 
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
 import net.minecraft.block.DispenserBlock;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.entity.EquipmentSlot;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.item.ArmorMaterial;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
+import net.minecraft.item.*;
 import net.minecraft.potion.Potion;
-import net.minecraft.tag.TagKey;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.RegistryKey;
+import net.minecraft.registry.RegistryKeys;
+import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
-import net.minecraft.util.registry.Registry;
+import net.minecraft.registry.Registry;
 import net.tigereye.hellishmaterials.HellishMaterials;
 import net.tigereye.hellishmaterials.blocks.*;
 import net.tigereye.hellishmaterials.blocks.entity.VaporousVuldBlockEntity;
@@ -31,8 +31,8 @@ import net.tigereye.hellishmaterials.items.vuld.tools.*;
 
 public class HMItems {
 
-    public static final Item LUSS_DUST = new LussDust(new Item.Settings().group(ItemGroup.MISC));
-    public static final Item LUSS_INGOT = new Item(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item LUSS_DUST = new LussDust(new Item.Settings());
+    public static final Item LUSS_INGOT = new Item(new Item.Settings());
     public static final Item LUSS_AXE = new BaseAxe(new LussMaterial());
     public static final Item LUSS_HOE = new BaseHoe(new LussMaterial());
     public static final Item LUSS_PICKAXE = new BasePickaxe(new LussMaterial());
@@ -42,12 +42,12 @@ public class HMItems {
     public static final Block LUSS_BLOCK = new LussBlock();
 
     public static final ArmorMaterial VULD_ARMOR = new VuldArmorMaterial();
-    public static final Item VULD_HELM = new VuldHelmet(VULD_ARMOR, EquipmentSlot.HEAD);
-    public static final Item VULD_CHESTPLATE = new VuldChestplate(VULD_ARMOR, EquipmentSlot.CHEST);
-    public static final Item VULD_LEGGINGS = new VuldLeggings(VULD_ARMOR, EquipmentSlot.LEGS);
-    public static final Item VULD_BOOTS = new VuldBoots(VULD_ARMOR, EquipmentSlot.FEET);
-    public static final Item VULD = new Vuld(new Item.Settings().group(ItemGroup.MISC));
-    public static final Item VULD_DROP = new Item(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item VULD_HELM = new VuldHelmet(VULD_ARMOR, ArmorItem.Type.HELMET);
+    public static final Item VULD_CHESTPLATE = new VuldChestplate(VULD_ARMOR, ArmorItem.Type.CHESTPLATE);
+    public static final Item VULD_LEGGINGS = new VuldLeggings(VULD_ARMOR, ArmorItem.Type.LEGGINGS);
+    public static final Item VULD_BOOTS = new VuldBoots(VULD_ARMOR, ArmorItem.Type.BOOTS);
+    public static final Item VULD = new Vuld(new Item.Settings());
+    public static final Item VULD_DROP = new Item(new Item.Settings());
     public static final Item VULD_AXE = new VuldAxe(new VuldMaterial());
     public static final Item VULD_HOE = new VuldHoe(new VuldMaterial(), -8, 0);
     public static final Item VULD_PICKAXE = new VuldPickaxe(new VuldMaterial());
@@ -55,17 +55,17 @@ public class HMItems {
     public static final Item VULD_SWORD = new VuldSword(new VuldMaterial());
     public static final Block VULD_ORE = new VuldOre();
     public static final Block CORRUPTED_BONE = new VuldOre();
-    public static final Item FLASK_OF_VAPOROUS_VULD = new FlaskOfVaporousVuld(new Item.Settings().group(ItemGroup.TOOLS).maxCount(16));
+    public static final Item FLASK_OF_VAPOROUS_VULD = new FlaskOfVaporousVuld(new Item.Settings().maxCount(16));
     public static final Block VAPOROUS_VULD = new VaporousVuld();
     public static BlockEntityType<VaporousVuldBlockEntity> VAPOROUS_VULD_BLOCK_ENTITY;
 
     public static final ArmorMaterial BATET_ARMOR = new BatetArmorMaterial();
-    public static final Item BATET_HELM = new BatetArmor(BATET_ARMOR, EquipmentSlot.HEAD);
-    public static final Item BATET_CHESTPLATE = new BatetArmor(BATET_ARMOR, EquipmentSlot.CHEST);
-    public static final Item BATET_LEGGINGS = new BatetArmor(BATET_ARMOR, EquipmentSlot.LEGS);
-    public static final Item BATET_BOOTS = new BatetArmor(BATET_ARMOR, EquipmentSlot.FEET);
-    public static final Item BATET_GEM = new Item(new Item.Settings().group(ItemGroup.MISC).fireproof());
-    public static final Item BATET_FRAGMENT = new Item(new Item.Settings().group(ItemGroup.MISC));
+    public static final Item BATET_HELM = new BatetArmor(BATET_ARMOR, ArmorItem.Type.HELMET);
+    public static final Item BATET_CHESTPLATE = new BatetArmor(BATET_ARMOR, ArmorItem.Type.CHESTPLATE);
+    public static final Item BATET_LEGGINGS = new BatetArmor(BATET_ARMOR, ArmorItem.Type.LEGGINGS);
+    public static final Item BATET_BOOTS = new BatetArmor(BATET_ARMOR, ArmorItem.Type.BOOTS);
+    public static final Item BATET_GEM = new Item(new Item.Settings().fireproof());
+    public static final Item BATET_FRAGMENT = new Item(new Item.Settings());
     public static final Item BATET_AXE = new BatetAxe(new BatetMaterial(), 3, -3.1f);
     public static final Item BATET_HOE = new BaseHoe(new BatetMaterial(), -5, -1);
     public static final Item BATET_PICKAXE = new BasePickaxe(new BatetMaterial());
@@ -92,93 +92,93 @@ public class HMItems {
     public static final Potion LONG_UNLUCK = new Potion("unluck", new StatusEffectInstance(StatusEffects.UNLUCK, 9600));
     public static final Potion STRONG_UNLUCK = new Potion("unluck", new StatusEffectInstance(StatusEffects.UNLUCK, 1800, 1));
 
-    public static final TagKey<Item> TAG_LUSS = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"luss"));
-    public static final TagKey<Item> TAG_VULD = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"vuld"));
-    public static final TagKey<Item> TAG_BATET = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"batet"));
-    public static final TagKey<Item> TAG_LUSS_BLACKLIST = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"luss_blacklist"));
-    public static final TagKey<Item> ITEM_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.ITEM_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
-    public static final TagKey<Block> TAG_REPLACEABLE_VULD_ORE = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
-    public static final TagKey<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagKey.of(Registry.BLOCK_KEY, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
+    public static final TagKey<Item> TAG_LUSS = TagKey.of(RegistryKeys.ITEM, new Identifier(HellishMaterials.MODID,"luss"));
+    public static final TagKey<Item> TAG_VULD = TagKey.of(RegistryKeys.ITEM, new Identifier(HellishMaterials.MODID,"vuld"));
+    public static final TagKey<Item> TAG_BATET = TagKey.of(RegistryKeys.ITEM, new Identifier(HellishMaterials.MODID,"batet"));
+    public static final TagKey<Item> TAG_LUSS_BLACKLIST = TagKey.of(RegistryKeys.ITEM, new Identifier(HellishMaterials.MODID,"luss_blacklist"));
+    public static final TagKey<Item> ITEM_TAG_IMMUNE_TO_VULD = TagKey.of(RegistryKeys.ITEM, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
+    public static final TagKey<Block> TAG_REPLACEABLE_VULD_ORE = TagKey.of(RegistryKeys.BLOCK, new Identifier(HellishMaterials.MODID,"replaceable_vuld_ore"));
+    public static final TagKey<Block> BLOCK_TAG_IMMUNE_TO_VULD = TagKey.of(RegistryKeys.BLOCK, new Identifier(HellishMaterials.MODID,"immune_to_vuld"));
 
 
   public static void register(){
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dust"), LUSS_DUST);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_ingot"), LUSS_INGOT);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_axe"), LUSS_AXE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_hoe"), LUSS_HOE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_pickaxe"), LUSS_PICKAXE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_shovel"), LUSS_SHOVEL);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_sword"), LUSS_SWORD);
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "luss_ore"), LUSS_ORE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_ore"),
-            new BlockItem(LUSS_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "luss_block"), LUSS_BLOCK);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_block"),
-            new BlockItem(LUSS_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+    registerItem("luss_dust", LUSS_DUST,ItemGroups.INGREDIENTS);
+    registerItem("luss_ingot", LUSS_INGOT,ItemGroups.INGREDIENTS);
+    registerItem("luss_axe", LUSS_AXE,ItemGroups.TOOLS);
+    registerItem("luss_hoe", LUSS_HOE,ItemGroups.TOOLS);
+    registerItem("luss_pickaxe", LUSS_PICKAXE,ItemGroups.TOOLS);
+    registerItem("luss_shovel", LUSS_SHOVEL,ItemGroups.TOOLS);
+    registerItem("luss_sword", LUSS_SWORD,ItemGroups.COMBAT);
+    registerBlock("luss_ore", LUSS_ORE);
+    registerBlock("luss_block", LUSS_BLOCK);
 
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_helm"), VULD_HELM);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_chestplate"), VULD_CHESTPLATE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_leggings"), VULD_LEGGINGS);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_boots"), VULD_BOOTS);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld"), VULD);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_drop"), VULD_DROP);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_axe"), VULD_AXE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_hoe"), VULD_HOE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_pickaxe"), VULD_PICKAXE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_shovel"), VULD_SHOVEL);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_sword"), VULD_SWORD);
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "vuld_ore"), VULD_ORE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vuld_ore"),
-            new BlockItem(VULD_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "corrupted_bone"), CORRUPTED_BONE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "corrupted_bone"),
-            new BlockItem(CORRUPTED_BONE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "flask_of_vaporous_vuld"), FLASK_OF_VAPOROUS_VULD);
+    registerItem("vuld_helm", VULD_HELM,ItemGroups.COMBAT);
+    registerItem("vuld_chestplate", VULD_CHESTPLATE,ItemGroups.COMBAT);
+    registerItem("vuld_leggings", VULD_LEGGINGS,ItemGroups.COMBAT);
+    registerItem("vuld_boots", VULD_BOOTS,ItemGroups.COMBAT);
+    registerItem("vuld", VULD,ItemGroups.INGREDIENTS);
+    registerItem("vuld_drop", VULD_DROP,ItemGroups.INGREDIENTS);
+    registerItem("vuld_axe", VULD_AXE,ItemGroups.TOOLS);
+    registerItem("vuld_hoe", VULD_HOE,ItemGroups.TOOLS);
+    registerItem("vuld_pickaxe", VULD_PICKAXE,ItemGroups.TOOLS);
+    registerItem("vuld_shovel", VULD_SHOVEL,ItemGroups.TOOLS);
+    registerItem("vuld_sword", VULD_SWORD,ItemGroups.COMBAT);
+    registerBlock("vuld_ore", VULD_ORE);
+    registerBlock("corrupted_bone", CORRUPTED_BONE);
+    registerItem("flask_of_vaporous_vuld", FLASK_OF_VAPOROUS_VULD,ItemGroups.TOOLS);
 
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "vaporous_vuld"), VAPOROUS_VULD);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "vaporous_vuld"),
-                new BlockItem(VAPOROUS_VULD, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-        VAPOROUS_VULD_BLOCK_ENTITY = Registry.register(Registry.BLOCK_ENTITY_TYPE,
-                new Identifier(HellishMaterials.MODID, "vaporous_vuld_block_entity"),
-                FabricBlockEntityTypeBuilder.create(VaporousVuldBlockEntity::new, VAPOROUS_VULD).build(null));
+    registerBlock("vaporous_vuld", VAPOROUS_VULD);
+    VAPOROUS_VULD_BLOCK_ENTITY = Registry.register(Registries.BLOCK_ENTITY_TYPE,
+        new Identifier(HellishMaterials.MODID, "vaporous_vuld_block_entity"),
+        FabricBlockEntityTypeBuilder.create(VaporousVuldBlockEntity::new, VAPOROUS_VULD).build(null));
 
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_helm"), BATET_HELM);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_chestplate"), BATET_CHESTPLATE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_leggings"), BATET_LEGGINGS);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_boots"), BATET_BOOTS);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_gem"), BATET_GEM);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_fragment"), BATET_FRAGMENT);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_axe"), BATET_AXE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_hoe"), BATET_HOE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_pickaxe"), BATET_PICKAXE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_shovel"), BATET_SHOVEL);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_sword"), BATET_SWORD);
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "batet_ore"), BATET_ORE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_ore"),
-            new BlockItem(BATET_ORE, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
-        Registry.register(Registry.BLOCK, new Identifier(HellishMaterials.MODID, "batet_block"), BATET_BLOCK);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "batet_block"),
-            new BlockItem(BATET_BLOCK, new Item.Settings().group(ItemGroup.BUILDING_BLOCKS)));
+    registerItem("batet_helm", BATET_HELM,ItemGroups.COMBAT);
+    registerItem("batet_chestplate", BATET_CHESTPLATE,ItemGroups.COMBAT);
+    registerItem("batet_leggings", BATET_LEGGINGS,ItemGroups.COMBAT);
+    registerItem("batet_boots", BATET_BOOTS,ItemGroups.COMBAT);
+    registerItem("batet_gem", BATET_GEM,ItemGroups.INGREDIENTS);
+    registerItem("batet_fragment", BATET_FRAGMENT,ItemGroups.INGREDIENTS);
+    registerItem("batet_axe", BATET_AXE,ItemGroups.TOOLS);
+    registerItem("batet_hoe", BATET_HOE,ItemGroups.TOOLS);
+    registerItem("batet_pickaxe", BATET_PICKAXE,ItemGroups.TOOLS);
+    registerItem("batet_shovel", BATET_SHOVEL,ItemGroups.TOOLS);
+    registerItem("batet_sword", BATET_SWORD,ItemGroups.COMBAT);
+    registerBlock("batet_ore", BATET_ORE);
+    registerBlock("batet_block", BATET_BLOCK);
 
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "bleeding"), BLEEDING);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "long_bleeding"), LONG_BLEEDING);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "strong_bleeding"), STRONG_BLEEDING);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "guts"), GUTS);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "long_guts"), LONG_GUTS);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "strong_guts"), STRONG_GUTS);
+    registerPotion("bleeding", BLEEDING);
+    registerPotion("long_bleeding", LONG_BLEEDING);
+    registerPotion("strong_bleeding", STRONG_BLEEDING);
+    registerPotion("guts", GUTS);
+    registerPotion("long_guts", LONG_GUTS);
+    registerPotion("strong_guts", STRONG_GUTS);
 
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "moratorium"), MORATORIUM);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luckstone"), LUCKSTONE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "luss_dice"), LUSS_DICE);
-        Registry.register(Registry.ITEM, new Identifier(HellishMaterials.MODID, "exploding_dice"), EXPLODING_DICE);
+    registerItem("moratorium", MORATORIUM, ItemGroups.COMBAT);
+    registerItem("luckstone", LUCKSTONE, ItemGroups.TOOLS);
+    registerItem("luss_dice", LUSS_DICE, ItemGroups.TOOLS);
+    registerItem("exploding_dice", EXPLODING_DICE, ItemGroups.COMBAT);
 
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "long_luck"), LONG_LUCK);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "strong_luck"), STRONG_LUCK);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "unluck"), UNLUCK);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "long_unluck"), LONG_UNLUCK);
-        Registry.register(Registry.POTION, new Identifier(HellishMaterials.MODID, "strong_unluck"), STRONG_UNLUCK);
+    registerPotion("long_luck", LONG_LUCK);
+    registerPotion("strong_luck", STRONG_LUCK);
+    registerPotion("unluck", UNLUCK);
+    registerPotion("long_unluck", LONG_UNLUCK);
+    registerPotion("strong_unluck", STRONG_UNLUCK);
 
-        DispenserBlock.registerBehavior(HMItems.FLASK_OF_VAPOROUS_VULD, new FlaskOfVaporousVuld.DispenserBehaviour());
+    DispenserBlock.registerBehavior(HMItems.FLASK_OF_VAPOROUS_VULD, new FlaskOfVaporousVuld.DispenserBehaviour());
 
+    }
+    
+    public static void registerItem(String name, Item item, RegistryKey<ItemGroup> itemGroup){
+        Registry.register(Registries.ITEM, new Identifier(HellishMaterials.MODID, name), item);
+        ItemGroupEvents.modifyEntriesEvent(itemGroup).register(entries -> entries.add(item));
+    }
+    
+    public static void registerBlock(String name, Block block){
+        Registry.register(Registries.BLOCK, new Identifier(HellishMaterials.MODID, name), block);
+        registerItem(name, new BlockItem(block, new Item.Settings()),ItemGroups.BUILDING_BLOCKS);
+    }
+    
+    public static void registerPotion(String name, Potion potion){
+        Registry.register(Registries.POTION, new Identifier(HellishMaterials.MODID, name), potion);
     }
 }

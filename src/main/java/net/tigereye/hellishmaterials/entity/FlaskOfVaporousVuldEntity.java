@@ -4,13 +4,13 @@ import io.netty.buffer.Unpooled;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.projectile.thrown.ThrownItemEntity;
 import net.minecraft.item.Item;
-import net.minecraft.network.Packet;
 import net.minecraft.network.PacketByteBuf;
+import net.minecraft.network.listener.ClientPlayPacketListener;
+import net.minecraft.network.packet.Packet;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.hit.EntityHitResult;
@@ -51,7 +51,7 @@ public class FlaskOfVaporousVuldEntity extends ThrownItemEntity {
     }
 
     @Override
-    public Packet<?> createSpawnPacket(){
+    public Packet<ClientPlayPacketListener> createSpawnPacket(){
         PacketByteBuf packet = new PacketByteBuf(Unpooled.buffer());
 
         // entity position
@@ -68,19 +68,18 @@ public class FlaskOfVaporousVuldEntity extends ThrownItemEntity {
     protected void onEntityHit(EntityHitResult entityHitResult) {
         // called on entity hit. Create Vaporous Vuld on the hit location!
         super.onEntityHit(entityHitResult);
-        Entity entity = entityHitResult.getEntity();
 
-        world.setBlockState(new BlockPos(this.getPos()), HMItems.VAPOROUS_VULD.getDefaultState());
+        getEntityWorld().setBlockState(new BlockPos(getBlockPos()), HMItems.VAPOROUS_VULD.getDefaultState());
         this.discard();
     }
 
     protected void onBlockHit(BlockHitResult blockHitResult) {
         super.onBlockHit(blockHitResult);
         if(blockHitResult.isInsideBlock()){
-            world.setBlockState(blockHitResult.getBlockPos(), HMItems.VAPOROUS_VULD.getDefaultState());
+            getEntityWorld().setBlockState(blockHitResult.getBlockPos(), HMItems.VAPOROUS_VULD.getDefaultState());
         }
         else{
-            world.setBlockState(blockHitResult.getBlockPos().offset(blockHitResult.getSide()), HMItems.VAPOROUS_VULD.getDefaultState());
+            getEntityWorld().setBlockState(blockHitResult.getBlockPos().offset(blockHitResult.getSide()), HMItems.VAPOROUS_VULD.getDefaultState());
         }
         this.discard();
     }

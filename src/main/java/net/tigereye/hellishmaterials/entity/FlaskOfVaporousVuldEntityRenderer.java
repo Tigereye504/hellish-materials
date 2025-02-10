@@ -5,7 +5,7 @@ import net.minecraft.client.render.OverlayTexture;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
-import net.minecraft.client.render.model.json.ModelTransformation;
+import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
@@ -20,8 +20,10 @@ public class FlaskOfVaporousVuldEntityRenderer extends EntityRenderer<FlaskOfVap
         super(ctx);
     }
 
+    @Override
     public void render(FlaskOfVaporousVuldEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-        MinecraftClient.getInstance().getItemRenderer().renderItem(STACK, ModelTransformation.Mode.FIXED,light, OverlayTexture.DEFAULT_UV, matrices,vertexConsumers,283245);
+        MinecraftClient.getInstance().getItemRenderer().renderItem(null, STACK, ModelTransformationMode.FIXED,false,
+                matrices,vertexConsumers,entity.getWorld(),light,OverlayTexture.DEFAULT_UV,283245);
     }
 
     @Override

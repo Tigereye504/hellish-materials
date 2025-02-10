@@ -8,7 +8,7 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.math.MathHelper;
 import net.tigereye.hellishmaterials.Utils;
 import net.tigereye.hellishmaterials.interfaces.BloodDebtTracker;
-import net.tigereye.hellishmaterials.registration.HMDamageSource;
+import net.tigereye.hellishmaterials.registration.HMDamageTypes;
 import net.tigereye.hellishmaterials.registration.HMStatusEffects;
 
 public class BatetDeferment {
@@ -17,7 +17,6 @@ public class BatetDeferment {
     public static final float REPAYMENT_RATE = .05f;
     public static final float OVER_LIMIT_PENALTY_RATE = .1f;
     public static final float MINIMUM_REPAYMENT = 1f;
-    public static final float BLOOD_THEFT_FACTOR = .2f;
 
     public static float calculateRepayment(float bloodDebt, float maximumHealth){
         float payment;
@@ -47,23 +46,23 @@ public class BatetDeferment {
     public static float findBloodDebtFactor(LivingEntity entity){
         float bloodDebtFactor = 0;
         if(entity.hasStatusEffect(HMStatusEffects.GUTS)){
-            bloodDebtFactor += (entity.getStatusEffect(HMStatusEffects.GUTS).getAmplifier()+1)*.25;
+            bloodDebtFactor += (float) ((entity.getStatusEffect(HMStatusEffects.GUTS).getAmplifier()+1)*.25);
         }
         ItemStack armor = entity.getEquippedStack(EquipmentSlot.HEAD);
         if(Utils.isBatet(armor)){
-            bloodDebtFactor += .25;
+            bloodDebtFactor += .25f;
         }
         armor = entity.getEquippedStack(EquipmentSlot.CHEST);
         if(Utils.isBatet(armor)){
-            bloodDebtFactor += .25;
+            bloodDebtFactor += .25f;
         }
         armor = entity.getEquippedStack(EquipmentSlot.LEGS);
         if(Utils.isBatet(armor)){
-            bloodDebtFactor += .25;
+            bloodDebtFactor += .25f;
         }
         armor = entity.getEquippedStack(EquipmentSlot.FEET);
         if(Utils.isBatet(armor)){
-            bloodDebtFactor += .25;
+            bloodDebtFactor += .25f;
         }
         return Math.min(1,bloodDebtFactor);
     }
@@ -83,15 +82,15 @@ public class BatetDeferment {
     public static void takeLife(LivingEntity entity, float dmg){
         if(entity.getHealth() > dmg) {
             entity.setHealth(entity.getHealth() - dmg);
-            if(entity.world instanceof ServerWorld) {
+            if(entity.getWorld() instanceof ServerWorld) {
                 int count = MathHelper.ceil(dmg / 2);
-                ((ServerWorld)entity.world).spawnParticles(ParticleTypes.DAMAGE_INDICATOR,entity.getX(),entity.getBodyY(.5),entity.getZ(),count,0.1, 0.0, 0.1, 0.2);
+                ((ServerWorld)entity.getWorld()).spawnParticles(ParticleTypes.DAMAGE_INDICATOR,entity.getX(),entity.getBodyY(.5),entity.getZ(),count,0.1, 0.0, 0.1, 0.2);
             }
         }
         else{
             entity.setHealth(Float.MIN_VALUE);
             entity.setAbsorptionAmount(0);
-            entity.damage(HMDamageSource.HM_BLOOD_DEBT, dmg);
+            entity.damage(HMDamageTypes.of(entity.getWorld(),HMDamageTypes.BLOOD_DEBT), dmg);
         }
     }
 }

@@ -29,9 +29,9 @@ public class LussAttackMultipleLightningStrikes implements LussAttackEffect{
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
-                LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, defender.world);
+                LightningEntity lightning = new LightningEntity(EntityType.LIGHTNING_BOLT, defender.getWorld());
                 lightning.setPos(defender.getX()-1+i,defender.getY(),defender.getZ()-1+j);
-                defender.world.spawnEntity(lightning);
+                defender.getWorld().spawnEntity(lightning);
             }
         }
     }

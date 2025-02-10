@@ -16,7 +16,7 @@ public class DiceItem extends Item {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (!user.world.isClient()) {
+        if (!user.getWorld().isClient()) {
             user.getItemCooldownManager().set(this, 20);
             int die1 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);
             int die2 = (int) Math.ceil(LussLuck.RandomFloatWithLuck(user) * 8);

@@ -26,7 +26,7 @@ public class LussAttackMountOnIronGolem implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        IronGolemEntity golem = new IronGolemEntity(EntityType.IRON_GOLEM, defender.world);
+        IronGolemEntity golem = new IronGolemEntity(EntityType.IRON_GOLEM, defender.getWorld());
         golem.setPos(defender.getX(),defender.getY(),defender.getZ());
         if(attacker != null){
             golem.setAttacker(attacker);
@@ -34,7 +34,7 @@ public class LussAttackMountOnIronGolem implements LussAttackEffect{
             golem.setAngerTime(48000);
             golem.setTarget(attacker);
         }
-        defender.world.spawnEntity(golem);
+        defender.getWorld().spawnEntity(golem);
         defender.startRiding(golem,true);
     }
 }

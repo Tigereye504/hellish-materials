@@ -26,12 +26,12 @@ public class LussAttackChickenOnHead implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, defender.world);
+        ChickenEntity chicken = new ChickenEntity(EntityType.CHICKEN, defender.getWorld());
         Entity topOfStack = defender;
-        while(topOfStack.hasPassengers()){
+        while(topOfStack != null && topOfStack.hasPassengers()){
             topOfStack = topOfStack.getFirstPassenger();
         }
-        defender.world.spawnEntity(chicken);
+        defender.getWorld().spawnEntity(chicken);
         chicken.startRiding(topOfStack,true);
     }
 }

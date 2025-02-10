@@ -26,13 +26,13 @@ public class LussAttackMountOnSpider implements LussAttackEffect{
 
     @Override
     public void causeEffect(LivingEntity attacker, LivingEntity defender, float damage, float luck) {
-        SpiderEntity spider = new SpiderEntity(EntityType.SPIDER, defender.world);
+        SpiderEntity spider = new SpiderEntity(EntityType.SPIDER, defender.getWorld());
         spider.setPos(defender.getX(),defender.getY(),defender.getZ());
         if(attacker != null){
             spider.setAttacker(attacker);
             spider.setTarget(attacker);
         }
-        defender.world.spawnEntity(spider);
+        defender.getWorld().spawnEntity(spider);
         defender.startRiding(spider,true);
     }
 }
