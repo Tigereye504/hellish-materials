@@ -20,7 +20,6 @@ public class HellishMaterials implements ModInitializer{
         HMConfig.init();
         HMEntities.register();
         HMItems.register();
-        HMListeners.register();
         HMStatusEffects.register();
         HMLootTables.register();
         HMLussRandomAttackEffects.register();

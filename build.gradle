@@ -18,10 +18,6 @@ dependencies {
             
     //Fabric api
     modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
-
-	modImplementation "com.github.tigereye504:modify-drops-api:${modify_drops_api_version}"
-	// Includes as a Jar-in-Jar dependency (optional)
-	include "com.github.tigereye504:modify-drops-api:${modify_drops_api_version}"
 }
 
 repositories {
