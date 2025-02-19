@@ -31,22 +31,18 @@ public class HMLootTables {
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, supplier, setter) -> {
             //Anything broken by Vuld drops *nothing*
             supplier.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(0)).conditionally(
-                    MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(HMItems.TAG_VULD)))
+                MatchToolLootCondition.builder(ItemPredicate.Builder.create().tag(HMItems.TAG_VULD)))
             );
             //Anything killed by Vuld drops *nothing*
             supplier.apply(SetCountLootFunction.builder(ConstantLootNumberProvider.create(0)).conditionally(
-                    MatchKillerWeaponLootCondition.builder(ItemPredicate.Builder.create().tag(HMItems.TAG_VULD)))
+                MatchKillerWeaponLootCondition.builder(ItemPredicate.Builder.create().tag(HMItems.TAG_VULD)))
             );
             //Anything that dies from the wither damage type drops a drop of vuld
             supplier.pool(
-                LootPool.builder()
-                    .conditionally(
-                        DamageSourcePropertiesLootCondition.builder(
-                            DamageSourcePredicate.Builder.create().tag(
-                                TagPredicate.expected(HMDamageTypes.TAG_PRODUCES_VULD_DROP)
-                            )
-                    ).build())
-                .build()
+                LootPool.builder().conditionally(DamageSourcePropertiesLootCondition.builder(
+                    DamageSourcePredicate.Builder.create().tag(TagPredicate.expected(HMDamageTypes.TAG_PRODUCES_VULD_DROP))).build())
+                    .with(ItemEntry.builder(HMItems.VULD_DROP))
+                    .build()
             );
             //The Wither shall drop a unit of Vuld
             if (WITHER_LOOT_TABLE_ID.equals(id)) {
